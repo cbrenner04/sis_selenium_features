@@ -8,42 +8,13 @@ describe 'Session 1', type: :feature do
     expect(page).to have_css '#cessation_date_selector'
     expect { click_on 'Continue' }.to raise_error
 
-    find('#cessation_date_selector').click
-    expect(page).to have_content 'SET'
-
-    cessation_date = Date.today + 32
-    find('.dw-mon', text: "#{cessation_date.strftime('%B')}").click
-    find('.dw-i', text: "#{cessation_date.strftime('%d')}").click
-    find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-    expect(page).to have_content "Cessation date scheduled for: #{cessation_date.strftime('%m/%d/%Y')}"
+    set_cessation_date
 
     click_on 'Continue'
     expect(page).to have_css('.btn.btn-info', text: 'Click here to add times in which you may have difficulty resisting the urge to smoke')
     expect { click_on 'Continue' }.to raise_error
 
-    find('.btn.btn-info', text: 'Click here to add times in which you may have difficulty resisting the urge to smoke').click
-    expect(page).to have_content 'Add risky times below.'
-
-    find('.btn-group.ng-scope', text: 'Tu').click
-    find('.btn.btn-default.weekday_button.modal-well.ng-binding.active')
-    find('#risky_time_time').click
-    risky_time = Time.now + (62 * 60)
-    hour = page.all('.dw-i', text: "#{risky_time.strftime('%I')}")
-    hour[0].click
-    minute = page.all('.dw-i', text: "#{risky_time.strftime('%M')}")
-    if minute.count > 1
-      minute[1].click
-    else
-      minute[0].click
-    end
-    find('.dw-i', text: "#{risky_time.strftime('%p')}").click
-    fill_in 'reason', with: 'My reason'
-    find('a', text: 'Save').click
-    within('.well.modal-well') do
-      expect(page).to have_content "#{risky_time.strftime('%l:%M %p')} - Tuesday"
-      expect(page).to have_content 'My reason'
-      expect(page).to have_css '.glyphicon.glyphicon-trash.glyphicon-sm'
-    end
+    set_risky_times
 
     find('.close').click
     click_on 'Continue'
@@ -56,9 +27,7 @@ describe 'Session 1', type: :feature do
 
     expect { click_on 'Continue' }.to raise_error
 
-    find('.btn.btn-info', text: 'Click here to add reason to quit').click
-    fill_in 'reason', with: 'My reason'
-    find('a', text: 'Save').click
+    set_quit_reason
     within('.well.modal-well') do
       expect(page).to have_content 'My reason'
       expect(page).to have_css '.glyphicon.glyphicon-trash.glyphicon-sm'
@@ -72,13 +41,9 @@ describe 'Session 1', type: :feature do
 
     expect { click_on 'Continue' }.to raise_error
 
-    find('.btn.btn-info', text: 'Click here to add social supports').click
-    fill_in 'name', with: 'Jane Doe'
-    fill_in 'reason', with: 'My reason'
-    find('a', text: 'Save').click
+    set_social_supports
     within('.well.modal-well') do
-      expect(page).to have_content 'Jane Doe'
-      expect(page).to have_content 'My reason'
+      expect(page).to have_content "Jane Doe\nMy reason"
       expect(page).to have_css '.glyphicon.glyphicon-trash.glyphicon-sm'
     end
 
@@ -174,23 +139,13 @@ describe 'Session 1', type: :feature do
 
     visit 'localhost:8000'
     time = Time.now
-    current_hour = time.strftime('%H')
-    if current_hour > '12'
-      expect(page).to have_content 'Recalling the Day'
-    else
-      expect(page).to have_content 'Good Morning'
+    current_hour = time.hour
+    if current_hour.between?(9, 19)
+      expect(page).to have_content 'Good Morning!'
     end
-  end
-end
 
-def answer_question
-  option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
-  option[0].click
-end
-
-def go_to_next_question
-  loop do
-    click_on 'Continue'
-    break unless page.has_no_css?('.col-sm-1.col-xs-1.col-md-1.text-left')
+    if current_hour.between?(19, 24) || current_hour.between?(0, 1)
+      expect(page).to have_content 'Recalling The Day'
+    end
   end
 end
