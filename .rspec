@@ -1,0 +1,4 @@
+--require spec_helper
+--format documentation
+--format progress
+--out 'output/rspec <%= Time.now.strftime('%m.%d.%y %H.%M.%S') %>.txt'
