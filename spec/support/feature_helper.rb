@@ -19,7 +19,7 @@ def set_risky_times
   find('.btn-group.ng-scope', text: 'Tu').click
   find('#risky_time_time').click
   time = Time.now.strftime('%I:%M')
-  if time.between?('10:58', '12:00')
+  if time.between?('10:58', '12:00') || Time.now.strftime('%M') >= '58'
     find('.dwbw.dwb-s').click
     find('.well.modal-well', text: 'Add risky times below.')
     fill_in 'reason', with: 'My reason'

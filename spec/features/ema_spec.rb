@@ -2,9 +2,10 @@
 
 describe 'EMA', type: :feature do
   it 'completes the EMA' do
+    visit 'localhost:8000'
     time = Time.now
     current_hour = time.hour
-    if current_hour.between?(9, 19)
+    if current_hour.between?(9, 18)
       greeting = 'Good Morning!'
     elsif current_hour.between?(19, 24) || current_hour.between?(0, 1)
       greeting = 'Recalling The Day'
@@ -23,8 +24,6 @@ describe 'EMA', type: :feature do
     end
 
     question_value = find('h4').text
-    expect { click_on 'Continue' }.to raise_error
-
     loop do
       question_value = choose_answer(question_value)
       expect { click_on 'Continue' }.to raise_error
@@ -32,8 +31,9 @@ describe 'EMA', type: :feature do
     end
 
     click_on 'OK'
-    expect('h4').to have_content 'Your mood RIGHT BEFORE this report'
+    expect(page).to have_content 'Your mood RIGHT BEFORE this report'
 
+    question_value = find('h4').text
     loop do
       question_value = choose_answer(question_value)
       expect { click_on 'Continue' }.to raise_error
@@ -41,30 +41,31 @@ describe 'EMA', type: :feature do
     end
 
     click_on 'OK'
-    find('h2', greeting)
-    expect { click_on 'Continue' }.to raise_error
 
-    checkbox = page.all('.ng-pristine.ng-valid.ng-touched')
-    checkbox[0].click
-    expect('h4').to have_content 'In the last 15 minutes, have you seen any of these people smoke? (check all that apply)'
-
-    expect { click_on 'Continue' }.to raise_error
-
-    checkbox = page.all('.ng-pristine.ng-valid.ng-touched')
-    checkbox[0].click
-    expect('h4').to have_content 'Where are you at the moment?'
+    2.times do
+      question_value = find('h4').text
+      expect { click_on 'Continue' }.to raise_error
+      checkbox = page.all('.ng-pristine.ng-untouched.ng-valid')
+      checkbox[0].click
+      click_on 'Continue'
+      expect(page).to_not have_content question_value
+    end
 
     click_on 'home'
-    expect('h4').to have_content 'Check any of the following that you have consumed in the last hour'
+    expect(page).to have_content 'Check any of the following that you have consumed in the last hour'
 
     expect { click_on 'Continue' }.to raise_error
 
-    choose_answer('Are you intoxicated right now?')
+    choose_answer('Check any of the following that you have consumed in the last hour')
+
+    expect(page).to have_content 'Are you intoxicated right now?'
+
+    expect { click_on 'Continue' }.to raise_error
 
     click_on 'no'
-    expect('h4').to have_content 'Thank you!'
+    expect(page).to have_content 'Thank you!'
 
-    click_on 'Go Back'
-    exp
+    find('.btn.btn-primary', text: 'Go Back').click
+    expect(page).to have_css('h1', text: 'SiS')
   end
 end

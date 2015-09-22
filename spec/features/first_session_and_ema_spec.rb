@@ -55,10 +55,7 @@ describe 'All', type: :feature do
     text_array = ['Healthy Changes Over Time', 'You want to quit right now?',
                   "You're concerned that you'll feel tired without a cigarette.",
                   "You've decided to go ahead with a quit attempt",
-                  'Dealing with Negative Emotions w/o Smoking', 'You indicated "other"',
-                  'You feel that there is nobody in your life', 'Excellent!',
-                  "You've decided to do this quit attempt", "That's ok", 'It should!',
-                  'Difficult Times To Stay Smoke Free']
+                  'Dealing with Negative Emotions w/o Smoking', 'You indicated "other"']
     text_array.each do |slide_text|
       answer_question
       click_on 'Continue'
@@ -68,6 +65,27 @@ describe 'All', type: :feature do
       expect { click_on 'Continue' }.to raise_error
     end
 
+    text_array = ['You feel that there is nobody in your life', 'Excellent!']
+    text_array.each do |slide_text|
+      answer_question
+      click_on 'Continue'
+      expect(page).to have_content slide_text
+      expect { click_on 'Continue' }.to raise_error
+    end
+
+    text_array = ["You've decided to do this quit attempt", "That's ok", 'It should!']
+    text_array.each do |slide_text|
+      answer_question
+      click_on 'Continue'
+      expect(page).to have_content slide_text
+
+      go_to_next_question
+      expect { click_on 'Continue' }.to raise_error
+    end
+
+    answer_question
+    click_on 'Continue'
+    expect(page).to have_content 'Difficult Times To Stay Smoke Free'
     expect { click_on 'Continue' }.to raise_error
 
     answer_question
@@ -77,7 +95,7 @@ describe 'All', type: :feature do
     visit 'localhost:8000'
     time = Time.now
     current_hour = time.hour
-    if current_hour.between?(9, 19)
+    if current_hour.between?(9, 18)
       greeting = 'Good Morning!'
     elsif current_hour.between?(19, 24) || current_hour.between?(0, 1)
       greeting = 'Recalling The Day'
@@ -117,7 +135,7 @@ describe 'All', type: :feature do
     2.times do
       question_value = find('h4').text
       expect { click_on 'Continue' }.to raise_error
-      checkbox = page.all('.ng-pristine.ng-valid.ng-touched')
+      checkbox = page.all('.ng-pristine.ng-untouched.ng-valid')
       checkbox[0].click
       click_on 'Continue'
       expect(page).to_not have_content question_value
@@ -128,12 +146,16 @@ describe 'All', type: :feature do
 
     expect { click_on 'Continue' }.to raise_error
 
-    choose_answer('Are you intoxicated right now?')
+    choose_answer('Check any of the following that you have consumed in the last hour')
+
+    expect(page).to have_content 'Are you intoxicated right now?'
+
+    expect { click_on 'Continue' }.to raise_error
 
     click_on 'no'
     expect(page).to have_content 'Thank you!'
 
-    click_on 'Go Back'
+    find('.btn.btn-primary', text: 'Go Back').click
     expect(page).to have_css('h1', text: 'SiS')
   end
 end
