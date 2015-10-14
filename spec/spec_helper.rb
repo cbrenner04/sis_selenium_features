@@ -5,9 +5,6 @@ require 'capybara'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
-require 'sauce'
-require 'sauce/capybara'
-require 'sauce_whisk'
 
 # set driver browser
 def browser
