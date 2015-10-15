@@ -13,9 +13,10 @@ def enter_cessation_date
 end
 
 def enter_risky_times
-  find('.btn.btn-info', text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
+  find('.btn.btn-info', text: 'YOUR RISKY TIMES').click
   find('.btn-group.ng-scope', text: 'Tu').click
   find('#risky_time_time').click
+  sleep(1)
   time = Time.now.strftime('%I:%M')
   if time.between?('10:58', '12:00') || Time.now.strftime('%M') >= '58'
     find('.dwbw.dwb-s').click
@@ -30,6 +31,7 @@ def enter_risky_times
     fill_in 'reason', with: 'My reason'
     find('#save_button').click
   end
+  find('.close').click
 end
 
 def element_count(num, elem, text)
@@ -42,17 +44,17 @@ def element_count(num, elem, text)
 end
 
 def enter_quit_reason(reason)
-  find('.btn.btn-info').click
+  find('.btn.btn-info', text: 'YOUR REASONS FOR STOPPING SMOKING').click
   fill_in 'reason', with: reason
   find('#save_button').click
   find('#exit_button').click
 end
 
-def enter_social_supports(name, reason)
-  find('.btn.btn-info').click
+def enter_social_supports(name)
+  find('.btn.btn-info', text: 'YOUR SOCIAL SUPPORT').click
   fill_in 'name', with: name
   find('#reason').click
-  find("option[value = #{reason}").click
+  find("option[value = 'He/she will offer encouragement along the way.'").click
   find('#save_button').click
   find('.close').click
 end
@@ -81,4 +83,13 @@ end
 
 def insert(key, value)
   page.execute_script("localStorage.setItem(\'#{key}\', \'#{value}\')")
+end
+
+def insert_all(date, session)
+  insert(AuthToken::KEY, AuthToken::AUTH_1)
+  insert(CessationDate::KEY, date)
+  insert(CessationReasons::KEY, CessationReasons::REASON_1)
+  insert(RiskyTimes::KEY, RiskyTimes::TIME_1)
+  insert(Sessions::KEY, session)
+  insert(SocialSupports::KEY, SocialSupports::SUPPORT_1)
 end

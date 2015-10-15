@@ -260,12 +260,3 @@ describe 'Participant opens app', type: :feature do
     end
   end
 end
-
-def insert_all(date, session)
-  insert(AuthToken::KEY, AuthToken::AUTH_1)
-  insert(CessationDate::KEY, date)
-  insert(CessationReasons::KEY, CessationReasons::REASON_1)
-  insert(RiskyTimes::KEY, RiskyTimes::TIME_1)
-  insert(Sessions::KEY, session)
-  insert(SocialSupports::KEY, SocialSupports::SUPPORT_1)
-end
