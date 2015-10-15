@@ -22,10 +22,10 @@ describe 'Participant opens app', type: :feature do
     find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
     find('.btn.btn-lg', text: "I'M SMOKING NOW...").click
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    radio = ['Reduce craving', "Soon going where I can't smoke",
-             'Cope with negative emotion', 'Enhance positive emotion',
-             'Habit/automatic', 'Opportunity to socialize',
-             'Break from work/studying', 'Boredom/to kill time', 'other'].sample
+    radio = ['Reduce craving', 'Cope with negative emotion',
+             'Enhance positive emotion', 'Habit/automatic',
+             'Opportunity to socialize', 'Break from work/studying',
+             'Boredom/to kill time', 'other'].sample
     choose radio
     find('.btn.btn-primary', text: 'CONTINUE').click
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
@@ -40,10 +40,10 @@ describe 'Participant opens app', type: :feature do
     find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
     find('.btn.btn-lg', text: 'I FORGOT TO ENTER A CIGARETTE').click
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    radio = ['Reduce craving', "Soon going where I can't smoke",
-             'Cope with negative emotion', 'Enhance positive emotion',
-             'Habit/automatic', 'Opportunity to socialize',
-             'Break from work/studying', 'Boredom/to kill time', 'other'].sample
+    radio = ['Reduce craving', 'Cope with negative emotion',
+             'Enhance positive emotion', 'Habit/automatic',
+             'Opportunity to socialize', 'Break from work/studying',
+             'Boredom/to kill time', 'other'].sample
     choose radio
     find('.btn.btn-primary', text: 'CONTINUE').click
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')

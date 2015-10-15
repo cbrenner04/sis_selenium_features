@@ -105,7 +105,7 @@ describe 'Participant opens app', type: :feature do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
     insert(Exercises::KEY, Exercises::GOOD_THINGS)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'THREE GOOD THINGS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
@@ -123,7 +123,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::GOOD_THINGS)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_1)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'THREE GOOD THINGS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -141,7 +141,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::GOOD_THINGS)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_2)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'THREE GOOD THINGS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -159,7 +159,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::GOOD_THINGS)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_ALL)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'THREE GOOD THINGS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -176,7 +176,7 @@ describe 'Participant opens app', type: :feature do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
     insert(Exercises::KEY, Exercises::EXP_KIND)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'EXPERIENCING KINDNESS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
@@ -191,7 +191,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::EXP_KIND)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::EXP_KIND_1)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'EXPERIENCING KINDNESS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -206,7 +206,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::EXP_KIND)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::EXP_KIND_ALL)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'EXPERIENCING KINDNESS')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -220,7 +220,7 @@ describe 'Participant opens app', type: :feature do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
     insert(Exercises::KEY, Exercises::SAVORING)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'SAVORING')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
@@ -235,7 +235,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::SAVORING)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::SAVORING_1)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'SAVORING')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
@@ -250,7 +250,7 @@ describe 'Participant opens app', type: :feature do
     insert(Exercises::KEY, Exercises::SAVORING)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::SAVORING_ALL)
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default.btn-lg.home-btn-height.ng-binding', text: 'SAVORING')
+    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
     row = page.all('.row')
     within row[2] do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
