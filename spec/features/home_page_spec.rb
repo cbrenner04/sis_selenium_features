@@ -259,4 +259,28 @@ describe 'Participant opens app', type: :feature do
       expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
     end
   end
+
+  it 'updates smoking status' do
+    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+    page.evaluate_script('window.location.reload()')
+    find('.wide.btn.btn-default.btn-sm', text: 'UPDATE YOUR STATUS').click
+    button = page.all('.btn.btn-lg.btn-primary.ng-binding')
+    button[0].click
+    expect(page).to have_content '4 days until quit day'
+
+    find('.wide.btn.btn-default.btn-sm', text: 'UPDATE YOUR STATUS').click
+    button = page.all('.btn.btn-lg.btn-primary.ng-binding')
+    button[1].click
+    expect(page).to have_content '4 days until quit day'
+
+    find('.wide.btn.btn-default.btn-sm', text: 'UPDATE YOUR STATUS').click
+    button = page.all('.btn.btn-lg.btn-primary.ng-binding')
+    button[2].click
+    expect(page).to have_content '4 days until quit day'
+
+    find('.wide.btn.btn-default.btn-sm', text: 'UPDATE YOUR STATUS').click
+    button = page.all('.btn.btn-lg.btn-primary.ng-binding')
+    button[3].click
+    expect(page).to have_content '4 days until quit day'
+  end
 end
