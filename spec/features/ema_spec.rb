@@ -1,6 +1,6 @@
 # filename: ema_spec.rb
 
-describe 'EMA', type: :feature do
+describe 'EMA', :old do
   it 'completes the EMA' do
     visit 'localhost:8000'
     time = Time.now

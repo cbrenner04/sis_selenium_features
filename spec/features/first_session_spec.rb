@@ -1,106 +1,142 @@
-# filename: session1_alt_spec.rb
+# filename: first_session_spec.rb
 
-describe 'Session 1', type: :feature do
-  it 'completes Session 1' do
+require_relative '../support/local_storage/authentication_token.rb'
+
+describe 'Participant configures app', type: :feature do
+  before(:all) do
     visit 'localhost:8000'
-    expect(page).to have_content 'Click the button to begin...'
-    click_on 'Begin'
-    expect(page).to have_css '#cessation_date_selector'
-    expect { click_on 'Continue' }.to raise_error
+    insert(AuthToken::KEY, AuthToken::AUTH_1)
+  end
 
-    set_cessation_date
+  before do
+    visit 'localhost:8000'
+  end
 
-    click_on 'Continue'
-    expect(page).to have_css('.btn.btn-info', text: 'Click here to add times in which you may have difficulty resisting the urge to smoke')
-    expect { click_on 'Continue' }.to raise_error
+  it 'sees first session' do
+    expect(page).to have_content 'START NOW'
+  end
 
-    set_risky_times
-
-    find('.close').click
-    click_on 'Continue'
+  it 'completes Session 1' do
+    find('.btn.btn-primary', text: 'START NOW').click
     find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
-    expect { click_on 'Continue' }.to raise_error
+    expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
 
-    answer_question
-    click_on 'Continue'
-    expect(page).to have_content 'Click here to add reason to quit'
+    answer_question(0)
+    4.times do
+      click_on 'Continue'
+    end
 
-    expect { click_on 'Continue' }.to raise_error
+    find('h3', text: 'Your Reasons for Quitting Smoking')
+    expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
 
-    set_quit_reason
+    find('.btn.btn-info').click
+    expect(page).to have_css('#save_button[disabled = disabled]')
+    fill_in 'reason', with: 'My reason'
+    find('#save_button').click
     within('.well.modal-well') do
       expect(page).to have_content 'My reason'
-      expect(page).to have_css '.glyphicon.glyphicon-trash.glyphicon-sm'
+      expect(page).to have_css '.glyphicon.glyphicon-remove.glyphicon-sm'
     end
 
-    find('.close').click
-    loop do
-      click_on 'Continue'
-      break if page.has_css?('.btn.btn-info', text: 'Click here to add social supports')
+    find('#exit_button').click
+    click_on 'Continue'
+    answer_question(0)
+    8.times do
+      go_to_next_question
+      answer_question(0)
     end
 
-    expect { click_on 'Continue' }.to raise_error
+    3.times { click_on 'Continue' }
+    find('h3', text: 'Enlisting Your Social Support')
+    expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
 
-    set_social_supports
+    find('.btn.btn-info').click
+    expect(page).to have_css('#save_button[disabled = disabled]')
+    fill_in 'name', with: 'Jane Doe'
+    find('#reason').click
+    find("option[value = 'He/she will offer encouragement along the way.'").click
+    find('#save_button').click
     within('.well.modal-well') do
-      expect(page).to have_content "Jane Doe\nMy reason"
-      expect(page).to have_css '.glyphicon.glyphicon-trash.glyphicon-sm'
+      expect(page).to have_content "Jane Doe\nHe/she will offer encouragement along the way."
+      expect(page).to have_css '.glyphicon.glyphicon-remove.glyphicon-sm'
     end
 
     find('.close').click
     click_on 'Continue'
-    find('h3', text: 'Benefits of Quitting Smoking')
-    expect { click_on 'Continue' }.to raise_error
 
-    text_array = ['Healthy Changes Over Time', 'You want to quit right now?',
-                  "You're concerned that you'll feel tired without a cigarette.",
-                  "You've decided to go ahead with a quit attempt",
-                  'Dealing with Negative Emotions w/o Smoking', 'You indicated "other"']
-    text_array.each do |slide_text|
-      answer_question
+    2.times do
+      find('.btn.btn-info').click
+      find('.glyphicon.glyphicon-remove.glyphicon-sm')
+      find('.close').click
       click_on 'Continue'
-      expect(page).to have_content slide_text
-
-      go_to_next_question
-      expect { click_on 'Continue' }.to raise_error
     end
 
-    text_array = ['You feel that there is nobody in your life', 'Excellent!']
-    text_array.each do |slide_text|
-      answer_question
-      click_on 'Continue'
-      expect(page).to have_content slide_text
-      expect { click_on 'Continue' }.to raise_error
+    answer_question(0)
+    2.times { click_on 'Continue' }
+    expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
+    find('#cessation_date_selector').click
+    if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
+      find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
+      expect(page).to have_content "Cessation date scheduled for: #{Date.today.strftime('%m/%d/%Y')}"
+    else
+      cessation_date = Date.today + 32
+      find('.dw-mon', text: "#{cessation_date.strftime('%B')}").click
+      element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
+      find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
+      expect(page).to have_content "Cessation date scheduled for: #{cessation_date.strftime('%m/%d/%Y')}"
     end
 
-    text_array = ["You've decided to do this quit attempt", "That's ok", 'It should!']
-    text_array.each do |slide_text|
-      answer_question
-      click_on 'Continue'
-      expect(page).to have_content slide_text
-
-      go_to_next_question
-      expect { click_on 'Continue' }.to raise_error
-    end
-
-    answer_question
     click_on 'Continue'
-    expect(page).to have_content 'Difficult Times To Stay Smoke Free'
-    expect { click_on 'Continue' }.to raise_error
+    answer_question(0)
+    go_to_next_question
+    expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
+    find('.btn.btn-info', text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
+    find('.btn-group.ng-scope', text: 'Tu').click
+    find('#risky_time_time').click
+    time = Time.now.strftime('%I:%M')
+    if time.between?('10:58', '12:00') || Time.now.strftime('%M') >= '58'
+      find('.dwbw.dwb-s').click
+      find('.well.modal-well', text: 'Add risky times below.')
+      fill_in 'reason', with: 'My reason'
+      find('#save_button').click
+      within('.well.modal-well') do
+        expect(page).to have_content "#{Time.now.strftime('%l:%M %p')} - Tuesday\nMy reason"
+        expect(page).to have_css '.glyphicon.glyphicon-remove.glyphicon-sm'
+      end
+    else
+      risky_time = Time.now + (62 * 60)
+      element_count(0, '.dw-i', "#{risky_time.strftime('%I')}")
+      element_count(1, '.dw-i', "#{risky_time.strftime('%M')}")
+      find('.dw-i', text: "#{risky_time.strftime('%p')}").click
+      fill_in 'reason', with: 'My reason'
+      find('#save_button').click
+      within('.well.modal-well') do
+        expect(page).to have_content "#{risky_time.strftime('%l:%M %p')} - Tuesday\nMy reason"
+        expect(page).to have_css '.glyphicon.glyphicon-remove.glyphicon-sm'
+      end
+    end
 
-    answer_question
+    find('.close').click
     click_on 'Continue'
-    expect(page).to have_content 'Receiving Reminders To Stay on Track'
-
-    visit 'localhost:8000'
-    time = Time.now
-    current_hour = time.hour
-    if current_hour.between?(9, 18)
-      expect(page).to have_content 'Good Morning!'
+    find('.btn.btn-info', text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
+    find('h3', text: 'Add a day and time:')
+    find('.close').click
+    click_on 'Continue'
+    find('h3', text: 'Receiving Reminders To Stay on Track')
+    click_on 'Continue'
+    find('.question.well')
+    click_on 'Continue'
+    find('h3', text: 'Congrats again: You are now all set for your quit day!')
+    click_on 'Continue'
+    if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
+      cess_date = "#{Date.today.strftime('%b. %d')}"
+    else
+      new_date = Date.today + 32
+      cess_date = "#{new_date.strftime('%b. %d')}"
     end
-
-    if current_hour.between?(19, 24) || current_hour.between?(0, 1)
-      expect(page).to have_content 'Recalling The Day'
-    end
+    find('.question.well', text: cess_date)
+    click_on 'Continue'
+    find('.btn.btn-primary', text: 'GO HOME').click
+    expect(page).to have_css('#smokingStatus')
   end
 end
