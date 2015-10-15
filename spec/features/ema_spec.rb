@@ -69,3 +69,13 @@ describe 'EMA', :old do
     expect(page).to have_css('h1', text: 'SiS')
   end
 end
+
+def choose_answer(question)
+  find('.form-control.ng-pristine.ng-untouched.ng-valid').click
+  option = page.all('.ng-binding.ng-scope')
+  option[0].click
+  expect(page).to have_content question
+  click_on 'Continue'
+  expect('h4').to_not have_content question
+  find('h4').text
+end

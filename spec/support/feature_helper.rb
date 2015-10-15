@@ -34,15 +34,6 @@ def enter_risky_times
   find('.close').click
 end
 
-def element_count(num, elem, text)
-  element = page.all(elem, text: text)
-  if element.count > 1
-    element[num].click
-  else
-    find(elem, text: text).click
-  end
-end
-
 def enter_quit_reason(reason)
   find('.btn.btn-info', text: 'YOUR REASONS FOR STOPPING SMOKING').click
   fill_in 'reason', with: reason
@@ -59,6 +50,15 @@ def enter_social_supports(name)
   find('.close').click
 end
 
+def element_count(num, elem, text)
+  element = page.all(elem, text: text)
+  if element.count > 1
+    element[num].click
+  else
+    find(elem, text: text).click
+  end
+end
+
 def answer_question(opt)
   option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
   option[opt].click
@@ -69,16 +69,6 @@ def go_to_next_question
     click_on 'Continue'
     break unless page.has_no_css?('.col-sm-1.col-xs-1.col-md-1.text-left')
   end
-end
-
-def choose_answer(question)
-  find('.form-control.ng-pristine.ng-untouched.ng-valid').click
-  option = page.all('.ng-binding.ng-scope')
-  option[0].click
-  expect(page).to have_content question
-  click_on 'Continue'
-  expect('h4').to_not have_content question
-  find('h4').text
 end
 
 def insert(key, value)
