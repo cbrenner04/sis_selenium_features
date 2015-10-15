@@ -1,9 +1,4 @@
-require_relative '../support/local_storage/authentication_token.rb'
-require_relative '../support/local_storage/cessation_date.rb'
-require_relative '../support/local_storage/cessation_reasons.rb'
-require_relative '../support/local_storage/risky_times.rb'
-require_relative '../support/local_storage/sessions.rb'
-require_relative '../support/local_storage/social_supports.rb'
+# filename: configuration_spec.rb
 
 describe 'On initial app load', type: :feature do
   before do

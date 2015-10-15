@@ -6,6 +6,16 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 
+# require local_storage files
+require_relative './support/local_storage/authentication_token.rb'
+require_relative './support/local_storage/cessation_date.rb'
+require_relative './support/local_storage/cessation_reasons.rb'
+require_relative './support/local_storage/exercises.rb'
+require_relative './support/local_storage/participant_exercise_question_answers.rb'
+require_relative './support/local_storage/risky_times.rb'
+require_relative './support/local_storage/sessions.rb'
+require_relative './support/local_storage/social_supports.rb'
+
 # set driver browser
 def browser
   if ENV['safari']
