@@ -1,11 +1,9 @@
 # filename: first_session_spec.rb
 
-require_relative '../support/local_storage/authentication_token.rb'
-
 describe 'Participant configures app', type: :feature do
   before(:all) do
     visit 'localhost:8000'
-    insert(AuthToken::KEY, AuthToken::AUTH_1)
+    # insert(AuthToken::KEY, AuthToken::AUTH_1) # unnecessary with current functionality
   end
 
   before do
@@ -128,11 +126,11 @@ describe 'Participant configures app', type: :feature do
     click_on 'Continue'
     find('h3', text: 'Congrats again: You are now all set for your quit day!')
     click_on 'Continue'
-    if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
-      cess_date = "#{Date.today.strftime('%b. %d')}"
+    if Date.today.strftime('%B') == 'December' || Date.today.strftime('%-d') > '26'
+      cess_date = "#{Date.today.strftime('%b. %-d')}"
     else
       new_date = Date.today + 32
-      cess_date = "#{new_date.strftime('%b. %d')}"
+      cess_date = "#{new_date.strftime('%b. %-d')}"
     end
     find('.question.well', text: cess_date)
     click_on 'Continue'
