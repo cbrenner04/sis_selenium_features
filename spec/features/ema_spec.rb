@@ -52,11 +52,13 @@ describe 'EMA', :old do
     end
 
     click_on 'home'
-    expect(page).to have_content 'Check any of the following that you have consumed in the last hour'
+    expect(page).to have_content 'Check any of the following that you have c' \
+                                 'onsumed in the last hour'
 
     expect { click_on 'Continue' }.to raise_error
 
-    choose_answer('Check any of the following that you have consumed in the last hour')
+    choose_answer('Check any of the following that you have consumed in the ' \
+                  'last hour')
 
     expect(page).to have_content 'Are you intoxicated right now?'
 

@@ -22,12 +22,14 @@ describe 'Participant opens app', type: :feature do
 
     it 'redirects to settings menu, updates cessation date' do
       enter_cessation_date
-      if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
+      if Date.today.strftime('%B') == 'December' ||
+         Date.today.strftime('%d') > '26'
         cessation_date = Date.today
       else
         cessation_date = Date.today + 32
       end
-      expect(page).to have_css('#cessation_date_selector', text: "#{cessation_date.strftime('%m/%d/%Y')}")
+      expect(page).to have_css('#cessation_date_selector',
+                               text: "#{cessation_date.strftime('%m/%d/%Y')}")
       expect(page).to_not have_css('#save_button')
     end
 
@@ -55,7 +57,8 @@ describe 'Participant opens app', type: :feature do
     it 'redirects to settings menu, completes configuration' do
       expect(page).to_not have_css('#save_button')
       enter_cessation_date
-      if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
+      if Date.today.strftime('%B') == 'December' ||
+         Date.today.strftime('%d') > '26'
         cessation_date = Date.today
       else
         cessation_date = Date.today + 32
@@ -64,7 +67,8 @@ describe 'Participant opens app', type: :feature do
       enter_risky_times
       find('.btn.btn-info', text: 'YOUR SOCIAL SUPPORT').click
       find('.close').click
-      find('#cessation_date_selector', text: "#{cessation_date.strftime('%m/%d/%Y')}")
+      find('#cessation_date_selector',
+           text: "#{cessation_date.strftime('%m/%d/%Y')}")
       find('#save_button').click
     end
   end
@@ -90,12 +94,14 @@ describe 'Participant opens app', type: :feature do
 
     it 'updates cessation date' do
       enter_cessation_date
-      if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
+      if Date.today.strftime('%B') == 'December' ||
+         Date.today.strftime('%d') > '26'
         cessation_date = Date.today
       else
         cessation_date = Date.today + 32
       end
-      expect(page).to have_css('#cessation_date_selector', text: "#{cessation_date.strftime('%m/%d/%Y')}")
+      expect(page).to have_css('#cessation_date_selector',
+                               text: "#{cessation_date.strftime('%m/%d/%Y')}")
     end
 
     it 'adds a reason for stopping smoking' do
@@ -104,7 +110,8 @@ describe 'Participant opens app', type: :feature do
       find('#save_button', text: 'SAVE').click
       within('.well.modal-well') do
         expect(page).to have_content 'New reason'
-        expect(page).to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
+        expect(page)
+          .to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
       end
     end
 
@@ -131,8 +138,10 @@ describe 'Participant opens app', type: :feature do
         fill_in 'reason', with: 'New reason'
         find('#save_button', text: 'SAVE').click
         within('.well.modal-well') do
-          expect(page).to have_content "#{Time.now.strftime('%l:%M %p')} - Wednesday\nNew reason"
-          expect(page).to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
+          expect(page).to have_content "#{Time.now.strftime('%l:%M %p')}" \
+                                       ' - Wednesday\nNew reason'
+          expect(page)
+            .to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
         end
       else
         risky_time = Time.now + (62 * 60)
@@ -142,8 +151,10 @@ describe 'Participant opens app', type: :feature do
         fill_in 'reason', with: 'New reason'
         find('#save_button', text: 'SAVE').click
         within('.well.modal-well') do
-          expect(page).to have_content "#{risky_time.strftime('%l:%M %p')} - Wednesday\nNew reason"
-          expect(page).to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
+          expect(page).to have_content "#{risky_time.strftime('%l:%M %p')}" \
+                                       ' - Wednesday\nNew reason'
+          expect(page)
+            .to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
         end
       end
     end
@@ -163,11 +174,14 @@ describe 'Participant opens app', type: :feature do
       find('.btn.btn-info', text: 'YOUR SOCIAL SUPPORT').click
       fill_in 'name', with: 'Johnny Tsunami'
       find('#reason').click
-      find("option[value = 'He/she will offer encouragement along the way.'").click
+      find("option[value = 'He/she will offer encouragement along the way.'")
+        .click
       find('#save_button', text: 'SAVE').click
       within('.well.modal-well') do
-        expect(page).to have_content "Johnny Tsunami\nHe/she will offer encouragement along the way."
-        expect(page).to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
+        expect(page).to have_content "Johnny Tsunami\nHe/she will offer enco" \
+                                     'uragement along the way.'
+        expect(page)
+          .to have_css('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
       end
     end
 

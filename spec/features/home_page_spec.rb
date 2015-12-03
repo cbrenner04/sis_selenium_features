@@ -102,161 +102,252 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows available good things exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::GOOD_THINGS)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+      page.execute_script('localStorage.clear()')
+    end
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
     within row[4] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows one complete, two available good things exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::GOOD_THINGS)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_1)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'THREE GOOD THINGS').click
+    fill_in 'answer_0', with: 'First good thing'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
     within row[4] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows two complete, one available good things exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::GOOD_THINGS)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_2)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'THREE GOOD THINGS').click
+    fill_in 'answer_0', with: 'First good thing'
+    fill_in 'answer_1', with: 'Second good thing'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[4] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows complete available good things exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::GOOD_THINGS)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::GOOD_THINGS_ALL)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'THREE GOOD THINGS')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'THREE GOOD THINGS').click
+    fill_in 'answer_0', with: 'First good thing'
+    fill_in 'answer_1', with: 'Second good thing'
+    fill_in 'answer_2', with: 'Third good thing'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[4] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
   end
 
   it 'shows available experiencing kindness exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::EXP_KIND)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default',
+                             text: 'EXPERIENCING KINDNESS')
+      page.execute_script('localStorage.clear()')
+    end
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows one complete, one available experiencing kindness exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::EXP_KIND)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::EXP_KIND_1)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default',
+                             text: 'EXPERIENCING KINDNESS')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS').click
+    fill_in 'answer_0', with: 'First kindness experience'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows complete experiencing kindness exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::EXP_KIND)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::EXP_KIND_ALL)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default',
+                             text: 'EXPERIENCING KINDNESS')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS').click
+    fill_in 'answer_0', with: 'First kindness experience'
+    fill_in 'answer_1', with: 'Second kindness experience'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
   end
 
   it 'shows available savoring exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::SAVORING)
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'SAVORING')
+      page.execute_script('localStorage.clear()')
+    end
     page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows one available, one complete savoring exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::SAVORING)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::SAVORING_1)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'SAVORING')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'SAVORING').click
+    fill_in 'answer_0', with: 'First savoring'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-warning.ng-scope', text: 'pending')
+      expect(page).to have_css('.label.label-lg.label-warning.ng-scope',
+                               text: 'pending')
     end
   end
 
   it 'shows complete savoring exercises' do
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    insert(Exercises::KEY, Exercises::SAVORING)
-    insert(ExerciseAnswers::KEY, ExerciseAnswers::SAVORING_ALL)
-    page.evaluate_script('window.location.reload()')
-    expect(page).to have_css('.wide.btn.btn-default', text: 'SAVORING')
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: 'SAVORING')
+      page.execute_script('localStorage.clear()')
+    end
+    find('.wide.btn.btn-default', text: 'SAVORING').click
+    fill_in 'answer_0', with: 'First savoring'
+    fill_in 'answer_1', with: 'Second savoring'
+    find('#save_button').click
+    find('#success-alert')
+    find('#exit_button').click
     row = page.all('.row')
     within row[2] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
     within row[3] do
-      expect(page).to have_css('.label.label-lg.label-success.ng-scope', text: 'complete')
+      expect(page).to have_css('.label.label-lg.label-success.ng-scope',
+                               text: 'complete')
     end
   end
 
