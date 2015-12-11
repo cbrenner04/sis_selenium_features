@@ -1,4 +1,4 @@
-# filename: new_first_session_spec.rb
+# filename: path_1_session_1_spec.rb
 
 describe 'Participant loads app for the first time', type: :feature do
   before do
@@ -839,6 +839,7 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'You\'ve decided that now is not the ri' \
                                      'ght time for you to schedule and prepa' \
                                      're for your quit day.'
+        # add path to home screen
       end
 
       it 'cannot move past \'session1_20\' without responding' do
@@ -1354,7 +1355,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h3', text: 'Identify your Social Support')
         answer_question(5)
         expect(page).to have_content 'You indicated "other"'
-        # there should be a place to enter text, waiting for css
+        find('#notes').set('bad reason')
         click_on 'Continue'
         expect(page).to have_content 'Excellent!'
       end
@@ -1441,51 +1442,6 @@ describe 'Participant loads app for the first time', type: :feature do
           answer_question(1)
           expect(page).to have_content 'You\'ve decided to do this quit atte' \
                                        'mpt without any help'
-          click_on 'Continue'
-          expect(page).to have_content 'Schedule Your Quit Day'
-        end
-
-        it 'responds to \'session1_social6\' with response 2, skips social ' \
-           'supports modal, goes straight to \'session1_schedule\'' do
-          find('.btn.btn-primary', text: 'START NOW').click
-          find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
-          answer_question(0)
-          find('h4', text: 'You have installed this app, because you are int' \
-                           'erested in quitting smoking.')
-          click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
-          find('h3', text: 'Identify your Social Support')
-          answer_question(0)
-          find('h3', text: 'Excellent!')
-          answer_question(1)
-          find('h4', text: 'You\'ve decided to do this quit attempt without ' \
-                           'any help')
           click_on 'Continue'
           expect(page).to have_content 'Schedule Your Quit Day'
         end
@@ -2013,7 +1969,7 @@ describe 'Participant loads app for the first time', type: :feature do
                 .to have_css('button[disabled = disabled]', text: 'CONTINUE')
             end
 
-            it 'responds to \'quitday_scheduled\' with reponse 0' do
+            it 'responds to \'quitday_scheduled\' with response 0' do
               find('.btn.btn-primary', text: 'START NOW').click
               find('h3',
                    text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
@@ -2314,6 +2270,7 @@ describe 'Participant loads app for the first time', type: :feature do
                   .to have_content 'You have chosen not to identify any time' \
                                    's you might have difficulty to remain sm' \
                                    'oke-free.'
+                # add path to home screen
               end
 
               it 'sets a risky time' do
@@ -2421,7 +2378,7 @@ describe 'Participant loads app for the first time', type: :feature do
                   end
                 end
 
-                find('.close').click
+                find('#exit_button').click
                 find('h3', text: 'Difficult Times To Stay Smoke Free')
               end
 
@@ -2517,7 +2474,7 @@ describe 'Participant loads app for the first time', type: :feature do
                   fill_in 'reason', with: 'My reason'
                   find('#save_button').click
                 end
-                find('.close').click
+                find('#exit_button').click
                 click_on 'Continue'
                 find('h3', text: 'Receiving Reminders To Stay on Track')
                 click_on 'Continue'
@@ -2535,6 +2492,8 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('.question.well', text: cess_date)
                 click_on 'Continue'
                 find('.btn.btn-primary', text: 'GO HOME').click
+                find('h3', text: 'Set Up')
+                find('#save_button').click
                 expect(page).to have_css('#smokingStatus')
               end
             end
@@ -2623,6 +2582,8 @@ describe 'Participant loads app for the first time', type: :feature do
                                        'ife who would support you')
           answer_question(0)
           expect(page).to have_content 'Excellent!'
+
+          # add path to home screen
         end
 
         it 'responds to \'session1_social7\' with response 0' do
@@ -2667,6 +2628,8 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'You feel that there is nobody in you' \
                                        'r life who would support your upcomi' \
                                        'ng quit attempt.'
+
+          # add path to home screen
         end
 
         it 'responds to \'session1_social8\' with response 0' do
@@ -2716,6 +2679,8 @@ describe 'Participant loads app for the first time', type: :feature do
                            'any help from other people.')
           click_on 'Continue'
           expect(page).to have_content 'Schedule Your Quit Day'
+
+          # add path to home screen
         end
 
         it 'responds to \'session1_social8\' with response 1' do
@@ -2765,6 +2730,8 @@ describe 'Participant loads app for the first time', type: :feature do
                            'the online forum.')
           click_on 'Continue'
           expect(page).to have_content 'Schedule Your Quit Day'
+
+          # add path to home screen
         end
       end
     end
@@ -2772,19 +2739,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'is taken to the configuration page when session is complete but ' \
            'all modals have not been responded to' do
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 1,' do
-      it 'responds to \'session1_19b\' with response 2'
-    end
-
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 1, and \'social_support1\' with 7' do
-      it 'responds to \'session1_social7\' with response 1'
-      it 'responds to \'session1_social7\' with response 0'
-      it 'responds to \'session1_social8\' with response 0'
-      it 'responds to \'session1_social8\' with response 1'
-    end
-
     describe 'responds to question 1 with response 1, \'session1_5\' with re' \
              'sponse 5, and \'social_support1\' with response 1' do
       it 'responds to \'session1_social6\' with 1'
@@ -2813,13 +2767,6 @@ describe 'Participant loads app for the first time', type: :feature do
              'sponse 1, \'social_support1\' with 1, \'session1_social6\' wit' \
              'h 1, \'session1_schedule\' with 1' do
       it 'responds to \'quitday_scheduled\' with response 0'
-    end
-
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 1, \'social_support1\' with 1, \'session1_social6\' wit' \
-             'h 1, \'session1_schedule\' with 1, \'quitday_scheduled\' with ' \
-             '1' do
-      it 'responds to \'difficult_1\' with response 0'
     end
 
     describe 'responds to question 1 with response 1, \'session1_5\' with re' \
