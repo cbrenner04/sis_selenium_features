@@ -62,6 +62,7 @@ end
 def answer_question(opt)
   option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
   option[opt].click
+  click_on 'Continue'
 end
 
 def go_to_next_question
