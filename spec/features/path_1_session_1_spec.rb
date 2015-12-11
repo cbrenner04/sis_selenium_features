@@ -19,9 +19,22 @@ describe 'Participant loads app for the first time', type: :feature do
     expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
   end
 
-  it 'responds to question 1 with response 2'
+  it 'responds to question 1 with response 2' do
+    find('.btn.btn-primary', text: 'START NOW').click
+    find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+    answer_question(1)
+    expect(page).to have_content 'You have installed this app, because you a' \
+                                 're interested in quitting smoking.'
+  end
 
-  it 'responds to question 1 with response 4'
+  it 'responds to question 1 with response 4' do
+    find('.btn.btn-primary', text: 'START NOW').click
+    find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+    answer_question(3)
+    expect(page).to have_content 'That\'s great!'
+    click_on 'Continue'
+    find('h3', text: 'Your Reasons for Quitting Smoking')
+  end
 
   describe 'responds to question 1 with response 1' do
     it 'is unable to move past \'session1_reasons\' without responding' do
@@ -409,9 +422,9 @@ describe 'Participant loads app for the first time', type: :feature do
       click_on 'Continue'
       find('h4', text: 'Now that we have gone over some general concerns')
       click_on 'Continue'
-      find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-      answer_question(1)
-      find('h3', text: 'Smoke-free Happiness')
+      find('h3', text: 'Challenging Times During Your Quit Attempt')
+      answer_question(0)
+      find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
       click_on 'Continue'
       find('h3', text: 'Additional Strategies')
       click_on 'Continue'
@@ -647,9 +660,6 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You are not ready to quit at this time.')
         click_on 'Continue'
         find('h3', text: 'Concerns about Quitting')
-        click_on 'Continue'
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
         answer_question(4)
         expect(page).to have_content 'You think you won\'t have the willpowe' \
                                      'r to quit smoking.'
@@ -2653,10 +2663,10 @@ describe 'Participant loads app for the first time', type: :feature do
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
                                        'ife who would support you')
-          answer_question(0)
-          expect(page).to have_content 'You feel there is nobody in your lif' \
-                                       'e who would support your upcoming qu' \
-                                       'it attempt.'
+          answer_question(1)
+          expect(page).to have_content 'You feel that there is nobody in you' \
+                                       'r life who would support your upcomi' \
+                                       'ng quit attempt.'
         end
 
         it 'responds to \'session1_social8\' with response 0' do
@@ -2697,10 +2707,10 @@ describe 'Participant loads app for the first time', type: :feature do
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
                                        'ife who would support you')
-          answer_question(0)
-          find('.question.well', text: 'You feel there is nobody in your lif' \
-                                       'e who would support your upcoming qu' \
-                                       'it attempt.')
+          answer_question(1)
+          find('.question.well', text: 'You feel that there is nobody in you' \
+                                       'r life who would support your upcomi' \
+                                       'ng quit attempt.')
           answer_question(1)
           find('h4', text: 'You\'ve decided to do this quit attempt without ' \
                            'any help from other people.')
@@ -2746,10 +2756,10 @@ describe 'Participant loads app for the first time', type: :feature do
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
                                        'ife who would support you')
-          answer_question(0)
-          find('.question.well', text: 'You feel there is nobody in your lif' \
-                                       'e who would support your upcoming qu' \
-                                       'it attempt.')
+          answer_question(1)
+          find('.question.well', text: 'You feel that there is nobody in you' \
+                                       'r life who would support your upcomi' \
+                                       'ng quit attempt.')
           answer_question(0)
           find('h4', text: 'You have decided to try out the quitline and/or ' \
                            'the online forum.')
