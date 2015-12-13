@@ -1328,6 +1328,7 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h3', text: 'Schedule Your Quit Day')
             answer_question(1)
             expect(page).to have_content 'That\'s ok'
+            # add path to home screen
           end
 
           describe 'responds to \'session1_schedule\' with response 1' do
@@ -1533,6 +1534,7 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h3', text: 'CONGRATULATIONS!')
               answer_question(1)
               expect(page).to have_content 'Good for you!'
+              # add path to home screen
             end
 
             describe 'responds to \'quitday_scheduled\' with response 1' do
@@ -1865,8 +1867,6 @@ describe 'Participant loads app for the first time', type: :feature do
                                        'ife who would support you')
           answer_question(0)
           expect(page).to have_content 'Excellent!'
-
-          # add path to home screen
         end
 
         it 'responds to \'session1_social7\' with response 0' do
@@ -1901,8 +1901,6 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'You feel that there is nobody in you' \
                                        'r life who would support your upcomi' \
                                        'ng quit attempt.'
-
-          # add path to home screen
         end
 
         it 'responds to \'session1_social8\' with response 0' do
@@ -1988,44 +1986,87 @@ describe 'Participant loads app for the first time', type: :feature do
         end
       end
     end
-  end
 
-  describe 'is taken to the configuration page when session is complete but ' \
-           'all modals have not been responded to' do
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 5, and \'social_support1\' with response 1' do
-      it 'responds to \'session1_social6\' with 1'
-      it 'responds to \'session1_social6\' with 0'
-    end
+    describe 'responds to \'session1_5\' with response 5' do
+      describe 'responds to \'social_support1\' with response 1' do
+        it 'responds to \'session1_social6\' with 1' do
+          find('.btn.btn-primary', text: 'START NOW').click
+          find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+          answer_question(0)
+          find('h4', text: 'You have installed this app, because you are inte' \
+                           'rested in quitting smoking.')
+          click_on 'Continue'
+          enter_quit_reason('My reason')
+          find('h3', text: 'Benefits of Quitting Smoking')
+          answer_question(0)
+          find('h3', text: 'Healthy Changes Over Time')
+          click_on 'Continue'
+          find('h3', text: 'Ready to Quit?')
+          answer_question(4)
+          find('.question.well', text: 'You have already quit smoking')
+          click_on 'Continue'
+          find('h3', text: 'Concerns about Quitting')
+          answer_question(0)
+          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
+                           't a cigarette.')
+          click_on 'Continue'
+          find('h3', text: 'Identify your Social Support')
+          answer_question(0)
+          find('h3', text: 'Excellent!')
+          answer_question(0)
+          find('h3', text: 'Enlisting Your Social Support')
+          expect(page).to have_content 'You have identified people who can h' \
+                                       'elp you in your quit attempt'
 
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 5, and \'social_support1\' with response 7' do
-      it 'responds to \'session1_social7\' with 1'
-    end
+          # complete session, expect to be taken to settings, can't go to home
+          enter_social_supports('Jane Doe')
+          find('.btn.btn-primary', text: 'GO HOME').click
+          find('h3', text: 'Set Up')
+          expect(page).to_not have_css('#save_button')
+        end
 
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 5, \'social_suppor1\' with 7, \'session1_social7\' with' \
-             ' 0' do
-      it 'responds to \'session1_social8\' with 1'
-      it 'responds to \'session1_social8\' with 0'
-    end
+        it 'responds to \'session1_social6\' with 0' do
+          find('.btn.btn-primary', text: 'START NOW').click
+          find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+          answer_question(0)
+          find('h4', text: 'You have installed this app, because you are inte' \
+                           'rested in quitting smoking.')
+          click_on 'Continue'
+          enter_quit_reason('My reason')
+          find('h3', text: 'Benefits of Quitting Smoking')
+          answer_question(0)
+          find('h3', text: 'Healthy Changes Over Time')
+          click_on 'Continue'
+          find('h3', text: 'Ready to Quit?')
+          answer_question(4)
+          find('.question.well', text: 'You have already quit smoking')
+          click_on 'Continue'
+          find('h3', text: 'Concerns about Quitting')
+          answer_question(0)
+          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
+                           't a cigarette.')
+          click_on 'Continue'
+          find('h3', text: 'Identify your Social Support')
+          answer_question(0)
+          find('h3', text: 'Excellent!')
+          answer_question(1)
+          expect(page).to have_content 'You\'ve decided to do this quit atte' \
+                                       'mpt without any help from other people.'
 
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 1, \'social_support1\' with 1, \'session1_social\' with' \
-             ' 1,' do
-      it 'responds to \'session1_schedule\' with 0'
-    end
+          # complete session, expect to be taken to settings, can't go to home
+          click_on 'Continue'
+          find('.btn.btn-primary', text: 'GO HOME').click
+          find('h3', text: 'Set Up')
+          expect(page).to_not have_css('#save_button')
+        end
+      end
 
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 1, \'social_support1\' with 1, \'session1_social6\' wit' \
-             'h 1, \'session1_schedule\' with 1' do
-      it 'responds to \'quitday_scheduled\' with response 0'
-    end
-
-    describe 'responds to question 1 with response 1, \'session1_5\' with re' \
-             'sponse 5, \'social_support1\' with 1, ' do
-      it 'responds to \'session1_social6\' with response 1'
-      it 'responds to \'session1_social6\' with response 0'
+      describe 'responds to \'social_suppor1\' with 7' do
+        describe 'responds to \'session1_social7\' with 0' do
+          it 'responds to \'session1_social8\' with 1'
+          it 'responds to \'session1_social8\' with 0'
+        end
+      end
     end
   end
 end
