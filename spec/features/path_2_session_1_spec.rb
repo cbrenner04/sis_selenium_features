@@ -118,7 +118,7 @@ describe 'Participant loads app for the first time', type: :feature do
               'rns']
       feed = ['Healthy Changes Over Time', 'You are not ready to quit at thi' \
               's time.', 'You\'re concerned that you\'ll feel tired without ' \
-              ' cigarette.', 'You\'ve decided to go ahead with a quit attempt']
+              'a cigarette.', 'You\'ve decided to go ahead with a quit attempt']
 
       ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
         find("h#{x}", text: a)
@@ -148,7 +148,7 @@ describe 'Participant loads app for the first time', type: :feature do
               'rns']
       feed = ['Healthy Changes Over Time', 'You are not ready to quit at thi' \
               's time.', 'You\'re concerned that you\'ll feel tired without ' \
-              ' cigarette.', 'You\'ve decided to go ahead with a quit attempt']
+              'a cigarette.', 'You\'ve decided to go ahead with a quit attempt']
 
       ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
         find("h#{x}", text: a)
@@ -178,7 +178,7 @@ describe 'Participant loads app for the first time', type: :feature do
               'rns']
       feed = ['Healthy Changes Over Time', 'You are not ready to quit at thi' \
               's time.', 'You\'re concerned that you\'ll feel tired without ' \
-              ' cigarette.', 'You\'ve decided to go ahead with a quit attempt']
+              'a cigarette.', 'You\'ve decided to go ahead with a quit attempt']
 
       ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
         find("h#{x}", text: a)
@@ -208,7 +208,7 @@ describe 'Participant loads app for the first time', type: :feature do
               'rns']
       feed = ['Healthy Changes Over Time', 'You are not ready to quit at thi' \
               's time.', 'You\'re concerned that you\'ll feel tired without ' \
-              ' cigarette.', 'You\'ve decided to go ahead with a quit attempt']
+              'a cigarette.', 'You\'ve decided to go ahead with a quit attempt']
 
       ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
         find("h#{x}", text: a)
@@ -238,7 +238,7 @@ describe 'Participant loads app for the first time', type: :feature do
               'rns']
       feed = ['Healthy Changes Over Time', 'You are not ready to quit at thi' \
               's time.', 'You\'re concerned that you\'ll feel tired without ' \
-              ' cigarette.', 'You\'ve decided to go ahead with a quit attempt']
+              'a cigarette.', 'You\'ve decided to go ahead with a quit attempt']
 
       ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
         find("h#{x}", text: a)
