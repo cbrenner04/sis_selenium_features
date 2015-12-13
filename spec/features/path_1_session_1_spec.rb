@@ -87,12 +87,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       expect(page).to have_css('button[disabled = disabled]', text: 'CONTINUE')
     end
@@ -104,12 +99,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       expect(page).to have_content 'Healthy Changes Over Time'
@@ -122,12 +112,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(1)
       expect(page).to have_content 'Feel Better'
@@ -140,12 +125,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(2)
       expect(page).to have_content 'Look Better'
@@ -158,12 +138,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(3)
       expect(page).to have_content 'Smell Better'
@@ -176,12 +151,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(4)
       expect(page).to have_content 'Reduce Your Risk of Heart Disease'
@@ -194,12 +164,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(5)
       expect(page).to have_content 'Reduce Your Risk of Cancer'
@@ -212,12 +177,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(6)
       expect(page).to have_content 'Protect Your Family - including your pets!'
@@ -230,12 +190,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(7)
       expect(page).to have_content 'Starting a Family'
@@ -248,12 +203,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(8)
       expect(page).to have_content 'Save Money'
@@ -266,12 +216,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(9)
       expect(page).to have_content 'Be Hassle-Free'
@@ -284,12 +229,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(10)
       expect(page).to have_content 'More in Control'
@@ -302,12 +242,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(11)
       expect(page).to have_content 'Be Guilt-free'
@@ -320,12 +255,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(12)
       expect(page).to have_content 'Protect the Environment'
@@ -338,12 +268,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(13)
       expect(page).to have_content 'Say "no!" to Big Tobacco'
@@ -356,12 +281,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are interes' \
                        'ted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       find('h3', text: 'Healthy Changes Over Time')
@@ -377,12 +297,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are intere' \
                        'sted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       find('h3', text: 'Healthy Changes Over Time')
@@ -399,12 +314,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are intere' \
                        'sted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       find('h3', text: 'Healthy Changes Over Time')
@@ -438,12 +348,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are intere' \
                        'sted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       find('h3', text: 'Healthy Changes Over Time')
@@ -462,12 +367,7 @@ describe 'Participant loads app for the first time', type: :feature do
       find('h4', text: 'You have installed this app, because you are intere' \
                        'sted in quitting smoking.')
       click_on 'Continue'
-      find('h3', text: 'Your Reasons for Quitting Smoking')
-      find('.btn.btn-info').click
-      fill_in 'reason', with: 'My reason'
-      find('#save_button').click
-      find('#exit_button').click
-      click_on 'Continue'
+      enter_quit_reason('My reason')
       find('h3', text: 'Benefits of Quitting Smoking')
       answer_question(0)
       find('h3', text: 'Healthy Changes Over Time')
@@ -487,12 +387,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -509,12 +404,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -535,12 +425,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -562,12 +447,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -590,12 +470,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -618,12 +493,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -645,12 +515,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -672,12 +537,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -699,12 +559,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -725,12 +580,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -752,12 +602,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -783,12 +628,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -815,12 +655,7 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
+        enter_quit_reason('My reason')
         find('h3', text: 'Benefits of Quitting Smoking')
         answer_question(0)
         find('h3', text: 'Healthy Changes Over Time')
@@ -849,29 +684,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         expect(page)
           .to have_css('button[disabled = disabled]', text: 'CONTINUE')
@@ -884,29 +712,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(0)
         expect(page)
@@ -920,29 +741,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(1)
         expect(page).to have_content 'Smoke-free Happiness'
@@ -955,29 +769,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(2)
         expect(page).to have_content 'Social Situations'
@@ -990,29 +797,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(3)
         expect(page).to have_content 'Drinking Alcohol'
@@ -1025,29 +825,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(4)
         expect(page).to have_content 'Breaking the Habit'
@@ -1060,29 +853,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(5)
         expect(page).to have_content 'You have selected "other"'
@@ -1095,29 +881,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt']
+
+        ques.zip([3, 3, 3, 4], [3, 4, 4, 4], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Challenging Times During Your Quit Attempt')
         answer_question(6)
         expect(page).to have_content 'You have no triggers for smoking.'
@@ -1130,33 +909,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         expect(page)
           .to have_css('button[disabled = disabled]', text: 'CONTINUE')
@@ -1169,33 +937,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         answer_question(1)
         expect(page).to have_content 'Excellent!'
@@ -1208,33 +965,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         answer_question(2)
         expect(page).to have_content 'Excellent!'
@@ -1247,33 +993,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         answer_question(3)
         expect(page).to have_content 'Excellent!'
@@ -1286,33 +1021,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         answer_question(4)
         expect(page).to have_content 'Excellent!'
@@ -1325,33 +1049,22 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h4', text: 'You have installed this app, because you are intere' \
                          'sted in quitting smoking.')
         click_on 'Continue'
-        find('h3', text: 'Your Reasons for Quitting Smoking')
-        find('.btn.btn-info').click
-        fill_in 'reason', with: 'My reason'
-        find('#save_button').click
-        find('#exit_button').click
-        click_on 'Continue'
-        find('h3', text: 'Benefits of Quitting Smoking')
-        answer_question(0)
-        find('h3', text: 'Healthy Changes Over Time')
-        click_on 'Continue'
-        find('h3', text: 'Ready to Quit?')
-        answer_question(0)
-        find('h4', text: 'You are not ready to quit at this time.')
-        click_on 'Continue'
-        find('h3', text: 'Concerns about Quitting')
-        answer_question(0)
-        find('h4', text: 'You\'re concerned that you\'ll feel tired without ' \
-                         'a cigarette.')
-        click_on 'Continue'
-        find('h4', text: 'Now that we have gone over some general concerns')
-        answer_question(0)
-        find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-        click_on 'Continue'
-        find('h3', text: 'Challenging Times During Your Quit Attempt')
-        answer_question(0)
-        find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-        click_on 'Continue'
+        enter_quit_reason('My reason')
+        ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concerns ' \
+                'about Quitting', 'Now that we have gone over some general c' \
+                'oncerns', 'Challenging Times During Your Quit Attempt']
+        feed = ['Healthy Changes Over Time', 'You are not ready to quit at t' \
+                'his time.', 'You\'re concerned that you\'ll feel tired with' \
+                'out a cigarette.', 'You\'ve decided to go ahead with a quit' \
+                ' attempt', 'Dealing with Negative Emotions w/o Smoking']
+
+        ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+          find("h#{x}", text: a)
+          answer_question(0)
+          find("h#{y}", text: b)
+          click_on 'Continue'
+        end
+
         find('h3', text: 'Identify your Social Support')
         answer_question(5)
         expect(page).to have_content 'You indicated "other"'
@@ -1368,33 +1081,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are int' \
                            'erested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(0)
           find('h3', text: 'Excellent!')
@@ -1409,33 +1112,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are int' \
                            'erested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(0)
           find('h3', text: 'Excellent!')
@@ -1455,34 +1148,24 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h4', text: 'You have installed this app, because you are i' \
                              'nterested in quitting smoking.')
             click_on 'Continue'
-            find('h3', text: 'Your Reasons for Quitting Smoking')
-            find('.btn.btn-info').click
-            fill_in 'reason', with: 'My reason'
-            find('#save_button').click
-            find('#exit_button').click
-            click_on 'Continue'
-            find('h3', text: 'Benefits of Quitting Smoking')
-            answer_question(0)
-            find('h3', text: 'Healthy Changes Over Time')
-            click_on 'Continue'
-            find('h3', text: 'Ready to Quit?')
-            answer_question(0)
-            find('h4', text: 'You are not ready to quit at this time.')
-            click_on 'Continue'
-            find('h3', text: 'Concerns about Quitting')
-            answer_question(0)
-            find('h4', text: 'You\'re concerned that you\'ll feel tired with' \
-                             'out a cigarette.')
-            click_on 'Continue'
-            find('h4',
-                 text: 'Now that we have gone over some general concerns')
-            answer_question(0)
-            find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-            click_on 'Continue'
-            find('h3', text: 'Challenging Times During Your Quit Attempt')
-            answer_question(0)
-            find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-            click_on 'Continue'
+            enter_quit_reason('My reason')
+            ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Conce' \
+                    'rns about Quitting', 'Now that we have gone over some g' \
+                    'eneral concerns', 'Challenging Times During Your Quit A' \
+                    'ttempt']
+            feed = ['Healthy Changes Over Time', 'You are not ready to quit ' \
+                    'at this time.', 'You\'re concerned that you\'ll feel ti' \
+                    'red without a cigarette.', 'You\'ve decided to go ahead' \
+                    ' with a quit attempt', 'Dealing with Negative Emotions ' \
+                    'w/o Smoking']
+
+            ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+              find("h#{x}", text: a)
+              answer_question(0)
+              find("h#{y}", text: b)
+              click_on 'Continue'
+            end
+
             find('h3', text: 'Identify your Social Support')
             answer_question(0)
             find('h3', text: 'Excellent!')
@@ -1500,34 +1183,24 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h4', text: 'You have installed this app, because you are i' \
                              'nterested in quitting smoking.')
             click_on 'Continue'
-            find('h3', text: 'Your Reasons for Quitting Smoking')
-            find('.btn.btn-info').click
-            fill_in 'reason', with: 'My reason'
-            find('#save_button').click
-            find('#exit_button').click
-            click_on 'Continue'
-            find('h3', text: 'Benefits of Quitting Smoking')
-            answer_question(0)
-            find('h3', text: 'Healthy Changes Over Time')
-            click_on 'Continue'
-            find('h3', text: 'Ready to Quit?')
-            answer_question(0)
-            find('h4', text: 'You are not ready to quit at this time.')
-            click_on 'Continue'
-            find('h3', text: 'Concerns about Quitting')
-            answer_question(0)
-            find('h4', text: 'You\'re concerned that you\'ll feel tired with' \
-                             'out a cigarette.')
-            click_on 'Continue'
-            find('h4',
-                 text: 'Now that we have gone over some general concerns')
-            answer_question(0)
-            find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-            click_on 'Continue'
-            find('h3', text: 'Challenging Times During Your Quit Attempt')
-            answer_question(0)
-            find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-            click_on 'Continue'
+            enter_quit_reason('My reason')
+            ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Conce' \
+                    'rns about Quitting', 'Now that we have gone over some g' \
+                    'eneral concerns', 'Challenging Times During Your Quit A' \
+                    'ttempt']
+            feed = ['Healthy Changes Over Time', 'You are not ready to quit ' \
+                    'at this time.', 'You\'re concerned that you\'ll feel ti' \
+                    'red without a cigarette.', 'You\'ve decided to go ahead' \
+                    ' with a quit attempt', 'Dealing with Negative Emotions ' \
+                    'w/o Smoking']
+
+            ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+              find("h#{x}", text: a)
+              answer_question(0)
+              find("h#{y}", text: b)
+              click_on 'Continue'
+            end
+
             find('h3', text: 'Identify your Social Support')
             answer_question(0)
             find('h3', text: 'Excellent!')
@@ -1545,34 +1218,24 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h4', text: 'You have installed this app, because you are i' \
                              'nterested in quitting smoking.')
             click_on 'Continue'
-            find('h3', text: 'Your Reasons for Quitting Smoking')
-            find('.btn.btn-info').click
-            fill_in 'reason', with: 'My reason'
-            find('#save_button').click
-            find('#exit_button').click
-            click_on 'Continue'
-            find('h3', text: 'Benefits of Quitting Smoking')
-            answer_question(0)
-            find('h3', text: 'Healthy Changes Over Time')
-            click_on 'Continue'
-            find('h3', text: 'Ready to Quit?')
-            answer_question(0)
-            find('h4', text: 'You are not ready to quit at this time.')
-            click_on 'Continue'
-            find('h3', text: 'Concerns about Quitting')
-            answer_question(0)
-            find('h4', text: 'You\'re concerned that you\'ll feel tired with' \
-                             'out a cigarette.')
-            click_on 'Continue'
-            find('h4',
-                 text: 'Now that we have gone over some general concerns')
-            answer_question(0)
-            find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-            click_on 'Continue'
-            find('h3', text: 'Challenging Times During Your Quit Attempt')
-            answer_question(0)
-            find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-            click_on 'Continue'
+            enter_quit_reason('My reason')
+            ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Conce' \
+                    'rns about Quitting', 'Now that we have gone over some g' \
+                    'eneral concerns', 'Challenging Times During Your Quit A' \
+                    'ttempt']
+            feed = ['Healthy Changes Over Time', 'You are not ready to quit ' \
+                    'at this time.', 'You\'re concerned that you\'ll feel ti' \
+                    'red without a cigarette.', 'You\'ve decided to go ahead' \
+                    ' with a quit attempt', 'Dealing with Negative Emotions ' \
+                    'w/o Smoking']
+
+            ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+              find("h#{x}", text: a)
+              answer_question(0)
+              find("h#{y}", text: b)
+              click_on 'Continue'
+            end
+
             find('h3', text: 'Identify your Social Support')
             answer_question(0)
             find('h3', text: 'Excellent!')
@@ -1582,8 +1245,8 @@ describe 'Participant loads app for the first time', type: :feature do
             expect(page).to have_css('#save_button[disabled = disabled]')
             fill_in 'name', with: 'Jane Doe'
             find('#reason').click
-            find("option[value = 'He/she will offer encouragement along the way.'")
-              .click
+            find("option[value = 'He/she will offer encouragement along the " \
+                 "way.'").click
             find('#save_button').click
             within('.well.modal-well') do
               expect(page).to have_content "Jane Doe\nHe/she will offer enco" \
@@ -1603,49 +1266,29 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h4', text: 'You have installed this app, because you are i' \
                              'nterested in quitting smoking.')
             click_on 'Continue'
-            find('h3', text: 'Your Reasons for Quitting Smoking')
-            find('.btn.btn-info').click
-            fill_in 'reason', with: 'My reason'
-            find('#save_button').click
-            find('#exit_button').click
-            click_on 'Continue'
-            find('h3', text: 'Benefits of Quitting Smoking')
-            answer_question(0)
-            find('h3', text: 'Healthy Changes Over Time')
-            click_on 'Continue'
-            find('h3', text: 'Ready to Quit?')
-            answer_question(0)
-            find('h4', text: 'You are not ready to quit at this time.')
-            click_on 'Continue'
-            find('h3', text: 'Concerns about Quitting')
-            answer_question(0)
-            find('h4', text: 'You\'re concerned that you\'ll feel tired with' \
-                             'out a cigarette.')
-            click_on 'Continue'
-            find('h4',
-                 text: 'Now that we have gone over some general concerns')
-            answer_question(0)
-            find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-            click_on 'Continue'
-            find('h3', text: 'Challenging Times During Your Quit Attempt')
-            answer_question(0)
-            find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-            click_on 'Continue'
+            enter_quit_reason('My reason')
+            ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Conce' \
+                    'rns about Quitting', 'Now that we have gone over some g' \
+                    'eneral concerns', 'Challenging Times During Your Quit A' \
+                    'ttempt']
+            feed = ['Healthy Changes Over Time', 'You are not ready to quit ' \
+                    'at this time.', 'You\'re concerned that you\'ll feel ti' \
+                    'red without a cigarette.', 'You\'ve decided to go ahead' \
+                    ' with a quit attempt', 'Dealing with Negative Emotions ' \
+                    'w/o Smoking']
+
+            ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+              find("h#{x}", text: a)
+              answer_question(0)
+              find("h#{y}", text: b)
+              click_on 'Continue'
+            end
+
             find('h3', text: 'Identify your Social Support')
             answer_question(0)
             find('h3', text: 'Excellent!')
             answer_question(0)
-            find('h3', text: 'Enlisting Your Social Support')
-            find('.btn.btn-info').click
-            expect(page).to have_css('#save_button[disabled = disabled]')
-            fill_in 'name', with: 'Jane Doe'
-            find('#reason').click
-            find("option[value = 'He/she will offer encouragement along the way.'")
-              .click
-            find('#save_button').click
-            find('#exit_button').click
-            find('h3', text: 'Enlisting Your Social Support')
-            click_on 'Continue'
+            enter_social_supports('Jane Doe')
             find('h3', text: 'Schedule Your Quit Day')
             expect(page)
               .to have_css('button[disabled = disabled]', text: 'CONTINUE')
@@ -1659,49 +1302,29 @@ describe 'Participant loads app for the first time', type: :feature do
             find('h4', text: 'You have installed this app, because you are i' \
                              'nterested in quitting smoking.')
             click_on 'Continue'
-            find('h3', text: 'Your Reasons for Quitting Smoking')
-            find('.btn.btn-info').click
-            fill_in 'reason', with: 'My reason'
-            find('#save_button').click
-            find('#exit_button').click
-            click_on 'Continue'
-            find('h3', text: 'Benefits of Quitting Smoking')
-            answer_question(0)
-            find('h3', text: 'Healthy Changes Over Time')
-            click_on 'Continue'
-            find('h3', text: 'Ready to Quit?')
-            answer_question(0)
-            find('h4', text: 'You are not ready to quit at this time.')
-            click_on 'Continue'
-            find('h3', text: 'Concerns about Quitting')
-            answer_question(0)
-            find('h4', text: 'You\'re concerned that you\'ll feel tired with' \
-                             'out a cigarette.')
-            click_on 'Continue'
-            find('h4',
-                 text: 'Now that we have gone over some general concerns')
-            answer_question(0)
-            find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-            click_on 'Continue'
-            find('h3', text: 'Challenging Times During Your Quit Attempt')
-            answer_question(0)
-            find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-            click_on 'Continue'
+            enter_quit_reason('My reason')
+            ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Conce' \
+                    'rns about Quitting', 'Now that we have gone over some g' \
+                    'eneral concerns', 'Challenging Times During Your Quit A' \
+                    'ttempt']
+            feed = ['Healthy Changes Over Time', 'You are not ready to quit ' \
+                    'at this time.', 'You\'re concerned that you\'ll feel ti' \
+                    'red without a cigarette.', 'You\'ve decided to go ahead' \
+                    ' with a quit attempt', 'Dealing with Negative Emotions ' \
+                    'w/o Smoking']
+
+            ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+              find("h#{x}", text: a)
+              answer_question(0)
+              find("h#{y}", text: b)
+              click_on 'Continue'
+            end
+
             find('h3', text: 'Identify your Social Support')
             answer_question(0)
             find('h3', text: 'Excellent!')
             answer_question(0)
-            find('h3', text: 'Enlisting Your Social Support')
-            find('.btn.btn-info').click
-            expect(page).to have_css('#save_button[disabled = disabled]')
-            fill_in 'name', with: 'Jane Doe'
-            find('#reason').click
-            find("option[value = 'He/she will offer encouragement along the way.'")
-              .click
-            find('#save_button').click
-            find('#exit_button').click
-            find('h3', text: 'Enlisting Your Social Support')
-            click_on 'Continue'
+            enter_social_supports('Jane Doe')
             find('h3', text: 'Schedule Your Quit Day')
             answer_question(1)
             expect(page).to have_content 'That\'s ok'
@@ -1716,50 +1339,29 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h4', text: 'You have installed this app, because you are' \
                                ' interested in quitting smoking.')
               click_on 'Continue'
-              find('h3', text: 'Your Reasons for Quitting Smoking')
-              find('.btn.btn-info').click
-              fill_in 'reason', with: 'My reason'
-              find('#save_button').click
-              find('#exit_button').click
-              click_on 'Continue'
-              find('h3', text: 'Benefits of Quitting Smoking')
-              answer_question(0)
-              find('h3', text: 'Healthy Changes Over Time')
-              click_on 'Continue'
-              find('h3', text: 'Ready to Quit?')
-              answer_question(0)
-              find('h4', text: 'You are not ready to quit at this time.')
-              click_on 'Continue'
-              find('h3', text: 'Concerns about Quitting')
-              answer_question(0)
-              find('h4', text: 'You\'re concerned that you\'ll feel tired wi' \
-                               'thout a cigarette.')
-              click_on 'Continue'
-              find('h4',
-                   text: 'Now that we have gone over some general concerns')
-              answer_question(0)
-              find('h4', text: 'You\'ve decided to go ahead with a quit atte' \
-                               'mpt')
-              click_on 'Continue'
-              find('h3', text: 'Challenging Times During Your Quit Attempt')
-              answer_question(0)
-              find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-              click_on 'Continue'
+              enter_quit_reason('My reason')
+              ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Con' \
+                      'cerns about Quitting', 'Now that we have gone over so' \
+                      'me general concerns', 'Challenging Times During Your ' \
+                      'Quit Attempt']
+              feed = ['Healthy Changes Over Time', 'You are not ready to qui' \
+                      't at this time.', 'You\'re concerned that you\'ll fee' \
+                      'l tired without a cigarette.', 'You\'ve decided to go' \
+                      ' ahead with a quit attempt', 'Dealing with Negative E' \
+                      'motions w/o Smoking']
+
+              ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                find("h#{x}", text: a)
+                answer_question(0)
+                find("h#{y}", text: b)
+                click_on 'Continue'
+              end
+
               find('h3', text: 'Identify your Social Support')
               answer_question(0)
               find('h3', text: 'Excellent!')
               answer_question(0)
-              find('h3', text: 'Enlisting Your Social Support')
-              find('.btn.btn-info').click
-              expect(page).to have_css('#save_button[disabled = disabled]')
-              fill_in 'name', with: 'Jane Doe'
-              find('#reason').click
-              find("option[value = 'He/she will offer encouragement along th" \
-                   "e way.'").click
-              find('#save_button').click
-              find('#exit_button').click
-              find('h3', text: 'Enlisting Your Social Support')
-              click_on 'Continue'
+              enter_social_supports('Jane Doe')
               find('h3', text: 'Schedule Your Quit Day')
               answer_question(0)
               expect(page).to have_content 'Splendid!'
@@ -1773,50 +1375,29 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h4', text: 'You have installed this app, because you are' \
                                ' interested in quitting smoking.')
               click_on 'Continue'
-              find('h3', text: 'Your Reasons for Quitting Smoking')
-              find('.btn.btn-info').click
-              fill_in 'reason', with: 'My reason'
-              find('#save_button').click
-              find('#exit_button').click
-              click_on 'Continue'
-              find('h3', text: 'Benefits of Quitting Smoking')
-              answer_question(0)
-              find('h3', text: 'Healthy Changes Over Time')
-              click_on 'Continue'
-              find('h3', text: 'Ready to Quit?')
-              answer_question(0)
-              find('h4', text: 'You are not ready to quit at this time.')
-              click_on 'Continue'
-              find('h3', text: 'Concerns about Quitting')
-              answer_question(0)
-              find('h4', text: 'You\'re concerned that you\'ll feel tired wi' \
-                               'thout a cigarette.')
-              click_on 'Continue'
-              find('h4',
-                   text: 'Now that we have gone over some general concerns')
-              answer_question(0)
-              find('h4', text: 'You\'ve decided to go ahead with a quit atte' \
-                               'mpt')
-              click_on 'Continue'
-              find('h3', text: 'Challenging Times During Your Quit Attempt')
-              answer_question(0)
-              find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-              click_on 'Continue'
+              enter_quit_reason('My reason')
+              ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Con' \
+                      'cerns about Quitting', 'Now that we have gone over so' \
+                      'me general concerns', 'Challenging Times During Your ' \
+                      'Quit Attempt']
+              feed = ['Healthy Changes Over Time', 'You are not ready to qui' \
+                      't at this time.', 'You\'re concerned that you\'ll fee' \
+                      'l tired without a cigarette.', 'You\'ve decided to go' \
+                      ' ahead with a quit attempt', 'Dealing with Negative E' \
+                      'motions w/o Smoking']
+
+              ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                find("h#{x}", text: a)
+                answer_question(0)
+                find("h#{y}", text: b)
+                click_on 'Continue'
+              end
+
               find('h3', text: 'Identify your Social Support')
               answer_question(0)
               find('h3', text: 'Excellent!')
               answer_question(0)
-              find('h3', text: 'Enlisting Your Social Support')
-              find('.btn.btn-info').click
-              expect(page).to have_css('#save_button[disabled = disabled]')
-              fill_in 'name', with: 'Jane Doe'
-              find('#reason').click
-              find("option[value = 'He/she will offer encouragement along th" \
-                   "e way.'").click
-              find('#save_button').click
-              find('#exit_button').click
-              find('h3', text: 'Enlisting Your Social Support')
-              click_on 'Continue'
+              enter_social_supports('Jane Doe')
               find('h3', text: 'Schedule Your Quit Day')
               answer_question(0)
               find('h3', text: 'Splendid!')
@@ -1832,50 +1413,29 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h4', text: 'You have installed this app, because you are' \
                                ' interested in quitting smoking.')
               click_on 'Continue'
-              find('h3', text: 'Your Reasons for Quitting Smoking')
-              find('.btn.btn-info').click
-              fill_in 'reason', with: 'My reason'
-              find('#save_button').click
-              find('#exit_button').click
-              click_on 'Continue'
-              find('h3', text: 'Benefits of Quitting Smoking')
-              answer_question(0)
-              find('h3', text: 'Healthy Changes Over Time')
-              click_on 'Continue'
-              find('h3', text: 'Ready to Quit?')
-              answer_question(0)
-              find('h4', text: 'You are not ready to quit at this time.')
-              click_on 'Continue'
-              find('h3', text: 'Concerns about Quitting')
-              answer_question(0)
-              find('h4', text: 'You\'re concerned that you\'ll feel tired wi' \
-                               'thout a cigarette.')
-              click_on 'Continue'
-              find('h4',
-                   text: 'Now that we have gone over some general concerns')
-              answer_question(0)
-              find('h4', text: 'You\'ve decided to go ahead with a quit atte' \
-                               'mpt')
-              click_on 'Continue'
-              find('h3', text: 'Challenging Times During Your Quit Attempt')
-              answer_question(0)
-              find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-              click_on 'Continue'
+              enter_quit_reason('My reason')
+              ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Con' \
+                      'cerns about Quitting', 'Now that we have gone over so' \
+                      'me general concerns', 'Challenging Times During Your ' \
+                      'Quit Attempt']
+              feed = ['Healthy Changes Over Time', 'You are not ready to qui' \
+                      't at this time.', 'You\'re concerned that you\'ll fee' \
+                      'l tired without a cigarette.', 'You\'ve decided to go' \
+                      ' ahead with a quit attempt', 'Dealing with Negative E' \
+                      'motions w/o Smoking']
+
+              ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                find("h#{x}", text: a)
+                answer_question(0)
+                find("h#{y}", text: b)
+                click_on 'Continue'
+              end
+
               find('h3', text: 'Identify your Social Support')
               answer_question(0)
               find('h3', text: 'Excellent!')
               answer_question(0)
-              find('h3', text: 'Enlisting Your Social Support')
-              find('.btn.btn-info').click
-              expect(page).to have_css('#save_button[disabled = disabled]')
-              fill_in 'name', with: 'Jane Doe'
-              find('#reason').click
-              find("option[value = 'He/she will offer encouragement along th" \
-                   "e way.'").click
-              find('#save_button').click
-              find('#exit_button').click
-              find('h3', text: 'Enlisting Your Social Support')
-              click_on 'Continue'
+              enter_social_supports('Jane Doe')
               find('h3', text: 'Schedule Your Quit Day')
               answer_question(0)
               find('h3', text: 'Splendid!')
@@ -1905,65 +1465,32 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h4', text: 'You have installed this app, because you are' \
                                ' interested in quitting smoking.')
               click_on 'Continue'
-              find('h3', text: 'Your Reasons for Quitting Smoking')
-              find('.btn.btn-info').click
-              fill_in 'reason', with: 'My reason'
-              find('#save_button').click
-              find('#exit_button').click
-              click_on 'Continue'
-              find('h3', text: 'Benefits of Quitting Smoking')
-              answer_question(0)
-              find('h3', text: 'Healthy Changes Over Time')
-              click_on 'Continue'
-              find('h3', text: 'Ready to Quit?')
-              answer_question(0)
-              find('h4', text: 'You are not ready to quit at this time.')
-              click_on 'Continue'
-              find('h3', text: 'Concerns about Quitting')
-              answer_question(0)
-              find('h4', text: 'You\'re concerned that you\'ll feel tired wi' \
-                               'thout a cigarette.')
-              click_on 'Continue'
-              find('h4',
-                   text: 'Now that we have gone over some general concerns')
-              answer_question(0)
-              find('h4', text: 'You\'ve decided to go ahead with a quit atte' \
-                               'mpt')
-              click_on 'Continue'
-              find('h3', text: 'Challenging Times During Your Quit Attempt')
-              answer_question(0)
-              find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-              click_on 'Continue'
+              enter_quit_reason('My reason')
+              ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Con' \
+                      'cerns about Quitting', 'Now that we have gone over so' \
+                      'me general concerns', 'Challenging Times During Your ' \
+                      'Quit Attempt']
+              feed = ['Healthy Changes Over Time', 'You are not ready to qui' \
+                      't at this time.', 'You\'re concerned that you\'ll fee' \
+                      'l tired without a cigarette.', 'You\'ve decided to go' \
+                      ' ahead with a quit attempt', 'Dealing with Negative E' \
+                      'motions w/o Smoking']
+
+              ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                find("h#{x}", text: a)
+                answer_question(0)
+                find("h#{y}", text: b)
+                click_on 'Continue'
+              end
+
               find('h3', text: 'Identify your Social Support')
               answer_question(0)
               find('h3', text: 'Excellent!')
               answer_question(0)
-              find('h3', text: 'Enlisting Your Social Support')
-              find('.btn.btn-info').click
-              expect(page).to have_css('#save_button[disabled = disabled]')
-              fill_in 'name', with: 'Jane Doe'
-              find('#reason').click
-              find("option[value = 'He/she will offer encouragement along th" \
-                   "e way.'").click
-              find('#save_button').click
-              find('#exit_button').click
-              find('h3', text: 'Enlisting Your Social Support')
-              click_on 'Continue'
+              enter_social_supports('Jane Doe')
               find('h3', text: 'Schedule Your Quit Day')
               answer_question(0)
-              find('h3', text: 'Splendid!')
-              find('#cessation_date_selector').click
-              if Date.today.strftime('%B') == 'December' ||
-                 Date.today.strftime('%d') > '26'
-                find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-              else
-                cessation_date = Date.today + 32
-                find('.dw-mon', text: "#{cessation_date.strftime('%B')}").click
-                element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-              end
-              find('h3', text: 'Splendid!')
-              click_on 'Continue'
+              enter_cessation_date
               find('h3', text: 'CONGRATULATIONS!')
               expect(page)
                 .to have_css('button[disabled = disabled]', text: 'CONTINUE')
@@ -1977,65 +1504,32 @@ describe 'Participant loads app for the first time', type: :feature do
               find('h4', text: 'You have installed this app, because you are' \
                                ' interested in quitting smoking.')
               click_on 'Continue'
-              find('h3', text: 'Your Reasons for Quitting Smoking')
-              find('.btn.btn-info').click
-              fill_in 'reason', with: 'My reason'
-              find('#save_button').click
-              find('#exit_button').click
-              click_on 'Continue'
-              find('h3', text: 'Benefits of Quitting Smoking')
-              answer_question(0)
-              find('h3', text: 'Healthy Changes Over Time')
-              click_on 'Continue'
-              find('h3', text: 'Ready to Quit?')
-              answer_question(0)
-              find('h4', text: 'You are not ready to quit at this time.')
-              click_on 'Continue'
-              find('h3', text: 'Concerns about Quitting')
-              answer_question(0)
-              find('h4', text: 'You\'re concerned that you\'ll feel tired wi' \
-                               'thout a cigarette.')
-              click_on 'Continue'
-              find('h4',
-                   text: 'Now that we have gone over some general concerns')
-              answer_question(0)
-              find('h4', text: 'You\'ve decided to go ahead with a quit atte' \
-                               'mpt')
-              click_on 'Continue'
-              find('h3', text: 'Challenging Times During Your Quit Attempt')
-              answer_question(0)
-              find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-              click_on 'Continue'
+              enter_quit_reason('My reason')
+              ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Con' \
+                      'cerns about Quitting', 'Now that we have gone over so' \
+                      'me general concerns', 'Challenging Times During Your ' \
+                      'Quit Attempt']
+              feed = ['Healthy Changes Over Time', 'You are not ready to qui' \
+                      't at this time.', 'You\'re concerned that you\'ll fee' \
+                      'l tired without a cigarette.', 'You\'ve decided to go' \
+                      ' ahead with a quit attempt', 'Dealing with Negative E' \
+                      'motions w/o Smoking']
+
+              ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                find("h#{x}", text: a)
+                answer_question(0)
+                find("h#{y}", text: b)
+                click_on 'Continue'
+              end
+
               find('h3', text: 'Identify your Social Support')
               answer_question(0)
               find('h3', text: 'Excellent!')
               answer_question(0)
-              find('h3', text: 'Enlisting Your Social Support')
-              find('.btn.btn-info').click
-              expect(page).to have_css('#save_button[disabled = disabled]')
-              fill_in 'name', with: 'Jane Doe'
-              find('#reason').click
-              find("option[value = 'He/she will offer encouragement along th" \
-                   "e way.'").click
-              find('#save_button').click
-              find('#exit_button').click
-              find('h3', text: 'Enlisting Your Social Support')
-              click_on 'Continue'
+              enter_social_supports('Jane Doe')
               find('h3', text: 'Schedule Your Quit Day')
               answer_question(0)
-              find('h3', text: 'Splendid!')
-              find('#cessation_date_selector').click
-              if Date.today.strftime('%B') == 'December' ||
-                 Date.today.strftime('%d') > '26'
-                find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-              else
-                cessation_date = Date.today + 32
-                find('.dw-mon', text: "#{cessation_date.strftime('%B')}").click
-                element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-              end
-              find('h3', text: 'Splendid!')
-              click_on 'Continue'
+              enter_cessation_date
               find('h3', text: 'CONGRATULATIONS!')
               answer_question(1)
               expect(page).to have_content 'Good for you!'
@@ -2050,66 +1544,32 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('h4', text: 'You have installed this app, because you a' \
                                  're interested in quitting smoking.')
                 click_on 'Continue'
-                find('h3', text: 'Your Reasons for Quitting Smoking')
-                find('.btn.btn-info').click
-                fill_in 'reason', with: 'My reason'
-                find('#save_button').click
-                find('#exit_button').click
-                click_on 'Continue'
-                find('h3', text: 'Benefits of Quitting Smoking')
-                answer_question(0)
-                find('h3', text: 'Healthy Changes Over Time')
-                click_on 'Continue'
-                find('h3', text: 'Ready to Quit?')
-                answer_question(0)
-                find('h4', text: 'You are not ready to quit at this time.')
-                click_on 'Continue'
-                find('h3', text: 'Concerns about Quitting')
-                answer_question(0)
-                find('h4', text: 'You\'re concerned that you\'ll feel tired ' \
-                                 'without a cigarette.')
-                click_on 'Continue'
-                find('h4',
-                     text: 'Now that we have gone over some general concerns')
-                answer_question(0)
-                find('h4', text: 'You\'ve decided to go ahead with a quit at' \
-                                 'tempt')
-                click_on 'Continue'
-                find('h3', text: 'Challenging Times During Your Quit Attempt')
-                answer_question(0)
-                find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-                click_on 'Continue'
+                enter_quit_reason('My reason')
+                ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'C' \
+                        'oncerns about Quitting', 'Now that we have gone ove' \
+                        'r some general concerns', 'Challenging Times During' \
+                        ' Your Quit Attempt']
+                feed = ['Healthy Changes Over Time', 'You are not ready to q' \
+                        'uit at this time.', 'You\'re concerned that you\'ll' \
+                        ' feel tired without a cigarette.', 'You\'ve decided' \
+                        ' to go ahead with a quit attempt', 'Dealing with Ne' \
+                        'gative Emotions w/o Smoking']
+
+                ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                  find("h#{x}", text: a)
+                  answer_question(0)
+                  find("h#{y}", text: b)
+                  click_on 'Continue'
+                end
+
                 find('h3', text: 'Identify your Social Support')
                 answer_question(0)
                 find('h3', text: 'Excellent!')
                 answer_question(0)
-                find('h3', text: 'Enlisting Your Social Support')
-                find('.btn.btn-info').click
-                expect(page).to have_css('#save_button[disabled = disabled]')
-                fill_in 'name', with: 'Jane Doe'
-                find('#reason').click
-                find("option[value = 'He/she will offer encouragement along " \
-                     "the way.'").click
-                find('#save_button').click
-                find('#exit_button').click
-                find('h3', text: 'Enlisting Your Social Support')
-                click_on 'Continue'
+                enter_social_supports('Jane Doe')
                 find('h3', text: 'Schedule Your Quit Day')
                 answer_question(0)
-                find('h3', text: 'Splendid!')
-                find('#cessation_date_selector').click
-                if Date.today.strftime('%B') == 'December' ||
-                   Date.today.strftime('%d') > '26'
-                  find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-                else
-                  cessation_date = Date.today + 32
-                  find('.dw-mon',
-                       text: "#{cessation_date.strftime('%B')}").click
-                  element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                  find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-                end
-                find('h3', text: 'Splendid!')
-                click_on 'Continue'
+                enter_cessation_date
                 find('h3', text: 'CONGRATULATIONS!')
                 answer_question(0)
                 expect(page).to have_content 'It should!'
@@ -2123,66 +1583,32 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('h4', text: 'You have installed this app, because you a' \
                                  're interested in quitting smoking.')
                 click_on 'Continue'
-                find('h3', text: 'Your Reasons for Quitting Smoking')
-                find('.btn.btn-info').click
-                fill_in 'reason', with: 'My reason'
-                find('#save_button').click
-                find('#exit_button').click
-                click_on 'Continue'
-                find('h3', text: 'Benefits of Quitting Smoking')
-                answer_question(0)
-                find('h3', text: 'Healthy Changes Over Time')
-                click_on 'Continue'
-                find('h3', text: 'Ready to Quit?')
-                answer_question(0)
-                find('h4', text: 'You are not ready to quit at this time.')
-                click_on 'Continue'
-                find('h3', text: 'Concerns about Quitting')
-                answer_question(0)
-                find('h4', text: 'You\'re concerned that you\'ll feel tired ' \
-                                 'without a cigarette.')
-                click_on 'Continue'
-                find('h4',
-                     text: 'Now that we have gone over some general concerns')
-                answer_question(0)
-                find('h4', text: 'You\'ve decided to go ahead with a quit at' \
-                                 'tempt')
-                click_on 'Continue'
-                find('h3', text: 'Challenging Times During Your Quit Attempt')
-                answer_question(0)
-                find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-                click_on 'Continue'
+                enter_quit_reason('My reason')
+                ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'C' \
+                        'oncerns about Quitting', 'Now that we have gone ove' \
+                        'r some general concerns', 'Challenging Times During' \
+                        ' Your Quit Attempt']
+                feed = ['Healthy Changes Over Time', 'You are not ready to q' \
+                        'uit at this time.', 'You\'re concerned that you\'ll' \
+                        ' feel tired without a cigarette.', 'You\'ve decided' \
+                        ' to go ahead with a quit attempt', 'Dealing with Ne' \
+                        'gative Emotions w/o Smoking']
+
+                ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                  find("h#{x}", text: a)
+                  answer_question(0)
+                  find("h#{y}", text: b)
+                  click_on 'Continue'
+                end
+
                 find('h3', text: 'Identify your Social Support')
                 answer_question(0)
                 find('h3', text: 'Excellent!')
                 answer_question(0)
-                find('h3', text: 'Enlisting Your Social Support')
-                find('.btn.btn-info').click
-                expect(page).to have_css('#save_button[disabled = disabled]')
-                fill_in 'name', with: 'Jane Doe'
-                find('#reason').click
-                find("option[value = 'He/she will offer encouragement along " \
-                     "the way.'").click
-                find('#save_button').click
-                find('#exit_button').click
-                find('h3', text: 'Enlisting Your Social Support')
-                click_on 'Continue'
+                enter_social_supports('Jane Doe')
                 find('h3', text: 'Schedule Your Quit Day')
                 answer_question(0)
-                find('h3', text: 'Splendid!')
-                find('#cessation_date_selector').click
-                if Date.today.strftime('%B') == 'December' ||
-                   Date.today.strftime('%d') > '26'
-                  find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-                else
-                  cessation_date = Date.today + 32
-                  find('.dw-mon',
-                       text: "#{cessation_date.strftime('%B')}").click
-                  element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                  find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-                end
-                find('h3', text: 'Splendid!')
-                click_on 'Continue'
+                enter_cessation_date
                 find('h3', text: 'CONGRATULATIONS!')
                 answer_question(0)
                 find('h4', text: 'It\'s a big step')
@@ -2200,66 +1626,32 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('h4', text: 'You have installed this app, because you a' \
                                  're interested in quitting smoking.')
                 click_on 'Continue'
-                find('h3', text: 'Your Reasons for Quitting Smoking')
-                find('.btn.btn-info').click
-                fill_in 'reason', with: 'My reason'
-                find('#save_button').click
-                find('#exit_button').click
-                click_on 'Continue'
-                find('h3', text: 'Benefits of Quitting Smoking')
-                answer_question(0)
-                find('h3', text: 'Healthy Changes Over Time')
-                click_on 'Continue'
-                find('h3', text: 'Ready to Quit?')
-                answer_question(0)
-                find('h4', text: 'You are not ready to quit at this time.')
-                click_on 'Continue'
-                find('h3', text: 'Concerns about Quitting')
-                answer_question(0)
-                find('h4', text: 'You\'re concerned that you\'ll feel tired ' \
-                                 'without a cigarette.')
-                click_on 'Continue'
-                find('h4',
-                     text: 'Now that we have gone over some general concerns')
-                answer_question(0)
-                find('h4', text: 'You\'ve decided to go ahead with a quit at' \
-                                 'tempt')
-                click_on 'Continue'
-                find('h3', text: 'Challenging Times During Your Quit Attempt')
-                answer_question(0)
-                find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-                click_on 'Continue'
+                enter_quit_reason('My reason')
+                ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'C' \
+                        'oncerns about Quitting', 'Now that we have gone ove' \
+                        'r some general concerns', 'Challenging Times During' \
+                        ' Your Quit Attempt']
+                feed = ['Healthy Changes Over Time', 'You are not ready to q' \
+                        'uit at this time.', 'You\'re concerned that you\'ll' \
+                        ' feel tired without a cigarette.', 'You\'ve decided' \
+                        ' to go ahead with a quit attempt', 'Dealing with Ne' \
+                        'gative Emotions w/o Smoking']
+
+                ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                  find("h#{x}", text: a)
+                  answer_question(0)
+                  find("h#{y}", text: b)
+                  click_on 'Continue'
+                end
+
                 find('h3', text: 'Identify your Social Support')
                 answer_question(0)
                 find('h3', text: 'Excellent!')
                 answer_question(0)
-                find('h3', text: 'Enlisting Your Social Support')
-                find('.btn.btn-info').click
-                expect(page).to have_css('#save_button[disabled = disabled]')
-                fill_in 'name', with: 'Jane Doe'
-                find('#reason').click
-                find("option[value = 'He/she will offer encouragement along " \
-                     "the way.'").click
-                find('#save_button').click
-                find('#exit_button').click
-                find('h3', text: 'Enlisting Your Social Support')
-                click_on 'Continue'
+                enter_social_supports('Jane Doe')
                 find('h3', text: 'Schedule Your Quit Day')
                 answer_question(0)
-                find('h3', text: 'Splendid!')
-                find('#cessation_date_selector').click
-                if Date.today.strftime('%B') == 'December' ||
-                   Date.today.strftime('%d') > '26'
-                  find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-                else
-                  cessation_date = Date.today + 32
-                  find('.dw-mon',
-                       text: "#{cessation_date.strftime('%B')}").click
-                  element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                  find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-                end
-                find('h3', text: 'Splendid!')
-                click_on 'Continue'
+                enter_cessation_date
                 find('h3', text: 'CONGRATULATIONS!')
                 answer_question(0)
                 find('h4', text: 'It\'s a big step')
@@ -2281,66 +1673,32 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('h4', text: 'You have installed this app, because you a' \
                                  're interested in quitting smoking.')
                 click_on 'Continue'
-                find('h3', text: 'Your Reasons for Quitting Smoking')
-                find('.btn.btn-info').click
-                fill_in 'reason', with: 'My reason'
-                find('#save_button').click
-                find('#exit_button').click
-                click_on 'Continue'
-                find('h3', text: 'Benefits of Quitting Smoking')
-                answer_question(0)
-                find('h3', text: 'Healthy Changes Over Time')
-                click_on 'Continue'
-                find('h3', text: 'Ready to Quit?')
-                answer_question(0)
-                find('h4', text: 'You are not ready to quit at this time.')
-                click_on 'Continue'
-                find('h3', text: 'Concerns about Quitting')
-                answer_question(0)
-                find('h4', text: 'You\'re concerned that you\'ll feel tired ' \
-                                 'without a cigarette.')
-                click_on 'Continue'
-                find('h4',
-                     text: 'Now that we have gone over some general concerns')
-                answer_question(0)
-                find('h4', text: 'You\'ve decided to go ahead with a quit at' \
-                                 'tempt')
-                click_on 'Continue'
-                find('h3', text: 'Challenging Times During Your Quit Attempt')
-                answer_question(0)
-                find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-                click_on 'Continue'
+                enter_quit_reason('My reason')
+                ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'C' \
+                        'oncerns about Quitting', 'Now that we have gone ove' \
+                        'r some general concerns', 'Challenging Times During' \
+                        ' Your Quit Attempt']
+                feed = ['Healthy Changes Over Time', 'You are not ready to q' \
+                        'uit at this time.', 'You\'re concerned that you\'ll' \
+                        ' feel tired without a cigarette.', 'You\'ve decided' \
+                        ' to go ahead with a quit attempt', 'Dealing with Ne' \
+                        'gative Emotions w/o Smoking']
+
+                ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                  find("h#{x}", text: a)
+                  answer_question(0)
+                  find("h#{y}", text: b)
+                  click_on 'Continue'
+                end
+
                 find('h3', text: 'Identify your Social Support')
                 answer_question(0)
                 find('h3', text: 'Excellent!')
                 answer_question(0)
-                find('h3', text: 'Enlisting Your Social Support')
-                find('.btn.btn-info').click
-                expect(page).to have_css('#save_button[disabled = disabled]')
-                fill_in 'name', with: 'Jane Doe'
-                find('#reason').click
-                find("option[value = 'He/she will offer encouragement along " \
-                     "the way.'").click
-                find('#save_button').click
-                find('#exit_button').click
-                find('h3', text: 'Enlisting Your Social Support')
-                click_on 'Continue'
+                enter_social_supports('Jane Doe')
                 find('h3', text: 'Schedule Your Quit Day')
                 answer_question(0)
-                find('h3', text: 'Splendid!')
-                find('#cessation_date_selector').click
-                if Date.today.strftime('%B') == 'December' ||
-                   Date.today.strftime('%d') > '26'
-                  find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-                else
-                  cessation_date = Date.today + 32
-                  find('.dw-mon',
-                       text: "#{cessation_date.strftime('%B')}").click
-                  element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                  find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-                end
-                find('h3', text: 'Splendid!')
-                click_on 'Continue'
+                enter_cessation_date
                 find('h3', text: 'CONGRATULATIONS!')
                 answer_question(0)
                 find('h4', text: 'It\'s a big step')
@@ -2390,92 +1748,37 @@ describe 'Participant loads app for the first time', type: :feature do
                 find('h4', text: 'You have installed this app, because you a' \
                                  're interested in quitting smoking.')
                 click_on 'Continue'
-                find('h3', text: 'Your Reasons for Quitting Smoking')
-                find('.btn.btn-info').click
-                fill_in 'reason', with: 'My reason'
-                find('#save_button').click
-                find('#exit_button').click
-                click_on 'Continue'
-                find('h3', text: 'Benefits of Quitting Smoking')
-                answer_question(0)
-                find('h3', text: 'Healthy Changes Over Time')
-                click_on 'Continue'
-                find('h3', text: 'Ready to Quit?')
-                answer_question(0)
-                find('h4', text: 'You are not ready to quit at this time.')
-                click_on 'Continue'
-                find('h3', text: 'Concerns about Quitting')
-                answer_question(0)
-                find('h4', text: 'You\'re concerned that you\'ll feel tired ' \
-                                 'without a cigarette.')
-                click_on 'Continue'
-                find('h4',
-                     text: 'Now that we have gone over some general concerns')
-                answer_question(0)
-                find('h4', text: 'You\'ve decided to go ahead with a quit at' \
-                                 'tempt')
-                click_on 'Continue'
-                find('h3', text: 'Challenging Times During Your Quit Attempt')
-                answer_question(0)
-                find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-                click_on 'Continue'
+                enter_quit_reason('My reason')
+                ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'C' \
+                        'oncerns about Quitting', 'Now that we have gone ove' \
+                        'r some general concerns', 'Challenging Times During' \
+                        ' Your Quit Attempt']
+                feed = ['Healthy Changes Over Time', 'You are not ready to q' \
+                        'uit at this time.', 'You\'re concerned that you\'ll' \
+                        ' feel tired without a cigarette.', 'You\'ve decided' \
+                        ' to go ahead with a quit attempt', 'Dealing with Ne' \
+                        'gative Emotions w/o Smoking']
+
+                ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+                  find("h#{x}", text: a)
+                  answer_question(0)
+                  find("h#{y}", text: b)
+                  click_on 'Continue'
+                end
+
                 find('h3', text: 'Identify your Social Support')
                 answer_question(0)
                 find('h3', text: 'Excellent!')
                 answer_question(0)
-                find('h3', text: 'Enlisting Your Social Support')
-                find('.btn.btn-info').click
-                expect(page).to have_css('#save_button[disabled = disabled]')
-                fill_in 'name', with: 'Jane Doe'
-                find('#reason').click
-                find("option[value = 'He/she will offer encouragement along " \
-                     "the way.'").click
-                find('#save_button').click
-                find('#exit_button').click
-                find('h3', text: 'Enlisting Your Social Support')
-                click_on 'Continue'
+                enter_social_supports('Jane Doe')
                 find('h3', text: 'Schedule Your Quit Day')
                 answer_question(0)
-                find('h3', text: 'Splendid!')
-                find('#cessation_date_selector').click
-                if Date.today.strftime('%B') == 'December' ||
-                   Date.today.strftime('%d') > '26'
-                  find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-                else
-                  cessation_date = Date.today + 32
-                  find('.dw-mon',
-                       text: "#{cessation_date.strftime('%B')}").click
-                  element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-                  find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-                end
-                find('h3', text: 'Splendid!')
-                click_on 'Continue'
+                enter_cessation_date
                 find('h3', text: 'CONGRATULATIONS!')
                 answer_question(0)
                 find('h4', text: 'It\'s a big step')
                 click_on 'Continue'
-                find('h3', text: 'Difficult Times To Stay Smoke Free')
-                find('.btn.btn-info',
-                     text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
-                find('.btn-group.ng-scope', text: 'Tu').click
-                find('#risky_time_time').click
-                time = Time.now.strftime('%I:%M')
-                if time.between?('10:58', '12:00') ||
-                   Time.now.strftime('%M') >= '58'
-                  find('.dwbw.dwb-s').click
-                  find('.well.modal-well', text: 'Add risky times below.')
-                  fill_in 'reason', with: 'My reason'
-                  find('#save_button').click
-                else
-                  risky_time = Time.now + (62 * 60)
-                  element_count(0, '.dw-i', "#{risky_time.strftime('%I')}")
-                  element_count(1, '.dw-i', "#{risky_time.strftime('%M')}")
-                  find('.dw-i', text: "#{risky_time.strftime('%p')}").click
-                  fill_in 'reason', with: 'My reason'
-                  find('#save_button').click
-                end
-                find('#exit_button').click
-                click_on 'Continue'
+                enter_risky_times
                 find('h3', text: 'Receiving Reminders To Stay on Track')
                 click_on 'Continue'
                 find('h3', text: 'Congrats again: You are now all set for yo' \
@@ -2509,33 +1812,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are inte' \
                            'rested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(6)
           expect(page).to have_content 'You can\'t think of anyone in your l' \
@@ -2549,33 +1842,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are inte' \
                            'rested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
@@ -2593,33 +1876,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are inte' \
                            'rested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
@@ -2639,33 +1912,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are inte' \
                            'rested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
@@ -2690,33 +1953,23 @@ describe 'Participant loads app for the first time', type: :feature do
           find('h4', text: 'You have installed this app, because you are inte' \
                            'rested in quitting smoking.')
           click_on 'Continue'
-          find('h3', text: 'Your Reasons for Quitting Smoking')
-          find('.btn.btn-info').click
-          fill_in 'reason', with: 'My reason'
-          find('#save_button').click
-          find('#exit_button').click
-          click_on 'Continue'
-          find('h3', text: 'Benefits of Quitting Smoking')
-          answer_question(0)
-          find('h3', text: 'Healthy Changes Over Time')
-          click_on 'Continue'
-          find('h3', text: 'Ready to Quit?')
-          answer_question(0)
-          find('h4', text: 'You are not ready to quit at this time.')
-          click_on 'Continue'
-          find('h3', text: 'Concerns about Quitting')
-          answer_question(0)
-          find('h4', text: 'You\'re concerned that you\'ll feel tired withou' \
-                           't a cigarette.')
-          click_on 'Continue'
-          find('h4', text: 'Now that we have gone over some general concerns')
-          answer_question(0)
-          find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
-          click_on 'Continue'
-          find('h3', text: 'Challenging Times During Your Quit Attempt')
-          answer_question(0)
-          find('h3', text: 'Dealing with Negative Emotions w/o Smoking')
-          click_on 'Continue'
+          enter_quit_reason('My reason')
+          ques = ['Benefits of Quitting Smoking', 'Ready to Quit?', 'Concern' \
+                  's about Quitting', 'Now that we have gone over some gener' \
+                  'al concerns', 'Challenging Times During Your Quit Attempt']
+          feed = ['Healthy Changes Over Time', 'You are not ready to quit at' \
+                  ' this time.', 'You\'re concerned that you\'ll feel tired ' \
+                  'without a cigarette.', 'You\'ve decided to go ahead with ' \
+                  'a quit attempt', 'Dealing with Negative Emotions w/o Smok' \
+                  'ing']
+
+          ques.zip([3, 3, 3, 4, 3], [3, 4, 4, 4, 3], feed) do |a, x, y, b|
+            find("h#{x}", text: a)
+            answer_question(0)
+            find("h#{y}", text: b)
+            click_on 'Continue'
+          end
+
           find('h3', text: 'Identify your Social Support')
           answer_question(6)
           find('.question.well', text: 'You can\'t think of anyone in your l' \
