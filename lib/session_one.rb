@@ -2,24 +2,11 @@
 class SessionOne
   include Capybara::DSL
 
-  def start
-    assert_app_configured
-    start_button.click
-  end
-
-  def finish
-    home_button.click
-  end
-
   def completed?
     within('.row', text: 'session 1') do
       find('.label-success')
       find('.glyphicon.glyphicon-check.glyphicon-sm')
     end
-  end
-
-  def set_notes
-    find('#notes').set('bad reason')
   end
 
   def assert_on_session1_1
@@ -86,7 +73,7 @@ class SessionOne
 
   def assert_on_session1_notready
     find('h4', text: 'You\'ve decided that now is not the right time for you' \
-              ' to schedule and prepare for your quit day.')
+                     ' to schedule and prepare for your quit day.')
   end
 
   def assert_on_session1_20
@@ -156,19 +143,5 @@ class SessionOne
 
   def assert_on_ending2
     find('h3', text: 'Excellent!')
-  end
-
-  private
-
-  def start_button
-    find('.btn.btn-primary', text: 'START NOW')
-  end
-
-  def assert_app_configured
-    find('p', text: 'Ready to begin?')
-  end
-
-  def home_button
-    find('.btn.btn-primary', text: 'GO HOME')
   end
 end

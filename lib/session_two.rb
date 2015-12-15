@@ -20,4 +20,8 @@ class SessionTwo
       find('.glyphicon.glyphicon-check.glyphicon-sm')
     end
   end
+
+  def open
+    find('.btn.btn-default', text: 'SMOKING CESSATION SESSIONS').click
+  end
 end

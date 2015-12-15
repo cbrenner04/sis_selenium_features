@@ -64,6 +64,10 @@ def enter_risky_times
   continue.move_to_next_slide
 end
 
+def session
+  @session ||= Session.new
+end
+
 def session_one
   @session_one ||= SessionOne.new
 end

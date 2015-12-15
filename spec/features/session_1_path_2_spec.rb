@@ -1,6 +1,7 @@
 # filename: path_2_session_1_spec.rb
 
 # require page objects
+require 'session'
 require 'session_one'
 require 'quit_reason'
 require 'modal'
@@ -21,7 +22,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds question 1 with 3, responds to \'session1_5\' with 1' do
     it 'sees correct feedback' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -40,7 +41,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -68,7 +69,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 1' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -100,7 +101,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -135,7 +136,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       find('h3', text: 'Congratulations')
@@ -170,7 +171,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 3'do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -205,7 +206,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 4' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -240,7 +241,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 5' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -275,7 +276,7 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 6' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -309,7 +310,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
       expect(page).to have_content 'You indicated "other"'
 
-      session_one.set_notes
+      session.set_notes
       continue.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
@@ -317,7 +318,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'session1_19b\' with 1, \'social_support\' with 1' do
       it 'responds to \'session1_social6\' with 2' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -360,7 +361,7 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social6\' with 1' do
-        session_one.start
+        session.start
         find('h3',
              text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
         answer_question_with(3)
@@ -401,7 +402,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
       it 'responds to \'session1_social6\' with 1, \'session1_schedule\' ' \
          'with 0' do
-        session_one.start
+        session.start
         find('h3',
              text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
         answer_question_with(3)
@@ -444,7 +445,7 @@ describe 'Participant loads app for the first time', type: :feature do
       describe 'responds to \'session1_social6\' with 1, ' \
                '\'session1_schedule\' with 1' do
         it 'sees correct feedback' do
-          session_one.start
+          session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
           session_one.assert_on_session1_4
@@ -484,7 +485,7 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'quitday_scheduled\' with 1' do
-          session_one.start
+          session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
           session_one.assert_on_session1_4
@@ -529,7 +530,7 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'quitday_scheduled\' with 0' do
-          session_one.start
+          session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
           session_one.assert_on_session1_4
@@ -573,7 +574,7 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'difficult_1b\' with 1' do
-          session_one.start
+          session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
           session_one.assert_on_session1_4
@@ -625,7 +626,7 @@ describe 'Participant loads app for the first time', type: :feature do
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
           continue.move_to_next_slide
-          session_one.finish
+          session.finish
 
           settings_page.assert_on_page
           settings_page.save
@@ -634,7 +635,7 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to difficult_1b with 2' do
-          session_one.start
+          session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
           session_one.assert_on_session1_4
@@ -689,7 +690,7 @@ describe 'Participant loads app for the first time', type: :feature do
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
           continue.move_to_next_slide
-          session_one.finish
+          session.finish
 
           settings_page.assert_on_page
 
@@ -700,7 +701,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'session1_19b\' with 1, \'social_support\' with 7' do
       it 'sees correct feedback' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -739,7 +740,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 3' do
     it 'goes through the correct path' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -776,7 +777,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 5' do
     it 'sees correct feedback' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
@@ -796,7 +797,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'social_support1\' with 1' do
       it 'responds to \'session1_social6\' with 1' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -829,7 +830,7 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social6\' with 0' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -864,7 +865,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'social_support1\' with 7' do
       it 'sees correct feedback' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -900,7 +901,7 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social7\' with 1' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -939,7 +940,7 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social7\' with 0' do
-        session_one.start
+        session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
         session_one.assert_on_session1_4
@@ -984,7 +985,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 6' do
     it 'goes through the correct path' do
-      session_one.start
+      session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
       session_one.assert_on_session1_4
