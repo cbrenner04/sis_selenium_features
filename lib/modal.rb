@@ -21,4 +21,8 @@ class Modal
   def disabled?
     find('#save_button[disabled = disabled]')
   end
+
+  def has_success_alert_present?
+    find('#success-alert')
+  end
 end

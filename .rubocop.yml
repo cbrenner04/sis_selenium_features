@@ -15,3 +15,6 @@ StringLiterals:
 
 StructInheritance:
   Enabled: false
+
+PredicateName:
+  Enabled: false

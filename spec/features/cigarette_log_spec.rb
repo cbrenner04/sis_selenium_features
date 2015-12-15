@@ -5,7 +5,7 @@ require 'cigarette_log'
 require 'continue'
 
 def cigarette_log
-  CigaretteLog.new
+  @cigarette_log ||= CigaretteLog.new
 end
 
 describe 'Participant opens app', type: :feature do
@@ -30,12 +30,12 @@ describe 'Participant opens app', type: :feature do
     cigarette_log.open
     cigarette_log.choose_smoking_now
 
-    expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
+    expect(continue).to_not be_present
 
     cigarette_log.set_reason
     continue.select_continue
 
-    expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
+    expect(continue).to_not be_present
 
     cigarette_log.set_rating
     continue.select_continue
@@ -48,12 +48,12 @@ describe 'Participant opens app', type: :feature do
     cigarette_log.open
     cigarette_log.choose_forgot_to_enter
 
-    expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
+    expect(continue).to_not be_present
 
     cigarette_log.set_reason
     continue.select_continue
 
-    expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
+    expect(continue).to_not be_present
 
     cigarette_log.set_rating
     continue.select_continue

@@ -65,35 +65,47 @@ def enter_risky_times
 end
 
 def session_one
-  SessionOne.new
+  @session_one ||= SessionOne.new
 end
 
 def continue
-  Continue.new
+  @continue ||= Continue.new
 end
 
 def quit_reason
-  QuitReason.new('My reason')
+  @quit_reason ||= QuitReason.new('My reason')
 end
 
 def modal
-  Modal.new
+  @modal ||= Modal.new
 end
 
 def social_supports
-  SocialSupport.new('Jane Doe')
+  @social_supports ||= SocialSupport.new('Jane Doe')
 end
 
 def cessation_date
-  Cessation.new
+  @cessation_date ||= Cessation.new
 end
 
 def risky_times
-  Risky.new
+  @risky_times ||= Risky.new
 end
 
 def settings_page
-  SettingsPage.new
+  @settings_page ||= SettingsPage.new
+end
+
+def session_two
+  @session_two ||= SessionTwo.new
+end
+
+def session_three
+  @session_three ||= SessionThree.new
+end
+
+def happiness_exercises
+  @happiness_exercises ||= HappinessExercise.new
 end
 
 # def go_to_next_question

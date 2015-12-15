@@ -11,6 +11,13 @@ class SessionOne
     home_button.click
   end
 
+  def completed?
+    within('.row', text: 'session 1') do
+      find('.label-success')
+      find('.glyphicon.glyphicon-check.glyphicon-sm')
+    end
+  end
+
   def set_notes
     find('#notes').set('bad reason')
   end

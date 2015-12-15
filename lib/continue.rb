@@ -17,4 +17,8 @@ class Continue
   def select_continue
     find('.btn.btn-primary', text: 'CONTINUE').click
   end
+
+  def present?
+    has_css?('.btn.btn-primary', text: 'CONTINUE')
+  end
 end

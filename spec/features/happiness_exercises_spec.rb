@@ -3,8 +3,16 @@
 require 'happiness_exercise'
 require 'modal'
 
-def happiness_exercises
-  HappinessExercise.new
+def examples
+  @examples ||= Example.new
+end
+
+def why_does_happiness_help
+  @why_does_happiness_help ||= WhyDoesHappinessHelp.new
+end
+
+def why_do_exercises
+  @why_do_exercises ||= WhyDoExercise.new
 end
 
 def load(exercise_name)
@@ -30,7 +38,7 @@ describe 'Participant opens app', type: :feature do
     fill_in 'answer_2', with: 'Third good thing'
     modal.save
 
-    expect(page).to have_css('#success-alert')
+    expect(modal).to have_success_alert_present
   end
 
   it "completes 'Experiencing Kindness'" do
@@ -40,7 +48,7 @@ describe 'Participant opens app', type: :feature do
     fill_in 'answer_1', with: 'Second kindness experience'
     modal.save
 
-    expect(page).to have_css('#success-alert')
+    expect(modal).to have_success_alert_present
   end
 
   it "completes 'Savoring'" do
@@ -50,25 +58,25 @@ describe 'Participant opens app', type: :feature do
     fill_in 'answer_1', with: 'Second savoring'
     modal.save
 
-    expect(page).to have_css('#success-alert')
+    expect(modal).to have_success_alert_present
   end
 
   it 'uses help menus' do
     load('THREE GOOD THINGS')
     happiness_exercises.open_three_good_things
-    happiness_exercises.view_examples
+    examples.open
 
-    expect(page).to have_css('h3', text: 'Examples')
-
-    modal.close
-    happiness_exercises.open_how_does_happiness_help_me
-
-    expect(page).to have_css('h3', text: 'Why Does Happiness Help?')
+    expect(examples).to be_present
 
     modal.close
-    happiness_exercises.open_how_does_this_exercise_help
+    why_does_happiness_help.open
 
-    expect(page).to have_css('h3', text: 'Why Do 3 Good Things?')
+    expect(why_does_happiness_help).to be_present
+
+    modal.close
+    why_do_exercises.open
+
+    expect(why_do_exercises).to be_present
 
     modal.close
   end

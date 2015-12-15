@@ -27,7 +27,6 @@ class Risky
     time = Time.now.strftime('%I:%M')
     if time.between?('10:58', '12:00') || Time.now.strftime('%M') >= '58'
       find('.dwbw.dwb-s').click
-      find('.well.modal-well', text: 'Add risky times below.')
     else
       risky_time = Time.now + (62 * 60)
       element_count(0, '.dw-i', "#{risky_time.strftime('%I')}")
@@ -54,5 +53,17 @@ class Risky
       find('.well.modal-well', text: 'My reason')
       find '.glyphicon-remove.glyphicon-sm'
     end
+  end
+
+  def has_two_risky_times_present?
+    find('.glyphicon-remove.glyphicon-sm', count: 2)
+  end
+
+  def has_test_risky_time_present?
+    has_css?('.well.modal-well', text: 'Test Risky Time')
+  end
+
+  def remove
+    first('.glyphicon.glyphicon-remove.glyphicon-sm').click
   end
 end
