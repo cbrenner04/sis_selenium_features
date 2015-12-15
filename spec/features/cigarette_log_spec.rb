@@ -2,6 +2,11 @@
 
 # require page objects
 require 'cigarette_log'
+require 'continue'
+
+def cigarette_log
+  CigaretteLog.new
+end
 
 describe 'Participant opens app', type: :feature do
   before do
@@ -15,45 +20,45 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'navigates to Cigarette Log' do
-    find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
+    cigarette_log.open
     expect(page).to have_content 'Cigarette Log'
     expect(page).to have_content "I'M SMOKING NOW..."
     expect(page).to have_content 'I FORGOT TO ENTER A CIGARETTE'
   end
 
   it "chooses a various reasons under 'I'm smoking now...'" do
-    find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
-    find('.btn.btn-lg', text: "I'M SMOKING NOW...").click
+    cigarette_log.open
+    cigarette_log.choose_smoking_now
+
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    radio = ['Reduce craving', 'Cope with negative emotion',
-             'Enhance positive emotion', 'Habit/automatic',
-             'Opportunity to socialize', 'Break from work/studying',
-             'Boredom/to kill time', 'other'].sample
-    choose radio
-    find('.btn.btn-primary', text: 'CONTINUE').click
+
+    cigarette_log.set_reason
+    continue.select_continue
+
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    find('.form-control').click
-    find('.form-control').all('option')[rand(11)].select_option
-    find('.btn.btn-primary', text: 'CONTINUE').click
-    find('.btn.btn-primary', text: 'SAVE').click
+
+    cigarette_log.set_rating
+    continue.select_continue
+    cigarette_log.save
+
     expect(page).to have_content '4 days until quit day'
   end
 
   it "chooses a various reasons under 'I forgot to enter a cigarette'" do
-    find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
-    find('.btn.btn-lg', text: 'I FORGOT TO ENTER A CIGARETTE').click
+    cigarette_log.open
+    cigarette_log.choose_forgot_to_enter
+
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    radio = ['Reduce craving', 'Cope with negative emotion',
-             'Enhance positive emotion', 'Habit/automatic',
-             'Opportunity to socialize', 'Break from work/studying',
-             'Boredom/to kill time', 'other'].sample
-    choose radio
-    find('.btn.btn-primary', text: 'CONTINUE').click
+
+    cigarette_log.set_reason
+    continue.select_continue
+
     expect(page).to_not have_css('.btn.btn-primary', text: 'CONTINUE')
-    find('.form-control').click
-    find('.form-control').all('option')[rand(11)].select_option
-    find('.btn.btn-primary', text: 'CONTINUE').click
-    find('.btn.btn-primary', text: 'SAVE').click
+
+    cigarette_log.set_rating
+    continue.select_continue
+    cigarette_log.save
+
     expect(page).to have_content '4 days until quit day'
   end
 end
