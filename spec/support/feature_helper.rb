@@ -13,31 +13,29 @@ def insert_all(date, session)
   insert(SocialSupports::KEY, SocialSupports::SUPPORT_1)
 end
 
-def answer_question(opt)
+def answer_question_with(num)
   option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
+  opt = num - 1
   option[opt].click
-  click_on 'Continue'
+  continue.move_to_next_slide
 end
 
-def enter_quit_reason(reason)
-  find('h3', text: 'Your Reasons for Quitting Smoking')
-  find('.btn.btn-info').click
-  fill_in 'reason', with: reason
-  find('#save_button').click
-  find('#exit_button').click
-  click_on 'Continue'
+def enter_quit_reason
+  quit_reason.assert_on_correct_page
+  modal.open
+  quit_reason.create
+  modal.save
+  modal.exit
+  continue.move_to_next_slide
 end
 
-def enter_social_supports(name)
-  find('h3', text: 'Enlisting Your Social Support')
-  find('.btn.btn-info').click
-  fill_in 'name', with: name
-  find('#reason').click
-  find("option[value = 'He/she will offer encouragement along the way.'").click
-  find('#save_button').click
-  find('#exit_button').click
-  find('h3', text: 'Enlisting Your Social Support')
-  click_on 'Continue'
+def enter_social_supports
+  social_supports.assert_on_correct_page
+  modal.open
+  social_supports.create
+  modal.save
+  modal.exit
+  continue.move_to_next_slide
 end
 
 def element_count(num, elem, text)
@@ -50,43 +48,52 @@ def element_count(num, elem, text)
 end
 
 def enter_cessation_date
-  find('h3', text: 'Splendid!')
-  find('#cessation_date_selector').click
-  if Date.today.strftime('%B') == 'December' || Date.today.strftime('%d') > '26'
-    find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
-  else
-    cessation_date = Date.today + 32
-    find('.dw-mon', text: "#{cessation_date.strftime('%B')}").click
-    element_count(0, '.dw-i', "#{cessation_date.strftime('%d')}")
-    find('.dw-i', text: "#{cessation_date.strftime('%Y')}").click
-  end
-  find('h3', text: 'Splendid!')
-  click_on 'Continue'
+  cessation_date.assert_on_correct_page
+  cessation_date.open
+  cessation_date.pick_date
+  cessation_date.assert_on_correct_page
+  continue.move_to_next_slide
 end
 
 def enter_risky_times
-  find('h3', text: 'Difficult Times To Stay Smoke Free')
-  find('.btn.btn-info',
-       text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
-  find('.btn-group.ng-scope', text: 'Tu').click
-  find('#risky_time_time').click
-  sleep(1)
-  time = Time.now.strftime('%I:%M')
-  if time.between?('10:58', '12:00') || Time.now.strftime('%M') >= '58'
-    find('.dwbw.dwb-s').click
-    find('.well.modal-well', text: 'Add risky times below.')
-    fill_in 'reason', with: 'My reason'
-    find('#save_button').click
-  else
-    risky_time = Time.now + (62 * 60)
-    element_count(0, '.dw-i', "#{risky_time.strftime('%I')}")
-    element_count(1, '.dw-i', "#{risky_time.strftime('%M')}")
-    find('.dw-i', text: "#{risky_time.strftime('%p')}").click
-    fill_in 'reason', with: 'My reason'
-    find('#save_button').click
-  end
-  find('#exit_button').click
-  click_on 'Continue'
+  risky_times.assert_on_correct_page
+  risky_times.open
+  risky_times.create
+  modal.save
+  modal.exit
+  continue.move_to_next_slide
+end
+
+def session_one
+  SessionOne.new
+end
+
+def continue
+  Continue.new
+end
+
+def quit_reason
+  QuitReason.new('My reason')
+end
+
+def modal
+  Modal.new
+end
+
+def social_supports
+  SocialSupport.new('Jane Doe')
+end
+
+def cessation_date
+  Cessation.new
+end
+
+def risky_times
+  Risky.new
+end
+
+def settings_page
+  SettingsPage.new
 end
 
 # def go_to_next_question

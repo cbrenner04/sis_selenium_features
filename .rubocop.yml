@@ -12,3 +12,6 @@ MethodLength:
 
 StringLiterals:
   EnforcedStyle: single_quotes
+
+StructInheritance:
+  Enabled: false
