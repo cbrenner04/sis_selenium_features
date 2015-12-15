@@ -14,6 +14,10 @@ class Modal
     find('#exit_button').click
   end
 
+  def close
+    find('.btn.btn-primary', text: 'CLOSE').click
+  end
+
   def disabled?
     find('#save_button[disabled = disabled]')
   end
