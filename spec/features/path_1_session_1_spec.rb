@@ -959,7 +959,7 @@ describe 'Participant loads app for the first time', type: :feature do
         session_one.assert_on_session1_19
         answer_question_with(1)
         session_one.assert_on_session1_19c
-        continue.move_to_next_slidetinue.move_to_next_slide
+        continue.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(6)
 
@@ -1821,7 +1821,7 @@ describe 'Participant loads app for the first time', type: :feature do
                 session_one.assert_on_quitday_scheduled2
                 continue.move_to_next_slide
 
-                risky.assert_on_correct_page
+                risky_times.assert_on_correct_page
 
                 expect(page)
                   .to have_css('button[disabled = disabled]', text: 'CONTINUE')
@@ -1873,7 +1873,7 @@ describe 'Participant loads app for the first time', type: :feature do
                 session_one.assert_on_quitday_scheduled2
                 continue.move_to_next_slide
 
-                risky.assert_on_correct_page
+                risky_times.assert_on_correct_page
                 answer_question_with(2)
 
                 expect(page)
@@ -1929,17 +1929,17 @@ describe 'Participant loads app for the first time', type: :feature do
                 session_one.assert_on_quitday_scheduled2
                 continue.move_to_next_slide
 
-                risky.assert_on_correct_page
-                risky.open
-                risky.select_day
-                risky.select_time
-                risky.set_reason
+                risky_times.assert_on_correct_page
+                risky_times.open
+                risky_times.select_day
+                risky_times.select_time
+                risky_times.set_reason
                 modal.save
 
-                expect(risky).to be_visible
+                expect(risky_times).to be_visible
 
                 modal.exit
-                riksy.assert_on_correct_page
+                riksy_times.assert_on_correct_page
               end
 
               it 'completes Session 1' do
@@ -1992,7 +1992,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
                 session_one.assert_on_difficult2
                 continue.move_to_next_slide
-                session_on.assert_on_ending
+                session_one.assert_on_ending
                 continue.move_to_next_slide
                 session_one.assert_on_ending2
                 cessation_date.assert_on_ending2

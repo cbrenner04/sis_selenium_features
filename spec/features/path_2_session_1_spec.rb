@@ -125,7 +125,7 @@ describe 'Participant loads app for the first time', type: :feature do
       session_one.assert_on_session1_notready
       continue.move_to_next_slide
 
-      risky.assert_on_correct_page
+      risky_times.assert_on_correct_page
       answer_question_with(2)
 
       expect(page).to have_content 'You have chosen not to identify any time' \
@@ -676,7 +676,7 @@ describe 'Participant loads app for the first time', type: :feature do
           answer_question_with(1)
           session_one.assert_on_quitday_scheduled2
           continue.move_to_next_slide
-          risky.assert_on_correct_page
+          risky_times.assert_on_correct_page
           answer_question_with(2)
 
           expect(page)
@@ -810,7 +810,7 @@ describe 'Participant loads app for the first time', type: :feature do
         continue.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(5)
-        session_one.assert_on_session1_social8b
+        session_one.assert_on_session1_8b
         continue.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
@@ -823,7 +823,8 @@ describe 'Participant loads app for the first time', type: :feature do
 
         enter_social_supports
 
-        risky.assert_on_correct_page
+        risky_times.assert_on_correct_page
+
         expect(page).to have_content 'To help you stay smoke-free'
       end
 
@@ -842,7 +843,7 @@ describe 'Participant loads app for the first time', type: :feature do
         continue.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(5)
-        session_one.assert_on_session1_social8b
+        session_one.assert_on_session1_8b
         continue.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
@@ -854,7 +855,8 @@ describe 'Participant loads app for the first time', type: :feature do
         answer_question_with(2)
         session_one.assert_on_session1_social9
         continue.move_to_next_slide
-        risky.assert_on_correct_page
+
+        risky_times.assert_on_correct_page
 
         expect(page).to have_content 'To help you stay smoke-free'
       end

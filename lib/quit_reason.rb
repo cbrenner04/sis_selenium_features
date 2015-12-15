@@ -2,16 +2,12 @@
 class QuitReason < Struct.new(:reason)
   include Capybara::DSL
 
-  # def initialize(reason)
-  #   @reason = reason
-  # end
-
   def assert_on_correct_page
     find('h3', text: 'Your Reasons for Quitting Smoking')
   end
 
   def create
-    fill_in 'reason', with: reason
+    find('.form-control').set(reason)
   end
 
   def visible?

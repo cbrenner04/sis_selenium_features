@@ -3,6 +3,7 @@ class SessionOne
   include Capybara::DSL
 
   def start
+    assert_app_configured
     start_button.click
   end
 
@@ -28,7 +29,7 @@ class SessionOne
   end
 
   def assert_on_session1_4
-    find('h43', text: 'Congratulations!')
+    find('h3', text: 'Congratulations!')
   end
 
   def assert_on_session1_benefits
@@ -154,6 +155,10 @@ class SessionOne
 
   def start_button
     find('.btn.btn-primary', text: 'START NOW')
+  end
+
+  def assert_app_configured
+    find('p', text: 'Ready to begin?')
   end
 
   def home_button

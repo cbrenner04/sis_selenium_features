@@ -1,5 +1,8 @@
 # filename: cigarette_log_spec.rb
 
+# require page objects
+require 'cigarette_log'
+
 describe 'Participant opens app', type: :feature do
   before do
     visit 'localhost:8000'
