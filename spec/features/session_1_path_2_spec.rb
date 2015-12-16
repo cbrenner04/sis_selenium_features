@@ -25,17 +25,23 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
 
       expect(page).to have_content 'You are not ready to quit at this time.'
     end
@@ -44,25 +50,33 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
 
       expect(page)
         .to have_content 'You\'ve decided to go ahead with a quit attempt'
@@ -72,30 +86,41 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(2)
+      session.move_to_next_slide
       session_one.assert_on_session1_notready
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_difficult_1
+      session_one.open_risky_times
 
       enter_risky_times
 
+      session.move_to_next_slide
       expect(page).to have_content 'Receiving Reminders To Stay on Track'
       # add path to home screen
     end
@@ -104,30 +129,39 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(2)
+      session.move_to_next_slide
       session_one.assert_on_session1_notready
-      continue.move_to_next_slide
+      session.move_to_next_slide
 
-      risky_times.assert_on_correct_page
+      session_one.assert_on_difficult_1
       answer_question_with(2)
+      session.move_to_next_slide
 
       expect(page).to have_content 'You have chosen not to identify any time' \
                                    's you might have difficulty to remain sm' \
@@ -139,33 +173,43 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       find('h3', text: 'Congratulations')
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_19c
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_social_support1
       answer_question_with(2)
+      session.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
     end
@@ -174,33 +218,43 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_19c
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_social_support1
       answer_question_with(3)
+      session.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
     end
@@ -209,33 +263,43 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_19c
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_social_support1
       answer_question_with(4)
+      session.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
     end
@@ -244,33 +308,43 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_19c
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_social_support1
       answer_question_with(5)
+      session.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
     end
@@ -279,39 +353,49 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_7
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_19c
-      continue.move_to_next_slide
+      session.move_to_next_slide
 
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_social_support1
       answer_question_with(6)
+      session.move_to_next_slide
 
       expect(page).to have_content 'You indicated "other"'
 
       session.set_notes
-      continue.move_to_next_slide
+      session.move_to_next_slide
 
       expect(page).to have_content 'Excellent!'
     end
@@ -321,41 +405,52 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
 
         session_one.assert_on_social_support1
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_social6
         answer_question_with(2)
+        session.move_to_next_slide
 
         expect(page).to have_content 'You\'ve decided to do this quit attemp' \
                                      't without any help'
 
-        continue.move_to_next_slide
+        session.move_to_next_slide
 
         expect(page).to have_content 'Schedule Your Quit Day'
       end
@@ -365,36 +460,47 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h3',
              text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_social6
         answer_question_with(1)
-        social_supports.assert_on_correct_page
+        session.move_to_next_slide
+        session_one.assert_on_session1_social10a
 
         expect(page).to have_content 'You have identified people who can hel' \
                                      'p you stay smoke-free'
@@ -406,38 +512,55 @@ describe 'Participant loads app for the first time', type: :feature do
         find('h3',
              text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_social6
         answer_question_with(1)
+        session.move_to_next_slide
+        session_one.assert_on_session1_social10a
+        modal.open
+
         enter_social_supports
+
+        session.move_to_next_slide
         session_one.assert_on_session1_schedule
         answer_question_with(2)
+        session.move_to_next_slide
 
         expect(page).to have_content 'That\'s ok'
       end
@@ -448,38 +571,52 @@ describe 'Participant loads app for the first time', type: :feature do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
+          session.move_to_next_slide
           session_one.assert_on_session1_4
-          continue.move_to_next_slide
+          session.move_to_next_slide
 
           enter_quit_reason
 
           session_one.assert_on_session1_benefits
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits1
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_5
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_7
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_10
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_11
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_19
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_19c
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_20
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_21
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_social_support1
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_session1_social10a
+          modal.open
+
           enter_social_supports
+
+          session.move_to_next_slide
           session_one.assert_on_session1_schedule
           answer_question_with(1)
+          session.move_to_next_slide
 
           expect(page).to have_content 'Splendid!'
         end
@@ -488,43 +625,60 @@ describe 'Participant loads app for the first time', type: :feature do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
+          session.move_to_next_slide
           session_one.assert_on_session1_4
-          continue.move_to_next_slide
+          session.move_to_next_slide
 
           enter_quit_reason
 
           session_one.assert_on_session1_benefits
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits1
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_5
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_7
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_10
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_11
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_19
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_19c
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_20
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_21
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_social_support1
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_session1_social10a
+          modal.open
+
           enter_social_supports
+
+          session.move_to_next_slide
           session_one.assert_on_session1_schedule
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_quitday_ready
 
           enter_cessation_date
 
+          session.move_to_next_slide
           session_one.assert_on_quitday_scheduled
           answer_question_with(1)
+          session.move_to_next_slide
 
           expect(page).to have_content 'It should!'
         end
@@ -533,43 +687,60 @@ describe 'Participant loads app for the first time', type: :feature do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
+          session.move_to_next_slide
           session_one.assert_on_session1_4
-          continue.move_to_next_slide
+          session.move_to_next_slide
 
           enter_quit_reason
 
           session_one.assert_on_session1_benefits
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits1
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_5
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_7
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_10
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_11
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_19
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_19c
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_20
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_21
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_social_support1
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_session1_social10a
+          modal.open
+
           enter_social_supports
+
+          session.move_to_next_slide
           session_one.assert_on_session1_schedule
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_quitday_ready
 
           enter_cessation_date
 
+          session.move_to_next_slide
           session_one.assert_on_quitday_scheduled
           answer_question_with(2)
+          session.move_to_next_slide
           expect(page).to have_content 'Good for you!'
         end
 
@@ -577,55 +748,75 @@ describe 'Participant loads app for the first time', type: :feature do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
+          session.move_to_next_slide
           session_one.assert_on_session1_4
-          continue.move_to_next_slide
+          session.move_to_next_slide
 
           enter_quit_reason
 
           session_one.assert_on_session1_benefits
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits1
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_5
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_7
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_10
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_11
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_19
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_19c
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_20
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_21
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_social_support1
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_session1_social10a
+          modal.open
+
           enter_social_supports
+
+          session.move_to_next_slide
           session_one.assert_on_session1_schedule
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_quitday_ready
 
           enter_cessation_date
 
+          session.move_to_next_slide
           session_one.assert_on_quitday_scheduled
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_quitday_scheduled2
-          continue.move_to_next_slide
+          session.move_to_next_slide
+          session_one.assert_on_difficult_1
+          session_one.open_risky_times
 
           enter_risky_times
 
+          session.move_to_next_slide
           session_one.assert_on_difficult2
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_ending
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session.finish
 
           settings_page.assert_on_page
@@ -638,58 +829,76 @@ describe 'Participant loads app for the first time', type: :feature do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(3)
+          session.move_to_next_slide
           session_one.assert_on_session1_4
-          continue.move_to_next_slide
+          session.move_to_next_slide
 
           enter_quit_reason
 
           session_one.assert_on_session1_benefits
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits1
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_5
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_7
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_10
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_11
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_19
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_19c
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_20
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_21
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_social_support1
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_session1_social10a
+          modal.open
 
           enter_social_supports
 
+          session.move_to_next_slide
           session_one.assert_on_session1_schedule
           answer_question_with(1)
+          session.move_to_next_slide
+          session_one.assert_on_quitday_ready
+
           enter_cessation_date
-          session_one.assert_on_quitday_scheduled
+
+          session.move_to_next_slide
+          ession_one.assert_on_quitday_scheduled
           answer_question_with(1)
+          session.move_to_next_slide
           session_one.assert_on_quitday_scheduled2
-          continue.move_to_next_slide
-          risky_times.assert_on_correct_page
+          session.move_to_next_slide
+          session_one.assert_on_difficult_1
           answer_question_with(2)
+          session.move_to_next_slide
 
           expect(page)
             .to have_content 'You have chosen not to identify any times you ' \
                              'might have difficulty to remain smoke-free.'
 
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_ending
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
-          continue.move_to_next_slide
+          session.move_to_next_slide
           session.finish
 
           settings_page.assert_on_page
@@ -704,33 +913,43 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(7)
+        session.move_to_next_slide
 
         expect(page).to have_content 'You can\'t think of anyone in your lif' \
                                      'e who would support you'
@@ -743,33 +962,41 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_8
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_9
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_10
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_11
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_19
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_20
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_21
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_28
-      continue.move_to_next_slide
+      session.move_to_next_slide
 
       expect(page).to have_content 'Identify your Social Support'
     end
@@ -780,17 +1007,23 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(5)
+      session.move_to_next_slide
 
       expect(page).to have_content 'You have already quit smoking,'
     end
@@ -800,31 +1033,43 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(5)
+        session.move_to_next_slide
         session_one.assert_on_session1_8b
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_social6
         answer_question_with(1)
+        session.move_to_next_slide
+        session_one.assert_on_session1_social10a
+        modal.open
 
         enter_social_supports
 
-        risky_times.assert_on_correct_page
+        session.move_to_next_slide
+        session_one.assert_on_difficult_1
 
         expect(page).to have_content 'To help you stay smoke-free'
       end
@@ -833,31 +1078,40 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(5)
+        session.move_to_next_slide
         session_one.assert_on_session1_8b
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_social6
         answer_question_with(2)
+        session.move_to_next_slide
         session_one.assert_on_session1_social9
-        continue.move_to_next_slide
+        session.move_to_next_slide
 
-        risky_times.assert_on_correct_page
+        session_one.assert_on_difficult_1
 
         expect(page).to have_content 'To help you stay smoke-free'
       end
@@ -868,33 +1122,43 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(7)
+        session.move_to_next_slide
 
         expect(page).to have_content 'You can\'t think of anyone in your lif' \
                                      'e who would support you'
@@ -904,35 +1168,46 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_social_support1
         answer_question_with(7)
+        session.move_to_next_slide
         session_one.assert_on_session1_social7
         answer_question_with(1)
+        session.move_to_next_slide
 
         expect(page).to have_content 'Excellent!'
 
@@ -943,36 +1218,47 @@ describe 'Participant loads app for the first time', type: :feature do
         session.start
         session_one.assert_on_session1_1
         answer_question_with(3)
+        session.move_to_next_slide
         session_one.assert_on_session1_4
-        continue.move_to_next_slide
+        session.move_to_next_slide
+        session_one.assert_on_session1_reasons
+        modal.open
 
         enter_quit_reason
 
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_benefits1
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_5
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_7
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_10
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_11
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_19
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_19c
-        continue.move_to_next_slide
+        session.move_to_next_slide
         session_one.assert_on_session1_20
         answer_question_with(1)
+        session.move_to_next_slide
         session_one.assert_on_session1_21
-        continue.move_to_next_slide
+        session.move_to_next_slide
 
         session_one.assert_on_social_support1
         answer_question_with(7)
+        session.move_to_next_slide
         session_one.assert_on_session1_social7
         answer_question_with(2)
+        session.move_to_next_slide
 
         expect(page).to have_content 'You feel that there is nobody in your ' \
                                      'life who would support your upcoming q' \
@@ -988,17 +1274,23 @@ describe 'Participant loads app for the first time', type: :feature do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(3)
+      session.move_to_next_slide
       session_one.assert_on_session1_4
-      continue.move_to_next_slide
+      session.move_to_next_slide
+      session_one.assert_on_session1_reasons
+      modal.open
 
       enter_quit_reason
 
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits
       answer_question_with(1)
+      session.move_to_next_slide
       session_one.assert_on_session1_benefits1
-      continue.move_to_next_slide
+      session.move_to_next_slide
       session_one.assert_on_session1_5
       answer_question_with(6)
+      session.move_to_next_slide
 
       expect(page).to have_content 'You have already quit smoking, and are u' \
                                    'sing this app, because you want to make ' \

@@ -2,10 +2,6 @@
 class Risky
   include Capybara::DSL
 
-  def assert_on_correct_page
-    find('h3', text: 'Difficult Times To Stay Smoke Free')
-  end
-
   def open
     find('.btn.btn-info',
          text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click

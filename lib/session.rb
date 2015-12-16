@@ -7,8 +7,12 @@ class Session
     start_button.click
   end
 
+  def move_to_next_slide
+    click_on 'Continue'
+  end
+
   def finish
-    home_button.click
+    find('.btn.btn-primary', text: 'GO HOME').click
   end
 
   def set_notes
@@ -23,9 +27,5 @@ class Session
 
   def assert_app_configured
     find('p', text: 'Ready to begin?')
-  end
-
-  def home_button
-    find('.btn.btn-primary', text: 'GO HOME')
   end
 end

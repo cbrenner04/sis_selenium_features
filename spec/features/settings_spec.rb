@@ -28,8 +28,7 @@ describe 'Participant opens app', type: :feature do
     end
 
     it 'redirects to settings menu, updates cessation date' do
-      cessation_date.open
-      cessation_date.pick_date
+      enter_cessation_date
 
       expect(settings_page).to have_cessation_date_selector_present
 
@@ -38,9 +37,7 @@ describe 'Participant opens app', type: :feature do
 
     it 'redirects to settings menu, adds reasons for stopping smoking' do
       quit_reason.open
-      quit_reason.create
-      modal.save
-      modal.exit
+      enter_quit_reason
       settings_page.assert_on_page
 
       expect(settings_page).to_not have_save_present
@@ -48,9 +45,7 @@ describe 'Participant opens app', type: :feature do
 
     it 'redirects to settings menu, adds risky times' do
       settings_page.open_risky_times
-      risky_times.create
-      modal.save
-      modal.exit
+      enter_risky_times
       settings_page.assert_on_page
 
       expect(settings_page).to have_save_present
@@ -58,9 +53,7 @@ describe 'Participant opens app', type: :feature do
 
     it 'redirects to settings menu, adds social supports' do
       social_supports.open
-      social_supports.create
-      modal.save
-      modal.exit
+      enter_social_supports
       settings_page.assert_on_page
 
       expect(settings_page).to_not have_save_present
@@ -69,18 +62,13 @@ describe 'Participant opens app', type: :feature do
     it 'redirects to settings menu, completes configuration' do
       expect(settings_page).to_not have_save_present
 
-      cessation_date.open
-      cessation_date.pick_date
+      enter_cessation_date
 
       quit_reason.open
-      quit_reason.create
-      modal.save
-      modal.exit
+      enter_quit_reason
 
       settings_page.open_risky_times
-      risky_times.create
-      modal.save
-      modal.exit
+      enter_risky_times
 
       social_supports.open
       social_supports.create
@@ -114,8 +102,7 @@ describe 'Participant opens app', type: :feature do
     end
 
     it 'updates cessation date' do
-      cessation_date.open
-      cessation_date.pick_date
+      enter_cessation_date
 
       expect(settings_page).to have_cessation_date_selector_present
     end

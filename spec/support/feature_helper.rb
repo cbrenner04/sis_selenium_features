@@ -17,25 +17,18 @@ def answer_question_with(num)
   option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
   opt = num - 1
   option[opt].click
-  continue.move_to_next_slide
 end
 
 def enter_quit_reason
-  quit_reason.assert_on_correct_page
-  modal.open
   quit_reason.create
   modal.save
   modal.exit
-  continue.move_to_next_slide
 end
 
 def enter_social_supports
-  social_supports.assert_on_correct_page
-  modal.open
   social_supports.create
   modal.save
   modal.exit
-  continue.move_to_next_slide
 end
 
 def element_count(num, elem, text)
@@ -48,20 +41,14 @@ def element_count(num, elem, text)
 end
 
 def enter_cessation_date
-  cessation_date.assert_on_correct_page
   cessation_date.open
   cessation_date.pick_date
-  cessation_date.assert_on_correct_page
-  continue.move_to_next_slide
 end
 
 def enter_risky_times
-  risky_times.assert_on_correct_page
-  risky_times.open
   risky_times.create
   modal.save
   modal.exit
-  continue.move_to_next_slide
 end
 
 def session

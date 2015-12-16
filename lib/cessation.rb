@@ -2,10 +2,6 @@
 class Cessation
   include Capybara::DSL
 
-  def assert_on_correct_page
-    find('h3', text: 'Splendid!')
-  end
-
   def open
     find('#cessation_date_selector').click
   end

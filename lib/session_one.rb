@@ -124,6 +124,10 @@ class SessionOne
     find('h3', text: 'Schedule Your Quit Day')
   end
 
+  def assert_on_quitday_ready
+    find('h3', text: 'Splendid!')
+  end
+
   def assert_on_quitday_scheduled
     find('h3', text: 'CONGRATULATIONS!')
   end
@@ -132,8 +136,17 @@ class SessionOne
     find('h4', text: 'It\'s a big step')
   end
 
+  def assert_on_difficult_1
+    find('h3', text: 'Difficult Times To Stay Smoke Free')
+  end
+
   def assert_on_difficult2
     find('h3', text: 'Receiving Reminders To Stay on Track')
+  end
+
+  def open_risky_times
+    find('.btn.btn-info',
+         text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
   end
 
   def assert_on_ending

@@ -2,10 +2,6 @@
 class QuitReason < Struct.new(:reason)
   include Capybara::DSL
 
-  def assert_on_correct_page
-    find('h3', text: 'Your Reasons for Quitting Smoking')
-  end
-
   def open
     find('.btn.btn-info', text: 'YOUR REASONS FOR STOPPING SMOKING').click
   end

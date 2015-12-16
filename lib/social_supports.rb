@@ -2,10 +2,6 @@
 class SocialSupport < Struct.new(:name)
   include Capybara::DSL
 
-  def assert_on_correct_page
-    find('h3', text: 'Enlisting Your Social Support')
-  end
-
   def create
     fill_in 'name', with: name
     find('#reason').click
