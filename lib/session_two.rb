@@ -21,10 +21,6 @@ class SessionTwo
     end
   end
 
-  def open
-    find('.btn.btn-default', text: 'SMOKING CESSATION SESSIONS').click
-  end
-
   def assert_on_session2_smokingstatus
     find('h3', text: 'Today is your Quit Day!')
   end

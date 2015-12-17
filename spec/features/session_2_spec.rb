@@ -15,7 +15,7 @@ describe 'Participant navigates to session 2', type: :feature do
     visit 'localhost:8000'
     insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
     page.evaluate_script('window.location.reload()')
-    session_two.open
+    session.open
   end
 
   after do

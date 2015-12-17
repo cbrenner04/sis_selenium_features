@@ -3,7 +3,7 @@ class Session
   include Capybara::DSL
 
   def start
-    assert_app_configured
+    assert_at_start
     start_button.click
   end
 
@@ -19,13 +19,17 @@ class Session
     find('#notes').set('bad reason')
   end
 
+  def open
+    find('.btn.btn-default', text: 'SMOKING CESSATION SESSIONS').click
+  end
+
   private
 
   def start_button
     find('.btn.btn-primary', text: 'START NOW')
   end
 
-  def assert_app_configured
+  def assert_at_start
     find('p', text: 'Ready to begin?')
   end
 end
