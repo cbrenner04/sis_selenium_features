@@ -36,6 +36,7 @@ class Risky
   end
 
   def visible?
+    time = Time.now.strftime('%I:%M')
     if time.between?('10:58', '12:00') ||
        Time.now.strftime('%M') >= '58'
       find('.well.modal-well', text: "#{Time.now.strftime('%l:%M %p')}" \

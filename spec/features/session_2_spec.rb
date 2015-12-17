@@ -6,6 +6,9 @@ require 'continue'
 require 'modal'
 require 'risky'
 require 'social_supports'
+require 'quit_reason'
+require 'settings_page'
+require 'cessation'
 
 describe 'Participant navigates to session 2', type: :feature do
   before do
@@ -118,6 +121,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
         session.move_to_next_slide
         expect(page).to have_content 'Update Your Strategies'
+
+        modal.open
+        enter_risky_times
 
         session.move_to_next_slide
         expect(page).to have_content 'Checking in About Your Social Support'
@@ -1457,7 +1463,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Wonderful to hear that'
           end
 
-          it 'completes Session Two' do
+          it 'responds to \'session2_end\' with response 1' do
             session.start
             session_two.assert_on_session2_smokingstatus
             answer_question_with(1)
@@ -1490,14 +1496,115 @@ describe 'Participant navigates to session 2', type: :feature do
             session_two.assert_on_session2_traps1b
             session.move_to_next_slide
             session_two.assert_on_session2_checkingin4
-            answer_question_with(4)
+            answer_question_with(1)
             session.move_to_next_slide
             session_two.assert_on_session2_checkingin4a
-            session_two.move_to_next_slide
+            session.move_to_next_slide
             session_two.assert_on_session2_end
-            session.finish
+            answer_question_with(1)
 
-            expect(page).to have_content 'quit day'
+            enter_quit_reason
+
+            session.move_to_next_slide
+            session.finish
+            settings_page.save
+
+            expect(page).to have_content 'It\'s Your Quit day!'
+          end
+
+          it 'responds to \'session2_end\' with response 2' do
+            session.start
+            session_two.assert_on_session2_smokingstatus
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_1
+            session.move_to_next_slide
+            session_two.assert_on_got_time
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_overview
+            session.move_to_next_slide
+            session_two.assert_on_session2_strategies2
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_stratok
+            session.move_to_next_slide
+            session_two.assert_on_session2_social_support_1
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_social3a
+            session.move_to_next_slide
+            session_two.assert_on_session2_think1
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps1a
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps1b
+            session.move_to_next_slide
+            session_two.assert_on_session2_checkingin4
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_checkingin4a
+            session.move_to_next_slide
+            session_two.assert_on_session2_end
+            answer_question_with(2)
+            session.move_to_next_slide
+
+            # supposed to go to benefits??
+
+            session.finish
+            settings_page.save
+
+            expect(page).to have_content 'It\'s Your Quit day!'
+          end
+
+          it 'responds to \'session2_end\' with response 2' do
+            session.start
+            session_two.assert_on_session2_smokingstatus
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_1
+            session.move_to_next_slide
+            session_two.assert_on_got_time
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_overview
+            session.move_to_next_slide
+            session_two.assert_on_session2_strategies2
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_stratok
+            session.move_to_next_slide
+            session_two.assert_on_session2_social_support_1
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_social3a
+            session.move_to_next_slide
+            session_two.assert_on_session2_think1
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps1a
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_traps1b
+            session.move_to_next_slide
+            session_two.assert_on_session2_checkingin4
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_two.assert_on_session2_checkingin4a
+            session.move_to_next_slide
+            session_two.assert_on_session2_end
+            answer_question_with(3)
+            session.move_to_next_slide
+            session.finish
+            settings_page.save
+
+            expect(page).to have_content 'It\'s Your Quit day!'
           end
         end
 
@@ -1589,6 +1696,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'You haven\'t reached out to them yet?'
 
             answer_question_with(1)
+            enter_social_supports
             session.move_to_next_slide
 
             expect(page).to have_content 'Sabotaging Thoughts'
@@ -1618,7 +1726,6 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'You haven\'t reached out to them yet?'
 
             answer_question_with(2)
-            enter_social_supports
             session.move_to_next_slide
 
             expect(page).to have_content 'Sabotaging Thoughts'
@@ -1714,6 +1821,9 @@ describe 'Participant navigates to session 2', type: :feature do
         session.move_to_next_slide
         session_two.assert_on_session2_reschedulingday
         answer_question_with(1)
+
+        cessation_date.pick_date
+
         session.move_to_next_slide
         session_two.assert_on_not_quit
         answer_question_with(1)
@@ -1729,6 +1839,9 @@ describe 'Participant navigates to session 2', type: :feature do
         session.move_to_next_slide
         session_two.assert_on_session2_reschedulingday
         answer_question_with(1)
+
+        cessation_date.pick_date
+
         session.move_to_next_slide
         session_two.assert_on_not_quit
         answer_question_with(2)
@@ -1777,14 +1890,33 @@ describe 'Participant navigates to session 2', type: :feature do
       session.move_to_next_slide
       session_two.assert_on_session2_notready2
       answer_question_with(3)
+
+      # currently this should terminate the session but the below logic is dependent upon it
+
       session.move_to_next_slide
       session_two.assert_on_retry_later
       answer_question_with(1)
       session.move_to_next_slide
       session_two.assert_on_retry_later2
       session.finish
+      settings_page.save
 
-      expect(page).to have_content 'quit day'
+      expect(page).to have_content 'It\'s Your Quit day!'
+    end
+
+    it 'responds to \'session2_notready2\' with response 4' do
+      session.start
+      session_two.assert_on_session2_smokingstatus
+      answer_question_with(5)
+      session.move_to_next_slide
+      session_two.assert_on_session2_notready
+      session.move_to_next_slide
+      session_two.assert_on_session2_notready2
+      answer_question_with(4)
+      session.finish
+      settings_page.save
+
+      expect(page).to have_content 'It\'s Your Quit day!'
     end
   end
 end

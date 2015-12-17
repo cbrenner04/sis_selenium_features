@@ -574,9 +574,11 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_4
           session.move_to_next_slide
+          modal.open
 
           enter_quit_reason
 
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits
           answer_question_with(1)
           session.move_to_next_slide
@@ -628,9 +630,11 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_4
           session.move_to_next_slide
+          modal.open
 
           enter_quit_reason
 
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits
           answer_question_with(1)
           session.move_to_next_slide
@@ -690,9 +694,11 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_4
           session.move_to_next_slide
+          modal.open
 
           enter_quit_reason
 
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits
           answer_question_with(1)
           session.move_to_next_slide
@@ -751,9 +757,11 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_4
           session.move_to_next_slide
+          modal.open
 
           enter_quit_reason
 
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits
           answer_question_with(1)
           session.move_to_next_slide
@@ -832,9 +840,11 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_4
           session.move_to_next_slide
+          modal.open
 
           enter_quit_reason
 
+          session.move_to_next_slide
           session_one.assert_on_session1_benefits
           answer_question_with(1)
           session.move_to_next_slide
@@ -880,7 +890,7 @@ describe 'Participant loads app for the first time', type: :feature do
           enter_cessation_date
 
           session.move_to_next_slide
-          ession_one.assert_on_quitday_scheduled
+          session_one.assert_on_quitday_scheduled
           answer_question_with(1)
           session.move_to_next_slide
           session_one.assert_on_quitday_scheduled2

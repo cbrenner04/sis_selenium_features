@@ -86,7 +86,7 @@ describe 'Participant loads app for the first time', type: :feature do
       session.move_to_next_slide
       session_one.assert_on_session1_3
       session.move_to_next_slide
-      quit_reason.assert_on_correct_page
+      session_one.assert_on_session1_reasons
       modal.open
       quit_reason.create
       modal.save
@@ -94,7 +94,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(quit_reason).to be_visible
 
       modal.exit
-      quit_reason.assert_on_correct_page
+      session_one.assert_on_session1_reasons
     end
 
     it 'is unable to move past \'session1_benefits\' without responding' do
@@ -2508,7 +2508,7 @@ describe 'Participant loads app for the first time', type: :feature do
                 expect(risky_times).to be_visible
 
                 modal.exit
-                riksy_times.assert_on_correct_page
+                session_one.assert_on_difficult_1
               end
 
               it 'completes Session 1' do
@@ -2898,7 +2898,9 @@ describe 'Participant loads app for the first time', type: :feature do
                                        'elp you in your quit attempt'
 
           # complete session, expect to be taken to settings, can't go to home
+          modal.open
           enter_social_supports
+          session.move_to_next_slide
           session.finish
 
           settings_page.assert_on_page
