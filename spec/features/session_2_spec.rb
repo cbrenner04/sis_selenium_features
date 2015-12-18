@@ -1,14 +1,23 @@
 # filename: session_2_spec.rb
 
-require 'session'
-require 'session_two'
-require 'continue'
-require 'modal'
-require 'risky'
-require 'social_supports'
-require 'quit_reason'
-require 'settings_page'
-require 'cessation'
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
+# require page objects
+require 'page_objects/session'
+require 'page_objects/session_two'
+require 'page_objects/continue'
+require 'page_objects/modal'
+require 'page_objects/risky'
+require 'page_objects/social_supports'
+require 'page_objects/quit_reason'
+require 'page_objects/settings_page'
+require 'page_objects/cessation'
 
 describe 'Participant navigates to session 2', type: :feature do
   before do
@@ -201,7 +210,7 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           describe 'responds to \'session2_traps\' with response 1' do
-            it 'is unable to move past \'session2_traps1a without responding' do
+            it 'cannot move past \'session2_traps1a\' without responding' do
               session.start
               session_two.assert_on_session2_smokingstatus
               answer_question_with(1)
@@ -268,6 +277,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps1a\' with response 2' do
@@ -378,6 +389,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps2a\' with response 2' do
@@ -489,6 +502,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps3a\' with response 2' do
@@ -600,6 +615,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Nice work!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps4a\' with response 2' do
@@ -710,6 +727,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Nice work!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps5a\' with response 2' do
@@ -821,6 +840,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Nice work!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps6a\' with response 2' do
@@ -932,6 +953,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Nice work!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps7a\' with response 2' do
@@ -1043,6 +1066,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps8a\' with response 2' do
@@ -1155,6 +1180,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps9a\' with response 2' do
@@ -1267,6 +1294,8 @@ describe 'Participant navigates to session 2', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Great!'
+
+              session.set_notes
             end
 
             it 'responds to \'session2_traps10a\' with response 2' do

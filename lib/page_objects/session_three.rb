@@ -47,6 +47,18 @@ class SessionThree
     find('h3', text: 'Congratulations on being quit for one week!')
   end
 
+  def assert_on_session3_1a
+    find('h3', text: 'Congratulations on being quit for one week!')
+  end
+
+  def assert_on_session3_reschedulingday
+    find('h4', text: 'You indicated you want to schedule another quit day.')
+  end
+
+  def assert_on_session3_notinterested
+    find('h4', text: 'You\'ve decided that now is not the right time')
+  end
+
   def assert_on_session3_gottime
     find('h4', text: 'Got a few minutes for this session?')
   end
@@ -118,5 +130,29 @@ class SessionThree
 
   def assert_on_session3_checkingin4
     find('h4', text: 'How are things going today overall')
+  end
+
+  def assert_on_session3_checkingin4a
+    find('h3', text: 'That\'s terrific!')
+  end
+
+  def assert_on_session3_schedule
+    find('h3', text: 'Re-scheduling Your Quit Day')
+  end
+
+  def assert_on_quitday_ready
+    find('h3', text: 'Splendid!')
+  end
+
+  def assert_on_quitday_schedule
+    find('h3', text: 'CONGRATULATIONS!')
+  end
+
+  def assert_on_quitday_not_ready
+    find('h4', text: 'That\'s ok!')
+  end
+
+  def assert_on_session3_ending
+    find('h3', text: 'Congrats again: You are one week')
   end
 end

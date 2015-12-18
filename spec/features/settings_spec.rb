@@ -1,11 +1,20 @@
 # filename: settings_spec.rb
 
-require 'settings_page'
-require 'cessation'
-require 'social_supports'
-require 'quit_reason'
-require 'risky'
-require 'modal'
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
+# require page objects
+require 'page_objects/settings_page'
+require 'page_objects/cessation'
+require 'page_objects/social_supports'
+require 'page_objects/quit_reason'
+require 'page_objects/risky'
+require 'page_objects/modal'
 
 describe 'Participant opens app', type: :feature do
   context 'due to incomplete configuration' do

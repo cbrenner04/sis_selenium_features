@@ -1,15 +1,15 @@
 # filename: path_2_session_1_spec.rb
 
 # require page objects
-require 'session'
-require 'session_one'
-require 'quit_reason'
-require 'modal'
-require 'social_supports'
-require 'cessation'
-require 'risky'
-require 'continue'
-require 'settings_page'
+require 'page_objects/session'
+require 'page_objects/session_one'
+require 'page_objects/quit_reason'
+require 'page_objects/modal'
+require 'page_objects/social'
+require 'page_objects/cessation'
+require 'page_objects/risky'
+require 'page_objects/continue'
+require 'page_objects/settings_page'
 
 describe 'Participant loads app for the first time', type: :feature do
   before do

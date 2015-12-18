@@ -1,7 +1,16 @@
 # filename: happiness_exercises_spec.rb
 
-require 'happiness_exercise'
-require 'modal'
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
+# require page objects
+require 'page_objects/happiness_exercise'
+require 'page_objects/modal'
 
 def examples
   @examples ||= Example.new

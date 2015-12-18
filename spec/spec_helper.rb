@@ -6,9 +6,6 @@ require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 
-# require local_storage file
-require_relative '../lib/local_storage.rb'
-
 # set driver browser
 def browser
   if ENV['safari']

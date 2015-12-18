@@ -1,8 +1,16 @@
 # filename: cigarette_log_spec.rb
 
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
 # require page objects
-require 'cigarette_log'
-require 'continue'
+require 'page_objects/cigarette_log'
+require 'page_objects/continue'
 
 def cigarette_log
   @cigarette_log ||= CigaretteLog.new

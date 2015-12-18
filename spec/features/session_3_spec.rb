@@ -1,9 +1,21 @@
 # filename: session_3_spec.rb
 
-require 'session_three'
-require 'session'
-require 'continue'
-require 'settings_page'
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
+# require page objects
+require 'page_objects/session_three'
+require 'page_objects/session'
+require 'page_objects/continue'
+require 'page_objects/settings_page'
+require 'page_objects/modal'
+require 'page_objects/risky'
+require 'page_objects/cessation'
 
 describe 'Participant navigates to session 3', type: :feature do
   before do
@@ -61,6 +73,12 @@ describe 'Participant navigates to session 3', type: :feature do
       session.move_to_next_slide
 
       expect(page).to have_content 'No problem.'
+
+      session.move_to_next_slide
+      session.finish
+      modal.save
+
+      expect(page).to have_content '7 days since you quit!'
     end
 
     describe 'responds to \'session3_gottime\' with response 1' do
@@ -215,7 +233,7 @@ describe 'Participant navigates to session 3', type: :feature do
         session_three.assert_on_session3_gottime
         answer_question_with(1)
         session.move_to_next_slide
-        assert_on_session3_benefits
+        session_three.assert_on_session3_benefits
         answer_question_with(9)
         session.move_to_next_slide
 
@@ -258,6 +276,7 @@ describe 'Participant navigates to session 3', type: :feature do
         expect(page).to have_content 'What other benefits have you noticed a' \
                                      'bout quitting smoking?'
 
+        session.set_notes
         session.move_to_next_slide
 
         expect(page).to have_content 'Here\'s a list of your strategies that' \
@@ -300,14 +319,35 @@ describe 'Participant navigates to session 3', type: :feature do
           session_three.assert_on_session3_strategies2
           answer_question_with(1)
           session.move_to_next_slide
-          session_three.assert_on_session3_strategiesupdate2
-          session.move_to_next_slide
 
           expect(page).to have_content 'Research has shown that one of the m' \
                                        'ost important things'
         end
 
+        it 'responds to \'session3_strategies2\' with response 3' do
+          session.start
+          session_three.assert_on_session3_smokingstatus
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_three.assert_on_session3_1
+          session.move_to_next_slide
+          session_three.assert_on_session3_gottime
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_three.assert_on_session3_benefits
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_three.assert_on_session3_strategies2
+          answer_question_with(3)
+          session.move_to_next_slide
+
+          expect(page)
+            .to have_content 'Challenging Times During Your Quit Attempt'
+        end
+
         describe 'responds to \'session3_strategies2\' with response 2' do
+          it 'cannot move past \'session3_strategiesupdate\' without responding'
+
           it 'responds to \'session3_strategiesupdate\' with response 1' do
             session.start
             session_three.assert_on_session3_smokingstatus
@@ -327,34 +367,13 @@ describe 'Participant navigates to session 3', type: :feature do
             session_three.assert_on_session3_strategiesupdate
             answer_question_with(1)
             session.move_to_next_slide
+            session_three.assert_on_session3_strategiesupdate2
+
+            modal.open
+            enter_risky_times
             session.move_to_next_slide
 
-            expect(page).to have_content 'Research has shown that one of the' \
-                                         ' most important things'
-          end
-
-          it 'responds to \'session3_strategiesupdate\' with response 3' do
-            session.start
-            session_three.assert_on_session3_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_three.assert_on_session3_1
-            session.move_to_next_slide
-            session_three.assert_on_session3_gottime
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_three.assert_on_session3_benefits
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_three.assert_on_session3_strategies2
-            answer_question_with(2)
-            session.move_to_next_slide
-            session_three.assert_on_session3_strategiesupdate
-            answer_question_with(3)
-            session.move_to_next_slide
-
-            expect(page).to have_content 'Challenging Times During Your Quit' \
-                                         ' Attempt'
+            expect(page).to have_content 'Additional Strategies'
           end
 
           describe 'responds to \'session3_strategiesupdate\' with 2' do
@@ -526,10 +545,12 @@ describe 'Participant navigates to session 3', type: :feature do
               answer_question_with(6)
               session.move_to_next_slide
               session_three.assert_on_session3_strategies2aoth
+              session.set_notes
               session.move_to_next_slide
 
               expect(page).to have_content 'You have selected "other".'
 
+              session.set_notes
               session.move_to_next_slide
 
               expect(page).to have_content 'Additional Strategies'
@@ -733,6 +754,7 @@ describe 'Participant navigates to session 3', type: :feature do
                 expect(page).to have_content 'What other things did your sup' \
                                              'porters do'
 
+                session.set_notes
                 session.move_to_next_slide
 
                 expect(page).to have_content 'Social Support Check In'
@@ -990,6 +1012,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Nicely done!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1046,6 +1069,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem - here are some'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1104,6 +1128,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Nicely done!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1160,6 +1185,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem - here are some'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1218,13 +1244,14 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Nicely done!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
                     end
 
                     it 'responds to \'session3_thinkingtraps3a\' with 2' do
-                      session.star
+                      session.start
                       session_three.assert_on_session3_smokingstatus
                       answer_question_with(1)
                       session.move_to_next_slide
@@ -1274,6 +1301,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'We can help you out a bit'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1332,6 +1360,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Nicely done!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1388,6 +1417,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem - here are some'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1445,13 +1475,14 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Great Job!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
                     end
 
-                    it 'responds to \'session3_thinkingtraps3a\' with 2' do
-                      session.star
+                    it 'responds to \'session3_thinkingtraps5a\' with 2' do
+                      session.start
                       session_three.assert_on_session3_smokingstatus
                       answer_question_with(1)
                       session.move_to_next_slide
@@ -1500,6 +1531,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'We can help you out a bit'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1555,8 +1587,9 @@ describe 'Participant navigates to session 3', type: :feature do
                       answer_question_with(1)
                       session.move_to_next_slide
 
-                      expect(page).to have_content 'Great Job!'
+                      expect(page).to have_content 'Great job!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1612,6 +1645,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem - here are some'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1670,6 +1704,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Great Job!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1726,6 +1761,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem - here are some'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1783,13 +1819,14 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Fantastic!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
                     end
 
                     it 'responds to \'session3_thinkingtraps8a\' with 2' do
-                      session.star
+                      session.start
                       session_three.assert_on_session3_smokingstatus
                       answer_question_with(1)
                       session.move_to_next_slide
@@ -1838,6 +1875,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'We can help you out a bit'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1895,6 +1933,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Fantastic!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -1950,6 +1989,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem...'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -2008,13 +2048,14 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'Fantastic!'
 
+                      session.set_notes
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
                     end
 
                     it 'responds to \'session3_thinkingtraps10a\' with 2' do
-                      session.star
+                      session.start
                       session_three.assert_on_session3_smokingstatus
                       answer_question_with(1)
                       session.move_to_next_slide
@@ -2064,6 +2105,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
                       expect(page).to have_content 'No problem...'
 
+                      answer_question_with(rand(1..4))
                       session.move_to_next_slide
 
                       expect(page).to have_content 'How are things going today'
@@ -2073,7 +2115,7 @@ describe 'Participant navigates to session 3', type: :feature do
                   # these all complete the session in the same way so only the
                   # first completes
                   it 'responds to \'session3_checkingin4\' with response 1' do
-                    session.star
+                    session.start
                     session_three.assert_on_session3_smokingstatus
                     answer_question_with(1)
                     session.move_to_next_slide
@@ -2120,7 +2162,7 @@ describe 'Participant navigates to session 3', type: :feature do
                     answer_question_with(1)
                     session.move_to_next_slide
 
-                    expect(page).to have_content ''
+                    expect(page).to have_content 'That\'s terrific!'
 
                     session.move_to_next_slide
 
@@ -2132,11 +2174,11 @@ describe 'Participant navigates to session 3', type: :feature do
                     session.finish
                     settings_page.save
 
-                    expect(page).to have_content 'It\'s Your Quit day!'
+                    expect(page).to have_content '7 days since you quit!'
                   end
 
                   it 'responds to \'session3_checkingin4\' with response 2' do
-                    session.star
+                    session.start
                     session_three.assert_on_session3_smokingstatus
                     answer_question_with(1)
                     session.move_to_next_slide
@@ -2191,6 +2233,7 @@ describe 'Participant navigates to session 3', type: :feature do
                     expect(page)
                       .to have_content 'It may not always be easy to quit'
 
+                    answer_question_with(rand(1..11))
                     session.move_to_next_slide
 
                     expect(page)
@@ -2199,7 +2242,7 @@ describe 'Participant navigates to session 3', type: :feature do
                   end
 
                   it 'responds to \'session3_checkingin4\' with response 3' do
-                    session.star
+                    session.start
                     session_three.assert_on_session3_smokingstatus
                     answer_question_with(1)
                     session.move_to_next_slide
@@ -2249,6 +2292,7 @@ describe 'Participant navigates to session 3', type: :feature do
                     expect(page)
                       .to have_content 'Sometimes, it\'s helpful to remind'
 
+                    answer_question_with(rand(1..11))
                     session.move_to_next_slide
 
                     expect(page)
@@ -2257,7 +2301,7 @@ describe 'Participant navigates to session 3', type: :feature do
                   end
 
                   it 'responds to \'session3_checkingin4\' with response 4' do
-                    session.star
+                    session.start
                     session_three.assert_on_session3_smokingstatus
                     answer_question_with(1)
                     session.move_to_next_slide
@@ -2323,21 +2367,225 @@ describe 'Participant navigates to session 3', type: :feature do
   end
 
   describe 'responds to \'session3_smokingstatus\' with response 3' do
-    # there are extra slides in this track but no extra branching logic thus
-    # one test
-    it 'completes Session 3'
+    describe 'responds to \'session3_gottime\' with response 1' do
+      it 'responds to \'session3_strategies2\' with response 1' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(3)
+        session.move_to_next_slide
+        session_three.assert_on_session3_1a
+        session.move_to_next_slide
+        session_three.assert_on_session3_reschedulingday
+        session.move_to_next_slide
+        session.assert_on_session3_gottime
+        answer_question_with(1)
+        session.move_to_next_slide
+        session.assert_on_session3_strategies2
+        answer_question_with(1)
+        session.move_to_next_slide
+
+        expect(page).to have_content 'Social Support Check In'
+      end
+    end
+
+    describe 'responds to \'session3_strategies2\' with response 2' do
+      it 'responds to \'session3_strategiesupdate\' with response 1' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(3)
+        session.move_to_next_slide
+        session_three.assert_on_session3_1a
+        session.move_to_next_slide
+        session_three.assert_on_session3_reschedulingday
+        session.move_to_next_slide
+        session.assert_on_session3_gottime
+        answer_question_with(1)
+        session.move_to_next_slide
+        session.assert_on_session3_strategies2
+        answer_question_with(2)
+        session.move_to_next_slide
+        session_three.assert_on_session3_strategiesupdate
+        answer_question_with(1)
+        session.move_to_next_slide
+        session_three.assert_on_session3_strategiesupdate2
+
+        modal.open
+        enter_risky_times
+        session.move_to_next_slide
+
+        expect(page).to have_content 'Social Support Check In'
+      end
+
+      it 'responds to \'session3_strategiesupdate\' with response 2' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(3)
+        session.move_to_next_slide
+        session_three.assert_on_session3_1a
+        session.move_to_next_slide
+        session_three.assert_on_session3_reschedulingday
+        session.move_to_next_slide
+        session.assert_on_session3_gottime
+        answer_question_with(1)
+        session.move_to_next_slide
+        session.assert_on_session3_strategies2
+        answer_question_with(2)
+        session.move_to_next_slide
+        session_three.assert_on_session3_strategiesupdate
+        answer_question_with(2)
+        session.move_to_next_slide
+
+        expect(page)
+          .to have_content 'Challenging Times During Your Quit Attempt'
+      end
+    end
+
+    describe 'responds to \'session3_strategies2\' with response 2' do
+      describe 'responds to \'session3_strategiesupdate\' with response 1' do
+        describe 'responds to \'session3_social3\' with response 1' do
+          describe 'responds to \'session3_checkingin4\' with response 1' do
+            it 'completes session 3' do
+              session.start
+              session_three.assert_on_session3_smokingstatus
+              answer_question_with(3)
+              session.move_to_next_slide
+              session_three.assert_on_session3_1a
+              session.move_to_next_slide
+              session_three.assert_on_session3_reschedulingday
+              session.move_to_next_slide
+              session.assert_on_session3_gottime
+              answer_question_with(1)
+              session.move_to_next_slide
+              session.assert_on_session3_strategies2
+              answer_question_with(3)
+              session.move_to_next_slide
+              session_three.assert_on_session3_strategies2a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session.assert_on_session3_strategies2b
+              session.move_to_next_slide
+              session_three.assert_on_session3_social3
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_three.assert_on_session3_thinking
+              session.move_to_next_slide
+              session_three.assert_on_session3_thinkingtraps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_three.assert_on_session3_think1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_three.assert_on_session3_think1b
+              session.move_to_next_slide
+              session_three.assert_on_session3_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_three.assert_on_session3_checkingin4a
+              session.move_to_next_slide
+              session_three.assert_on_session3_schedule
+              answer_question_with(rand(1..2))
+              session.move_to_next_slide
+              session_three.assert_on_session3_quitday_ready
+
+              enter_cessation_date
+
+              assert_on_session3_quitday_schedule
+              answer_question_with(rand(1..2))
+              session.move_to_next_slide
+              session_three.assert_session3_ending
+              session.finish
+              modal.save
+
+              expect(page).to have_content '7 days since you quit!'
+            end
+          end
+        end
+      end
+    end
   end
 
   describe 'responds to \'session3_smokingstatus\' with response 4' do
     describe 'responds to \'session3_notinterested\' with response 1' do
       # there are different slides in this track but no extra branching thus
       # one test
-      it 'completes Session 3'
+      it 'completes Session 3' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(4)
+        session.move_to_next_slide
+        session_three.assert_on_session3_notinterested
+        answer_question_with(1)
+        session.move_to_next_slide
+        session.assert_on_session3_strategies2
+        answer_question_with(3)
+        session.move_to_next_slide
+        session_three.assert_on_session3_strategies2a
+        answer_question_with(1)
+        session.move_to_next_slide
+        session.assert_on_session3_strategies2b
+        session.move_to_next_slide
+        session_three.assert_on_session3_social3
+        answer_question_with(1)
+        session.move_to_next_slide
+        session_three.assert_on_session3_thinking
+        session.move_to_next_slide
+        session_three.assert_on_session3_thinkingtraps
+        answer_question_with(1)
+        session.move_to_next_slide
+        session_three.assert_on_session3_think1a
+        answer_question_with(1)
+        session.move_to_next_slide
+        session_three.assert_on_session3_think1b
+        session.move_to_next_slide
+        session_three.assert_on_session3_checkingin4
+        answer_question_with(1)
+        session.move_to_next_slide
+        session_three.assert_on_session3_checkingin4a
+        session.move_to_next_slide
+        session_three.assert_on_session3_quit_day_not_ready
+        session.move_to_next_slide
+        session_three.assert_session3_ending
+        session.finish
+        modal.save
+
+        expect(page).to have_content '7 days since you quit!'
+      end
     end
 
     describe 'responds to \'session3_notinterested\' with response 2' do
-      it 'responds to \'session3_notquitcontinue\' with response 1'
-      it 'responds to \'session3_notquitcontinue\' with response 2'
+      it 'responds to \'session3_notquitcontinue\' with response 1' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(4)
+        session.move_to_next_slide
+        session_three.assert_on_session3_notinterested
+        answer_question_with(2)
+        session.move_to_next_slide
+        session_three.assert_on_session3_notquitcontinue
+        answer_question_with(1)
+        session.move_to_next_slide
+
+        expect(page).to have_content 'You\'ve decided that now is not the'
+
+        session.move_to_next_slide
+
+        expect(page).to have_content 'Here\'s a list of your strategies that'
+      end
+
+      it 'responds to \'session3_notquitcontinue\' with response 2' do
+        session.start
+        session_three.assert_on_session3_smokingstatus
+        answer_question_with(4)
+        session.move_to_next_slide
+        session_three.assert_on_session3_notinterested
+        answer_question_with(2)
+        session.move_to_next_slide
+        session_three.assert_on_session3_notquitcontinue
+        answer_question_with(2)
+        session.move_to_next_slide
+
+        expect(page).to have_content 'No problem.'
+      end
     end
   end
 end

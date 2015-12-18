@@ -1,11 +1,20 @@
 # filename: home_page_spec.rb
 
-require 'session_one'
-require 'session_two'
-require 'session_three'
-require 'happiness_exercise'
-require 'modal'
-require 'update_smoking_status'
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
+
+# require page objects
+require 'page_objects/session_one'
+require 'page_objects/session_two'
+require 'page_objects/session_three'
+require 'page_objects/happiness_exercise'
+require 'page_objects/modal'
+require 'page_objects/update_smoking_status'
 
 def update_smoking_status
   @update_smoking_status ||= UpdateSmokingStatus.new
