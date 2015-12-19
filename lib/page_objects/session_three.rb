@@ -59,6 +59,11 @@ class SessionThree
     find('h4', text: 'You\'ve decided that now is not the right time')
   end
 
+  def assert_on_session3_notquitcontinue
+    find('.question.well',
+         text: 'Even though you\'re not ready to quit smoking yet')
+  end
+
   def assert_on_session3_gottime
     find('h4', text: 'Got a few minutes for this session?')
   end
@@ -66,6 +71,10 @@ class SessionThree
   def assert_on_session3_benefits
     find('h4',
          text: 'What things have you noticed are different from last week')
+  end
+
+  def assert_on_session3_notready
+    find('h4', text: 'You\'ve decided that now is not the right time')
   end
 
   def assert_on_session3_strategies2
@@ -140,15 +149,15 @@ class SessionThree
     find('h3', text: 'Re-scheduling Your Quit Day')
   end
 
-  def assert_on_quitday_ready
+  def assert_on_session3_quitday_ready
     find('h3', text: 'Splendid!')
   end
 
-  def assert_on_quitday_schedule
+  def assert_on_session3_quitday_schedule
     find('h3', text: 'CONGRATULATIONS!')
   end
 
-  def assert_on_quitday_not_ready
+  def assert_on_session3_quitday_not_ready
     find('h4', text: 'That\'s ok!')
   end
 
