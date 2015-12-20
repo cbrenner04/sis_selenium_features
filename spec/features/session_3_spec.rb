@@ -2494,6 +2494,9 @@ describe 'Participant navigates to session 3', type: :feature do
               enter_cessation_date
 
               session.move_to_next_slide
+              session_three.assert_on_session3_quitday_scheduled
+              answer_question_with(rand(1..2))
+              session.move_to_next_slide
               session_three.assert_on_session3_ending
               session.move_to_next_slide
               session.finish

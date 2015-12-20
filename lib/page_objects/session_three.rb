@@ -153,7 +153,7 @@ class SessionThree
     find('h3', text: 'Splendid!')
   end
 
-  def assert_on_session3_quitday_schedule
+  def assert_on_session3_quitday_scheduled
     find('h3', text: 'CONGRATULATIONS!')
   end
 

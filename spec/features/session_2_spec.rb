@@ -14,7 +14,7 @@ require 'page_objects/session_two'
 require 'page_objects/continue'
 require 'page_objects/modal'
 require 'page_objects/risky'
-require 'page_objects/social_supports'
+require 'page_objects/social'
 require 'page_objects/quit_reason'
 require 'page_objects/settings_page'
 require 'page_objects/cessation'
@@ -1919,14 +1919,12 @@ describe 'Participant navigates to session 2', type: :feature do
       session.move_to_next_slide
       session_two.assert_on_session2_notready2
       answer_question_with(3)
-
-      # currently this should terminate the session but the below logic is dependent upon it
-
       session.move_to_next_slide
       session_two.assert_on_retry_later
       answer_question_with(1)
       session.move_to_next_slide
       session_two.assert_on_retry_later2
+      session.move_to_next_slide
       session.finish
       settings_page.save
 
