@@ -30,7 +30,7 @@ class Risky
   end
 
   def visible?
-    find('.well.modal-well', text: "#{Time.now.strftime('%l:%M %p')} - " \
+    find('.well.modal-well', text: "#{Time.now.strftime('%-l:%M %p')} - " \
                                    "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
                                    ' My reason Strategy: negative emotions')
     find '.glyphicon-remove.glyphicon-sm'

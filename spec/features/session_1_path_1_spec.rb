@@ -2504,9 +2504,9 @@ describe 'Participant loads app for the first time', type: :feature do
 
                 session_one.assert_on_difficult_1
                 session_one.open_risky_times
-                risky_times.select_day
                 risky_times.select_time
                 risky_times.set_reason
+                risky_times.set_strategy
                 modal.save
 
                 expect(risky_times).to be_visible

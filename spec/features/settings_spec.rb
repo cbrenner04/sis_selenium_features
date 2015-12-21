@@ -11,7 +11,7 @@ require 'local_storage/social_supports'
 # require page objects
 require 'page_objects/settings_page'
 require 'page_objects/cessation'
-require 'page_objects/social_supports'
+require 'page_objects/social'
 require 'page_objects/quit_reason'
 require 'page_objects/risky'
 require 'page_objects/modal'
