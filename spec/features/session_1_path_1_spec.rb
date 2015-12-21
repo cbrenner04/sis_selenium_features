@@ -932,7 +932,7 @@ describe 'Participant loads app for the first time', type: :feature do
         session.finish
         settings_page.assert_on_page
 
-        expect(settings_page).to_not have_save
+        expect(settings_page).to_not have_save_present
       end
 
       it 'cannot move past \'session1_20\' without responding' do
@@ -1851,7 +1851,7 @@ describe 'Participant loads app for the first time', type: :feature do
             session.finish
             settings_page.assert_on_page
 
-            expect(settings_page).to_not have_save
+            expect(settings_page).to_not have_save_present
           end
 
           describe 'responds to \'session1_schedule\' with response 1' do
@@ -2770,11 +2770,12 @@ describe 'Participant loads app for the first time', type: :feature do
                                          'itline and/or the online forum'
 
             session.move_to_next_slide
+            session.finish
 
-            expect(page).to have_content 'Schedule Your Quit Day'
+            expect(settings_page).to_not have_save_present
           end
 
-          it 'responds to \'session1_social8\' with 0' do
+          it 'responds to \'session1_social8\' with 2' do
             session.start
             session_one.assert_on_session1_1
             answer_question_with(1)
@@ -2816,8 +2817,9 @@ describe 'Participant loads app for the first time', type: :feature do
                                          'tempt without any help'
 
             session.move_to_next_slide
+            session.finish
 
-            expect(page).to have_content 'Schedule Your Quit Day'
+            expect(settings_page).to_not have_save_present
           end
         end
       end

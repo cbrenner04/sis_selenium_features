@@ -87,9 +87,12 @@ describe 'Participant navigates to session 2', type: :feature do
 
       expect(page).to have_content 'No problem.'
 
+      # need to enter time
       session.move_to_next_slide
 
       expect(page).to have_content 'Great!'
+
+      # expect check in time to be displayed
 
       # Now assert this finishes the session
       session.move_to_next_slide
@@ -163,6 +166,27 @@ describe 'Participant navigates to session 2', type: :feature do
       end
 
       describe 'responds to \'session2_strategies2\' with response 1' do
+        it 'sees social supports listed in \'session2_social_support_1\'' do
+          session.start
+          session_two.assert_on_session2_smokingstatus
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_two.assert_on_session2_1
+          session.move_to_next_slide
+          session_two.assert_on_got_time
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_two.assert_on_session2_overview
+          session.move_to_next_slide
+          session_two.assert_on_session2_strategies2
+          answer_question_with(1)
+          session.move_to_next_slide
+          session_two.assert_on_session2_stratok
+          session.move_to_next_slide
+
+          expect(page).to have_content 'Jane Doe'
+        end
+
         it 'is unable to move past \'session2_social_support_1\' without ' \
            'responding' do
           session.start
@@ -2463,7 +2487,7 @@ describe 'Participant navigates to session 2', type: :feature do
         end
 
         describe 'responds to \'session2_social_support_1\' with response 4' do
-          it 'responds to session2_social3d with response 1' do
+          it 'responds to \'session2_social3d\' with response 1' do
             session.start
             session_two.assert_on_session2_smokingstatus
             answer_question_with(1)
@@ -2494,7 +2518,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Sabotaging Thoughts'
           end
 
-          it 'responds to session2_social3d with response 2' do
+          it 'responds to \'session2_social3d\' with response 2' do
             session.start
             session_two.assert_on_session2_smokingstatus
             answer_question_with(1)
@@ -2578,6 +2602,26 @@ describe 'Participant navigates to session 2', type: :feature do
         session.move_to_next_slide
 
         expect(page).to have_content 'Got a few minutes?'
+      end
+
+      it 'responds to \'not_quit\' with response 3' do
+        session.start
+        session_two.assert_on_session2_smokingstatus
+        answer_question_with(3)
+        session.move_to_next_slide
+        session_two.assert_on_session2_reschedulingday
+        answer_question_with(1)
+
+        cessation_date.pick_date
+
+        session.move_to_next_slide
+        session_two.assert_on_not_quit
+        answer_question_with(3)
+        session.move_to_next_slide
+        session.finish
+        modal.save
+
+        expect(page).to have_content 'It\'s Your Quit day!'
       end
     end
   end

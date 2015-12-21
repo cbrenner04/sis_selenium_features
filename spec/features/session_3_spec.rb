@@ -74,6 +74,8 @@ describe 'Participant navigates to session 3', type: :feature do
 
       expect(page).to have_content 'No problem.'
 
+      # check date time?
+
       session.move_to_next_slide
       session.finish
       modal.save
@@ -576,6 +578,37 @@ describe 'Participant navigates to session 3', type: :feature do
             end
 
             describe 'responds to \'session3_strategies2a\' with response 1' do
+              it 'sees social support listed in \'session3_social_support1\'' do
+                session.start
+                session_three.assert_on_session3_smokingstatus
+                answer_question_with(1)
+                session.move_to_next_slide
+                session_three.assert_on_session3_1
+                session.move_to_next_slide
+                session_three.assert_on_session3_gottime
+                answer_question_with(1)
+                session.move_to_next_slide
+                session_three.assert_on_session3_benefits
+                answer_question_with(1)
+                session.move_to_next_slide
+                session_three.assert_on_session3_strategies2
+                answer_question_with(2)
+                session.move_to_next_slide
+                session_three.assert_on_session3_strategiesupdate
+                answer_question_with(2)
+                session.move_to_next_slide
+                session_three.assert_on_session3_strategies2a
+                answer_question_with(1)
+                session.move_to_next_slide
+                session_three.assert_on_session3_strategies2b
+                session.move_to_next_slide
+                session_three.assert_on_session3_3h
+                session.move_to_next_slide
+                session_three.assert_on_session3_social_support1
+
+                expect(page).to have_content 'Jane Doe'
+              end
+
               it 'cannot move past \'session3_social_support1\' without ' \
                  'responding' do
                 session.start
@@ -2514,6 +2547,9 @@ describe 'Participant navigates to session 3', type: :feature do
 
               session.move_to_next_slide
               session_three.assert_on_session3_quitday_scheduled
+
+              # check for quit date display
+
               answer_question_with(rand(1..2))
               session.move_to_next_slide
               session_three.assert_on_session3_ending

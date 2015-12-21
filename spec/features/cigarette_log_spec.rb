@@ -29,14 +29,14 @@ describe 'Participant opens app', type: :feature do
 
   it 'navigates to Cigarette Log' do
     cigarette_log.open
-    expect(page).to have_content 'Cigarette Log'
-    expect(page).to have_content "I'M SMOKING NOW..."
-    expect(page).to have_content 'I FORGOT TO ENTER A CIGARETTE'
+
+    expect(page).to have_content 'Why are you smoking this cigarette'
+
+    expect(continue).to_not be_present
   end
 
-  it "chooses a various reasons under 'I'm smoking now...'" do
+  it 'completes Cigarette Log' do
     cigarette_log.open
-    cigarette_log.choose_smoking_now
 
     expect(continue).to_not be_present
 
@@ -46,27 +46,11 @@ describe 'Participant opens app', type: :feature do
     expect(continue).to_not be_present
 
     cigarette_log.set_rating
-    continue.select_continue
-    cigarette_log.save
 
-    expect(page).to have_content '4 days until quit day'
-  end
+    expect(page).to have_content '6'
 
-  it "chooses a various reasons under 'I forgot to enter a cigarette'" do
-    cigarette_log.open
-    cigarette_log.choose_forgot_to_enter
-
-    expect(continue).to_not be_present
-
-    cigarette_log.set_reason
     continue.select_continue
 
-    expect(continue).to_not be_present
-
-    cigarette_log.set_rating
-    continue.select_continue
-    cigarette_log.save
-
-    expect(page).to have_content '4 days until quit day'
+    expect(page).to have_content 'MOOD: Please tell us how you felt'
   end
 end

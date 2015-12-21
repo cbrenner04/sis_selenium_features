@@ -1,83 +1,56 @@
 # filename: ema_spec.rb
 
-describe 'EMA', :old do
-  it 'completes the EMA' do
-    visit 'localhost:8000'
-    time = Time.now
-    current_hour = time.hour
-    if current_hour.between?(9, 18)
-      greeting = 'Good Morning!'
-    elsif current_hour.between?(19, 24) || current_hour.between?(0, 1)
-      greeting = 'Recalling The Day'
-    end
+# require local storage data
+require 'local_storage/auth_token'
+require 'local_storage/cessation_date'
+require 'local_storage/cessation_reasons'
+require 'local_storage/risky_times'
+require 'local_storage/sessions'
+require 'local_storage/social_supports'
 
-    find('h2', text: greeting)
-    if current_hour.between?(19, 24) || current_hour.between?(0, 1)
-      3.times do
-        expect { click_on 'Continue' }.to raise_error
-        question_value = find('h4').text
-        find(:css, '.form-control.ng-pristine.ng-untouched.ng-valid').set('15')
-        expect(page).to have_content question_value
-        click_on 'Continue'
-        expect(page).to_not have_content question_value
-      end
-    end
+# require page objects
+require 'page_objects/ema'
 
-    question_value = find('h4').text
-    loop do
-      question_value = choose_answer(question_value)
-      expect { click_on 'Continue' }.to raise_error
-      break if page.has_css?('.btn.btn-primary', text: 'OK')
-    end
-
-    click_on 'OK'
-    expect(page).to have_content 'Your mood RIGHT BEFORE this report'
-
-    question_value = find('h4').text
-    loop do
-      question_value = choose_answer(question_value)
-      expect { click_on 'Continue' }.to raise_error
-      break if page.has_css?('.btn.btn-primary', text: 'OK')
-    end
-
-    click_on 'OK'
-
-    2.times do
-      question_value = find('h4').text
-      expect { click_on 'Continue' }.to raise_error
-      checkbox = page.all('.ng-pristine.ng-untouched.ng-valid')
-      checkbox[0].click
-      click_on 'Continue'
-      expect(page).to_not have_content question_value
-    end
-
-    click_on 'home'
-    expect(page).to have_content 'Check any of the following that you have c' \
-                                 'onsumed in the last hour'
-
-    expect { click_on 'Continue' }.to raise_error
-
-    choose_answer('Check any of the following that you have consumed in the ' \
-                  'last hour')
-
-    expect(page).to have_content 'Are you intoxicated right now?'
-
-    expect { click_on 'Continue' }.to raise_error
-
-    click_on 'no'
-    expect(page).to have_content 'Thank you!'
-
-    find('.btn.btn-primary', text: 'Go Back').click
-    expect(page).to have_css('h1', text: 'SiS')
-  end
+def ema
+  @ema ||= EMA.new
 end
 
-def choose_answer(question)
-  find('.form-control.ng-pristine.ng-untouched.ng-valid').click
-  option = page.all('.ng-binding.ng-scope')
-  option[0].click
-  expect(page).to have_content question
-  click_on 'Continue'
-  expect('h4').to_not have_content question
-  find('h4').text
+describe 'Participant opens app to complete EMA', type: :feature do
+  before do
+    visit 'localhost:8000'
+    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+    page.execute_script('window.location.reload()')
+  end
+
+  after do
+    page.execute_script('localStorage.clear()')
+  end
+
+  it 'navigates to the EMA' do
+    ema.open
+
+    expect(page).to have_content 'MOOD: Please tell us how you felt'
+  end
+
+  it 'responds they are outside' do
+    ema.open
+    ema.fill_in_mood_page
+    ema.fill_in_other_states_page
+    ema.fill_in_thinking_page
+    ema.choose_outside
+    ema.choose_outside_location
+
+    expect(page).to have_content 'CONTEXT: Please tell us about your' \
+                                 'current context.'
+  end
+
+  describe 'responds that they are inside' do
+    it 'responds they are in a public place'
+    it 'responds they are in a non-public place alone'
+
+    describe 'responds they are in a non-public place with others' do
+      it 'responds they have consumed a non-intoxicating beverage'
+      it 'responds they have consumed an intoxicating beverage'
+    end
+  end
 end

@@ -67,6 +67,10 @@ class SessionOne
     find('h4', text: 'Now that we have gone over some general concerns')
   end
 
+  def assert_on_session1_19b
+    find('h4', text: 'Now that we have gone over some general concerns')
+  end
+
   def assert_on_session1_19c
     find('h4', text: 'You\'ve decided to go ahead with a quit attempt')
   end
@@ -117,6 +121,10 @@ class SessionOne
   end
 
   def assert_on_session1_social10a
+    find('.well', text: 'Enlisting Your Social Support')
+  end
+
+  def assert_on_session1_social10b
     find('.well', text: 'Enlisting Your Social Support')
   end
 
