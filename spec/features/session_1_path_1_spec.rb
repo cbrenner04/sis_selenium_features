@@ -79,7 +79,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(modal).to be_disabled
     end
 
-    it 'responds to \'session1_reasons\'' do
+    it 'sets a Quit Reason' do
       session.start
       session_one.assert_on_session1_1
       answer_question_with(1)
@@ -543,31 +543,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     describe 'responds to \'session1_5\' with response 1' do
-      it 'sees the correct feedback' do
-        session.start
-        session_one.assert_on_session1_1
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_3
-        session.move_to_next_slide
-        session_one.assert_on_session1_reasons
-        modal.open
-
-        enter_quit_reason
-
-        session.move_to_next_slide
-        session_one.assert_on_session1_benefits
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_benefits1
-        session.move_to_next_slide
-        session_one.assert_on_session1_5
-        answer_question_with(1)
-        session.move_to_next_slide
-
-        expect(page).to have_content 'You are not ready to quit at this time.'
-      end
-
       it 'cannot move past \'session1_10\' without responding' do
         session.start
         session_one.assert_on_session1_1
@@ -951,7 +926,13 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'You\'ve decided that now is not the ri' \
                                      'ght time for you to schedule and prepa' \
                                      're for your quit day.'
-        # add path to home screen
+
+        # Now assert this ends the session
+        session.move_to_next_slide
+        session.finish
+        settings_page.assert_on_page
+
+        expect(settings_page).to_not have_save
       end
 
       it 'cannot move past \'session1_20\' without responding' do
@@ -1592,8 +1573,7 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session_one.assert_on_session1_social6
 
-          expect(page)
-            .to have_css('button[disabled = disabled]', text: 'CONTINUE')
+          expect(continue).to be_disabled
         end
 
         it 'responds to \'session1_social6\' with response 2' do
@@ -1650,56 +1630,6 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         describe 'responds to \'session1_social6\' with response 1' do
-          it 'sees correct feedback' do
-            session.start
-            session_one.assert_on_session1_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_3
-            session.move_to_next_slide
-            session_one.assert_on_session1_reasons
-            modal.open
-
-            enter_quit_reason
-
-            session.move_to_next_slide
-            session_one.assert_on_session1_benefits
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_benefits1
-            session.move_to_next_slide
-            session_one.assert_on_session1_5
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_7
-            session.move_to_next_slide
-            session_one.assert_on_session1_10
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_11
-            session.move_to_next_slide
-            session_one.assert_on_session1_19
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_19c
-            session.move_to_next_slide
-            session_one.assert_on_session1_20
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_21
-            session.move_to_next_slide
-            session_one.assert_on_social_support1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_one.assert_on_session1_social6
-            answer_question_with(1)
-            session.move_to_next_slide
-
-            expect(page).to have_content 'Enlisting Your Social Support'
-            expect(page).to have_content 'You have identified people who can' \
-                                         ' help you in your quit attempt'
-          end
-
           it 'cannot save without entering a Social Support' do
             session.start
             session_one.assert_on_session1_1
@@ -1857,11 +1787,10 @@ describe 'Participant loads app for the first time', type: :feature do
             session.move_to_next_slide
             session_one.assert_on_session1_schedule
 
-            expect(page)
-              .to have_css('button[disabled = disabled]', text: 'CONTINUE')
+            expect(continue).to be_disabled
           end
 
-          it 'responds to \'session_schedule\' with 0' do
+          it 'responds to \'session_schedule\' with 2' do
             session.start
             session_one.assert_on_session1_1
             answer_question_with(1)
@@ -1916,67 +1845,16 @@ describe 'Participant loads app for the first time', type: :feature do
             session.move_to_next_slide
 
             expect(page).to have_content 'That\'s ok'
-            # add path to home screen
+
+            # assert this finishes the session
+            session.move_to_next_slide
+            session.finish
+            settings_page.assert_on_page
+
+            expect(settings_page).to_not have_save
           end
 
           describe 'responds to \'session1_schedule\' with response 1' do
-            it 'sees correct feedback' do
-              session.start
-              session_one.assert_on_session1_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_3
-              session.move_to_next_slide
-              session_one.assert_on_session1_reasons
-              modal.open
-
-              enter_quit_reason
-
-              session.move_to_next_slide
-              session_one.assert_on_session1_benefits
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_benefits1
-              session.move_to_next_slide
-              session_one.assert_on_session1_5
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_7
-              session.move_to_next_slide
-              session_one.assert_on_session1_10
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_11
-              session.move_to_next_slide
-              session_one.assert_on_session1_19
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_19c
-              session.move_to_next_slide
-              session_one.assert_on_session1_20
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_21
-              session.move_to_next_slide
-              session_one.assert_on_social_support1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_social6
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_one.assert_on_session1_social10a
-              modal.open
-
-              enter_social_supports
-
-              session.move_to_next_slide
-              session_one.assert_on_session1_schedule
-              answer_question_with(1)
-              session.move_to_next_slide
-
-              expect(page).to have_content 'Splendid!'
-            end
-
             it 'cannot move past \'quitday_ready\' without responding' do
               session.start
               session_one.assert_on_session1_1
@@ -2030,13 +1908,12 @@ describe 'Participant loads app for the first time', type: :feature do
               session_one.assert_on_session1_schedule
               answer_question_with(1)
               session.move_to_next_slide
-              find('h3', text: 'Splendid!')
+              session_one.assert_on_quitday_ready
 
-              expect(page)
-                .to have_css('button[disabled = disabled]', text: 'CONTINUE')
+              expect(continue).to be_disabled
             end
 
-            it 'schedules a quit date' do
+            it 'schedules a Quit Day' do
               session.start
               session_one.assert_on_session1_1
               answer_question_with(1)
@@ -2157,11 +2034,10 @@ describe 'Participant loads app for the first time', type: :feature do
               session.move_to_next_slide
               session_one.assert_on_quitday_scheduled
 
-              expect(page)
-                .to have_css('button[disabled = disabled]', text: 'CONTINUE')
+              expect(continue).to be_disabled
             end
 
-            it 'responds to \'quitday_scheduled\' with response 0' do
+            it 'responds to \'quitday_scheduled\' with response 2' do
               session.start
               session_one.assert_on_session1_1
               answer_question_with(1)
@@ -2224,75 +2100,13 @@ describe 'Participant loads app for the first time', type: :feature do
               session.move_to_next_slide
 
               expect(page).to have_content 'Good for you!'
-              # add path to home screen
+
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Difficult Times To Stay Smoke Free'
             end
 
             describe 'responds to \'quitday_scheduled\' with response 1' do
-              it 'sees correct feedback' do
-                session.start
-                session_one.assert_on_session1_1
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_3
-                session.move_to_next_slide
-                session_one.assert_on_session1_reasons
-                modal.open
-
-                enter_quit_reason
-
-                session.move_to_next_slide
-                session_one.assert_on_session1_benefits
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_benefits1
-                session.move_to_next_slide
-                session_one.assert_on_session1_5
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_7
-                session.move_to_next_slide
-                session_one.assert_on_session1_10
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_11
-                session.move_to_next_slide
-                session_one.assert_on_session1_19
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_19c
-                session.move_to_next_slide
-                session_one.assert_on_session1_20
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_21
-                session.move_to_next_slide
-                session_one.assert_on_social_support1
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_social6
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_session1_social10a
-                modal.open
-
-                enter_social_supports
-
-                session.move_to_next_slide
-                session_one.assert_on_session1_schedule
-                answer_question_with(1)
-                session.move_to_next_slide
-                session_one.assert_on_quitday_ready
-
-                enter_cessation_date
-
-                session.move_to_next_slide
-                session_one.assert_on_quitday_scheduled
-                answer_question_with(1)
-                session.move_to_next_slide
-
-                expect(page).to have_content 'It should!'
-              end
-
               it 'cannot move past \'difficult_1\' without responding' do
                 session.start
                 session_one.assert_on_session1_1
@@ -2359,11 +2173,10 @@ describe 'Participant loads app for the first time', type: :feature do
 
                 session_one.assert_on_difficult_1
 
-                expect(page)
-                  .to have_css('button[disabled = disabled]', text: 'CONTINUE')
+                expect(continue).to be_disabled
               end
 
-              it 'responds to \'difficult_1\' with response 0' do
+              it 'responds to \'difficult_1\' with response 2' do
                 session.start
                 session_one.assert_on_session1_1
                 answer_question_with(1)
@@ -2435,10 +2248,13 @@ describe 'Participant loads app for the first time', type: :feature do
                   .to have_content 'You have chosen not to identify any time' \
                                    's you might have difficulty to remain sm' \
                                    'oke-free.'
-                # add path to home screen
+
+                session.move_to_next_slide
+
+                expect(page).to have_content 'Congrats again'
               end
 
-              it 'sets a risky time' do
+              it 'sets a Risky Time' do
                 session.start
                 session_one.assert_on_session1_1
                 answer_question_with(1)
@@ -2604,52 +2420,6 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       describe 'responds to \'social_support1\' with response 7' do
-        it 'sees correct feedback' do
-          session.start
-          session_one.assert_on_session1_1
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_3
-          session.move_to_next_slide
-          session_one.assert_on_session1_reasons
-          modal.open
-
-          enter_quit_reason
-
-          session.move_to_next_slide
-          session_one.assert_on_session1_benefits
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_benefits1
-          session.move_to_next_slide
-          session_one.assert_on_session1_5
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_7
-          session.move_to_next_slide
-          session_one.assert_on_session1_10
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_11
-          session.move_to_next_slide
-          session_one.assert_on_session1_19
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_19c
-          session.move_to_next_slide
-          session_one.assert_on_session1_20
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_21
-          session.move_to_next_slide
-          session_one.assert_on_social_support1
-          answer_question_with(7)
-          session.move_to_next_slide
-
-          expect(page).to have_content 'You can\'t think of anyone in your l' \
-                                       'ife who would support you'
-        end
-
         it 'responds to \'session1_social7\' with response 1' do
           session.start
           session_one.assert_on_session1_1
@@ -2698,7 +2468,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'Excellent!'
         end
 
-        it 'responds to \'session1_social7\' with response 0' do
+        it 'responds to \'session1_social7\' with response 2' do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(1)
@@ -2748,7 +2518,7 @@ describe 'Participant loads app for the first time', type: :feature do
                                        'ng quit attempt.'
         end
 
-        it 'responds to \'session1_social8\' with response 0' do
+        it 'responds to \'session1_social8\' with response 2' do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(1)
@@ -2799,8 +2569,6 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
 
           expect(page).to have_content 'Schedule Your Quit Day'
-
-          # add path to home screen
         end
 
         it 'responds to \'session1_social8\' with response 1' do
@@ -2854,8 +2622,6 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
 
           expect(page).to have_content 'Schedule Your Quit Day'
-
-          # add path to home screen
         end
       end
     end
@@ -2912,7 +2678,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to_not have_css('#save_button')
         end
 
-        it 'responds to \'session1_social6\' with 0' do
+        it 'responds to \'session1_social6\' with 2' do
           session.start
           session_one.assert_on_session1_1
           answer_question_with(1)
@@ -2962,8 +2728,97 @@ describe 'Participant loads app for the first time', type: :feature do
 
       describe 'responds to \'social_suppor1\' with 7' do
         describe 'responds to \'session1_social7\' with 0' do
-          it 'responds to \'session1_social8\' with 1'
-          it 'responds to \'session1_social8\' with 0'
+          it 'responds to \'session1_social8\' with 1' do
+            session.start
+            session_one.assert_on_session1_1
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_3
+            session.move_to_next_slide
+            session_one.assert_on_session1_reasons
+            modal.open
+
+            enter_quit_reason
+
+            session.move_to_next_slide
+            session_one.assert_on_session1_benefits
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_benefits1
+            session.move_to_next_slide
+            session_one.assert_on_session1_5
+            answer_question_with(5)
+            session.move_to_next_slide
+            session_one.assert_on_session1_8b
+            session.move_to_next_slide
+            session_one.assert_on_session1_10
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_11
+            session.move_to_next_slide
+            session_one.assert_on_social_support1
+            answer_question_with(7)
+            session.move_to_next_slide
+            session_one.assert_on_session1_social7
+            answer_question_with(2)
+            session.move_to_next_slide
+            session_one.assert_on_session1_social8
+            answer_question_with(1)
+            session.move_to_next_slide
+
+            expect(page).to have_content 'You have decided to try out the qu' \
+                                         'itline and/or the online forum'
+
+            session.move_to_next_slide
+
+            expect(page).to have_content 'Schedule Your Quit Day'
+          end
+
+          it 'responds to \'session1_social8\' with 0' do
+            session.start
+            session_one.assert_on_session1_1
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_3
+            session.move_to_next_slide
+            session_one.assert_on_session1_reasons
+            modal.open
+
+            enter_quit_reason
+
+            session.move_to_next_slide
+            session_one.assert_on_session1_benefits
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_benefits1
+            session.move_to_next_slide
+            session_one.assert_on_session1_5
+            answer_question_with(5)
+            session.move_to_next_slide
+            session_one.assert_on_session1_8b
+            session.move_to_next_slide
+            session_one.assert_on_session1_10
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_one.assert_on_session1_11
+            session.move_to_next_slide
+            session_one.assert_on_social_support1
+            answer_question_with(7)
+            session.move_to_next_slide
+            session_one.assert_on_session1_social7
+            answer_question_with(2)
+            session.move_to_next_slide
+            session_one.assert_on_session1_social8
+            answer_question_with(2)
+            session.move_to_next_slide
+
+            expect(page).to have_content 'You\'ve decided to do this quit at' \
+                                         'tempt without any help'
+
+            session.move_to_next_slide
+
+            expect(page).to have_content 'Schedule Your Quit Day'
+          end
         end
       end
     end

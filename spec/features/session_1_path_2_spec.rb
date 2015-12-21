@@ -122,7 +122,12 @@ describe 'Participant loads app for the first time', type: :feature do
 
       session.move_to_next_slide
       expect(page).to have_content 'Receiving Reminders To Stay on Track'
-      # add path to home screen
+
+      # assert this ends session
+      session.move_to_next_slide
+      session.finish
+
+      expect(modal).to be_disabled
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
@@ -166,7 +171,12 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'You have chosen not to identify any time' \
                                    's you might have difficulty to remain sm' \
                                    'oke-free.'
-      # add path to home screen
+
+      # assert this ends session
+      session.move_to_next_slide
+      session.finish
+
+      expect(modal).to be_disabled
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
@@ -509,8 +519,7 @@ describe 'Participant loads app for the first time', type: :feature do
       it 'responds to \'session1_social6\' with 1, \'session1_schedule\' ' \
          'with 0' do
         session.start
-        find('h3',
-             text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+        session_one.assert_on_session1_1
         answer_question_with(3)
         session.move_to_next_slide
         session_one.assert_on_session1_4
@@ -567,62 +576,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
       describe 'responds to \'session1_social6\' with 1, ' \
                '\'session1_schedule\' with 1' do
-        it 'sees correct feedback' do
-          session.start
-          session_one.assert_on_session1_1
-          answer_question_with(3)
-          session.move_to_next_slide
-          session_one.assert_on_session1_4
-          session.move_to_next_slide
-          modal.open
-
-          enter_quit_reason
-
-          session.move_to_next_slide
-          session_one.assert_on_session1_benefits
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_benefits1
-          session.move_to_next_slide
-          session_one.assert_on_session1_5
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_7
-          session.move_to_next_slide
-          session_one.assert_on_session1_10
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_11
-          session.move_to_next_slide
-          session_one.assert_on_session1_19
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_19c
-          session.move_to_next_slide
-          session_one.assert_on_session1_20
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_21
-          session.move_to_next_slide
-          session_one.assert_on_social_support1
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_social6
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_one.assert_on_session1_social10a
-          modal.open
-
-          enter_social_supports
-
-          session.move_to_next_slide
-          session_one.assert_on_session1_schedule
-          answer_question_with(1)
-          session.move_to_next_slide
-
-          expect(page).to have_content 'Splendid!'
-        end
-
         it 'responds to \'quitday_scheduled\' with 1' do
           session.start
           session_one.assert_on_session1_1
@@ -913,7 +866,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
           settings_page.assert_on_page
 
-          expect(page).to_not have_css('#save_button')
+          expect(modal).to be_disabled
         end
       end
     end
@@ -1128,52 +1081,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     describe 'responds to \'social_support1\' with 7' do
-      it 'sees correct feedback' do
-        session.start
-        session_one.assert_on_session1_1
-        answer_question_with(3)
-        session.move_to_next_slide
-        session_one.assert_on_session1_4
-        session.move_to_next_slide
-        session_one.assert_on_session1_reasons
-        modal.open
-
-        enter_quit_reason
-
-        session.move_to_next_slide
-        session_one.assert_on_session1_benefits
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_benefits1
-        session.move_to_next_slide
-        session_one.assert_on_session1_5
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_7
-        session.move_to_next_slide
-        session_one.assert_on_session1_10
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_11
-        session.move_to_next_slide
-        session_one.assert_on_session1_19
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_19c
-        session.move_to_next_slide
-        session_one.assert_on_session1_20
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_one.assert_on_session1_21
-        session.move_to_next_slide
-        session_one.assert_on_social_support1
-        answer_question_with(7)
-        session.move_to_next_slide
-
-        expect(page).to have_content 'You can\'t think of anyone in your lif' \
-                                     'e who would support you'
-      end
-
       it 'responds to \'session1_social7\' with 1' do
         session.start
         session_one.assert_on_session1_1
@@ -1221,7 +1128,11 @@ describe 'Participant loads app for the first time', type: :feature do
 
         expect(page).to have_content 'Excellent!'
 
-        # add path to home screen
+        # assert this ends session
+        session.move_to_next_slide
+        session.finish
+
+        expect(modal).to be_disabled
       end
 
       it 'responds to \'session1_social7\' with 0' do
@@ -1274,7 +1185,11 @@ describe 'Participant loads app for the first time', type: :feature do
                                      'life who would support your upcoming q' \
                                      'uit attempt.'
 
-        # add path to home screen
+        # assert this ends session
+        session.move_to_next_slide
+        session.finish
+
+        expect(modal).to be_disabled
       end
     end
   end

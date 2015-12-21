@@ -15,6 +15,11 @@ require 'page_objects/social'
 require 'page_objects/quit_reason'
 require 'page_objects/risky'
 require 'page_objects/modal'
+require 'page_objects/risky_times_strategies'
+
+def risky_times_strategies
+  @risky_times_strategies ||= RiskyTimesStrategy.new
+end
 
 describe 'Participant opens app', type: :feature do
   context 'due to incomplete configuration' do
@@ -132,6 +137,42 @@ describe 'Participant opens app', type: :feature do
       quit_reason.remove
 
       expect(quit_reason).to_not have_test_reason_present
+    end
+
+    it 'sees content specific instructions in risky times modal' do
+      settings_page.open_risky_times
+      risky_times_strategies.open
+      risky_times_strategies.open_negative_emotions_strategy
+
+      expect(risky_times_strategies).to have_negative_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.open_positive_emotions_strategy
+
+      expect(risky_times_strategies).to have_positive_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.open_social_situations_strategy
+
+      expect(risky_times_strategies).to have_social_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.open_drinking_alcohol_strategy
+
+      expect(risky_times_strategies).to have_alcohol_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.open_habitual_smoking_strategy
+
+      expect(risky_times_strategies).to have_habitual_smoking_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.open_hands_strategy
+
+      expect(risky_times_strategies).to have_hands_strategy_present
+
+      risky_times_strategies.close_strategy_help
+      risky_times_strategies.exit
     end
 
     it 'adds a risky time' do

@@ -346,7 +346,26 @@ describe 'Participant navigates to session 3', type: :feature do
         end
 
         describe 'responds to \'session3_strategies2\' with response 2' do
-          it 'cannot move past \'session3_strategiesupdate\' without responding'
+          it 'cannot move past \'session3_strategiesupdate\' w/o responding' do
+            session.start
+            session_three.assert_on_session3_smokingstatus
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_three.assert_on_session3_1
+            session.move_to_next_slide
+            session_three.assert_on_session3_gottime
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_three.assert_on_session3_benefits
+            answer_question_with(1)
+            session.move_to_next_slide
+            session_three.assert_on_session3_strategies2
+            answer_question_with(2)
+            session.move_to_next_slide
+            session_three.assert_on_session3_strategiesupdate
+
+            expect(continue).to be_disabled
+          end
 
           it 'responds to \'session3_strategiesupdate\' with response 1' do
             session.start
@@ -2565,6 +2584,12 @@ describe 'Participant navigates to session 3', type: :feature do
       session.move_to_next_slide
 
       expect(page).to have_content 'No problem.'
+
+      session.move_to_next_slide
+      session.finish
+      modal.save
+
+      expect(page).to have_content '7 days since you quit!'
     end
   end
 end

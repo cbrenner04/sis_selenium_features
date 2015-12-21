@@ -106,4 +106,8 @@ class SessionTwo
   def assert_on_session2_end
     find('h4', text: 'What do you want to do now?')
   end
+
+  def assert_on_session2_benefits
+    find('h3', text: 'Benefits of Quitting Smoking')
+  end
 end

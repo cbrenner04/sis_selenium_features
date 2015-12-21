@@ -91,7 +91,12 @@ describe 'Participant navigates to session 2', type: :feature do
 
       expect(page).to have_content 'Great!'
 
-      # add logic to finish session
+      # Now assert this finishes the session
+      session.move_to_next_slide
+      session.finish
+      modal.save
+
+      expect(page).to have_content 'It\'s Your Quit day!'
     end
 
     describe 'responds to \'got_time\' with response 1' do
@@ -1541,56 +1546,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'It\'s Your Quit day!'
           end
 
-          it 'responds to \'session2_end\' with response 2' do
-            session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
-            session_two.assert_on_session2_checkingin4
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_checkingin4a
-            session.move_to_next_slide
-            session_two.assert_on_session2_end
-            answer_question_with(2)
-            session.move_to_next_slide
-
-            # supposed to go to benefits??
-
-            session.finish
-            settings_page.save
-
-            expect(page).to have_content 'It\'s Your Quit day!'
-          end
-
-          it 'responds to \'session2_end\' with response 2' do
+          it 'responds to \'session2_end\' with response 3' do
             session.start
             session_two.assert_on_session2_smokingstatus
             answer_question_with(1)
@@ -1634,6 +1590,751 @@ describe 'Participant navigates to session 2', type: :feature do
             settings_page.save
 
             expect(page).to have_content 'It\'s Your Quit day!'
+          end
+
+          describe 'responds to \'session2_end\' with response 2' do
+            it 'responds to \'session2_benefits\' with response 1' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(1)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Healthy Changes Over Time'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 2' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(2)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Feel Better'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 3' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(3)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Look Better'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 4' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(4)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Smell Better'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 5' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(5)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Reduce Your Risk of Heart Disease'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 6' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(6)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Reduce Your Risk of Cancer'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 7' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(7)
+              session.move_to_next_slide
+
+              expect(page)
+                .to have_content 'Protect Your Family - including your pets!'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 8' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(8)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Starting a Family'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 9' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(9)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Save Money'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 10' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(10)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Be Hassle-Free'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 11' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(11)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Be More in Control'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 12' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(12)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Be Guilt-Free'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 13' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(13)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Protect the Environment'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
+
+            it 'responds to \'session2_benefits\' with response 14' do
+              session.start
+              session_two.assert_on_session2_smokingstatus
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_1
+              session.move_to_next_slide
+              session_two.assert_on_got_time
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_overview
+              session.move_to_next_slide
+              session_two.assert_on_session2_strategies2
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_stratok
+              session.move_to_next_slide
+              session_two.assert_on_session2_social_support_1
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_social3a
+              session.move_to_next_slide
+              session_two.assert_on_session2_think1
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1a
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_traps1b
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4
+              answer_question_with(1)
+              session.move_to_next_slide
+              session_two.assert_on_session2_checkingin4a
+              session.move_to_next_slide
+              session_two.assert_on_session2_end
+              answer_question_with(2)
+              session.move_to_next_slide
+              session_two.assert_on_session2_benefits
+              answer_question_with(14)
+              session.move_to_next_slide
+
+              expect(page).to have_content 'Say "no!" to Big Tobacco'
+
+              session.move_to_next_slide
+              session.finish
+              settings_page.save
+
+              expect(page).to have_content 'It\'s Your Quit day!'
+            end
           end
         end
 
