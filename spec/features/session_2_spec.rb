@@ -184,7 +184,7 @@ describe 'Participant navigates to session 2', type: :feature do
           session_two.assert_on_session2_stratok
           session.move_to_next_slide
 
-          expect(page).to have_content 'Jane Doe'
+          expect(page).to have_content 'Test Smith'
         end
 
         it 'is unable to move past \'session2_social_support_1\' without ' \
@@ -2245,7 +2245,7 @@ describe 'Participant navigates to session 2', type: :feature do
               answer_question_with(12)
               session.move_to_next_slide
 
-              expect(page).to have_content 'Be Guilt-Free'
+              expect(page).to have_content 'Be Guilt-free'
 
               session.move_to_next_slide
               session.finish
@@ -2685,6 +2685,7 @@ describe 'Participant navigates to session 2', type: :feature do
       session.move_to_next_slide
       session_two.assert_on_session2_notready2
       answer_question_with(4)
+      session.move_to_next_slide
       session.finish
       settings_page.save
 

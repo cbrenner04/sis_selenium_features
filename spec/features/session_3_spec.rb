@@ -606,7 +606,7 @@ describe 'Participant navigates to session 3', type: :feature do
                 session.move_to_next_slide
                 session_three.assert_on_session3_social_support1
 
-                expect(page).to have_content 'Jane Doe'
+                expect(page).to have_content 'Test Smith'
               end
 
               it 'cannot move past \'session3_social_support1\' without ' \
