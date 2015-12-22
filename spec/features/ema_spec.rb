@@ -10,6 +10,7 @@ require 'local_storage/social_supports'
 
 # require page objects
 require 'page_objects/ema'
+require 'page_objects/continue'
 
 def ema
   @ema ||= EMA.new
@@ -34,23 +35,108 @@ describe 'Participant opens app to complete EMA', type: :feature do
 
   it 'responds they are outside' do
     ema.open
-    ema.fill_in_mood_page
-    ema.fill_in_other_states_page
-    ema.fill_in_thinking_page
+    ema.complete_mood_ratings
+    continue.select_continue
+    ema.complete_other_states_ratings
+    continue.select_continue
+    ema.complete_thinking_ratings
+    continue.select_continue
+    ema.select_ok
     ema.choose_outside
     ema.choose_outside_location
 
-    expect(page).to have_content 'CONTEXT: Please tell us about your' \
-                                 'current context.'
+    expect(page).to have_content 'Are you currently:'
   end
 
   describe 'responds that they are inside' do
-    it 'responds they are in a public place'
-    it 'responds they are in a non-public place alone'
+    it 'responds they are in a public place' do
+      ema.open
+      ema.complete_mood_ratings
+      continue.select_continue
+      ema.complete_other_states_ratings
+      continue.select_continue
+      ema.complete_thinking_ratings
+      continue.select_continue
+      ema.select_ok
+      ema.choose_inside
+      ema.choose_public
+      ema.choose_which_public_place
+
+      expect(page).to have_content 'Are you currently:'
+    end
+
+    it 'responds they are in a non-public place alone' do
+      ema.open
+      ema.complete_mood_ratings
+      continue.select_continue
+      ema.complete_other_states_ratings
+      continue.select_continue
+      ema.complete_thinking_ratings
+      continue.select_continue
+      ema.select_ok
+      ema.choose_inside
+      ema.choose_not_public
+      ema.choose_alone
+
+      expect(page).to have_content 'Are you currently in the company of a child'
+    end
 
     describe 'responds they are in a non-public place with others' do
-      it 'responds they have consumed a non-intoxicating beverage'
-      it 'responds they have consumed an intoxicating beverage'
+      it 'responds they have consumed a non-intoxicating beverage' do
+        ema.open
+        ema.complete_mood_ratings
+        continue.select_continue
+        ema.complete_other_states_ratings
+        continue.select_continue
+        ema.complete_thinking_ratings
+        continue.select_continue
+        ema.select_ok
+        ema.choose_inside
+        ema.choose_not_public
+        ema.choose_with_others
+        ema.choose_company_response
+        continue.select_continue
+        ema.choose_with_children_response
+        continue.select_continue
+        ema.choose_gathering_response
+        continue.select_continue
+        ema.choose_company_response
+        continue.select_continue
+        ema.choose_non_intoxicating_substance
+        continue.select_continue
+        ema.finish
+
+        expect(page).to have_content '4 days until quit day!'
+      end
+
+      it 'responds they have consumed an intoxicating beverage' do
+        ema.open
+        ema.complete_mood_ratings
+        continue.select_continue
+        ema.complete_other_states_ratings
+        continue.select_continue
+        ema.complete_thinking_ratings
+        continue.select_continue
+        ema.select_ok
+        ema.choose_inside
+        ema.choose_not_public
+        ema.choose_with_others
+        ema.choose_company_response
+        continue.select_continue
+        ema.choose_with_children_response
+        continue.select_continue
+        ema.choose_gathering_response
+        continue.select_continue
+        ema.choose_company_response
+        continue.select_continue
+        ema.choose_intoxicating_substance
+        continue.select_continue
+        ema.choose_intoxicated_response
+        continue.select_continue
+        ema.finish
+
+        expect(page).to have_content '4 days until quit day!'
+      end
     end
   end
 end

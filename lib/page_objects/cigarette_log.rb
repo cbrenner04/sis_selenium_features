@@ -1,3 +1,5 @@
+require 'support/capybara'
+
 # page object for cigarette log
 class CigaretteLog
   include Capybara::DSL
@@ -11,12 +13,11 @@ class CigaretteLog
     reason = ['Reduce craving', 'Cope with negative emotion',
               'Enhance positive emotion', 'Habit/automatic',
               'Opportunity to socialize', 'Break from work/studying',
-              'Boredom/to kill time', 'other'].sample
-    choose reason
+              'Boredom/to kill time'].sample
+    find('option', text: reason).click
   end
 
   def set_rating
-    slider = find('.form-control')
-    slider.drab_by(0, 40)
+    find(:xpath, '//input').drag_by(40, 0)
   end
 end
