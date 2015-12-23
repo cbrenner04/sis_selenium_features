@@ -87,15 +87,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
       expect(page).to have_content 'No problem.'
 
-      # need to enter time
       session.move_to_next_slide
-
-      expect(page).to have_content 'Great!'
-
-      # expect check in time to be displayed
 
       # Now assert this finishes the session
-      session.move_to_next_slide
       session.finish
       modal.save
 

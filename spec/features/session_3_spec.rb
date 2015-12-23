@@ -74,11 +74,7 @@ describe 'Participant navigates to session 3', type: :feature do
 
       expect(page).to have_content 'No problem.'
 
-      # check date time?
-
       session.move_to_next_slide
-      session.finish
-      modal.save
 
       expect(page).to have_content '7 days since you quit!'
     end
