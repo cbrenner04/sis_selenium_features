@@ -24,17 +24,17 @@ def why_do_exercises
   @why_do_exercises ||= WhyDoExercise.new
 end
 
-def load(exercise_name)
-  loop do
-    visit 'localhost:8000'
-    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.execute_script('window.location.reload()')
-    break if page.has_css?('.wide.btn.btn-default', text: exercise_name)
-    page.execute_script('localStorage.clear()')
-  end
-end
-
 describe 'Participant opens app', type: :feature do
+  def load(exercise_name)
+    loop do
+      visit 'localhost:8000'
+      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+      page.execute_script('window.location.reload()')
+      break if page.has_css?('.wide.btn.btn-default', text: exercise_name)
+      page.execute_script('localStorage.clear()')
+    end
+  end
+
   after do
     page.execute_script('localStorage.clear()')
   end

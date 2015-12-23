@@ -11,7 +11,7 @@ class RiskyTimesStrategy
   end
 
   def close_strategy_help
-    first('button', text: 'CLOSE').click
+    all('button', text: 'CLOSE')[1].click
   end
 
   def open_negative_emotions_strategy

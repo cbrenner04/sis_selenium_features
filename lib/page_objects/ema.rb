@@ -110,7 +110,7 @@ class EMA
   end
 
   def choose_non_intoxicating_substance
-    substance = ['COFFEE', 'OTHER CAFFEINATED BEVERAGE',
+    substance = ['OTHER CAFFEINATED BEVERAGE',
                  'OTHER NON-CAFFEINATED BEVERAGE'].sample
     find('.btn', text: substance).click
   end
