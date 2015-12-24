@@ -11,7 +11,7 @@ class SettingsPage
   end
 
   def save
-    save_button.click
+    find('#save_button').click
   end
 
   # needed when all settings complete due to ambiguous match using modal.save
@@ -30,11 +30,5 @@ class SettingsPage
 
   def has_save_present?
     has_css?('#save_button')
-  end
-
-  private
-
-  def save_button
-    find('#save_button')
   end
 end

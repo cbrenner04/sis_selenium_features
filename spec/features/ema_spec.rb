@@ -16,6 +16,16 @@ def ema
   @ema ||= EMA.new
 end
 
+def open_and_complete_slider_questions
+  ema.open
+  ema.complete_mood_ratings
+  continue.select_continue
+  ema.complete_other_states_ratings
+  continue.select_continue
+  ema.complete_thinking_ratings
+  continue.select_continue
+end
+
 describe 'Participant opens app to complete EMA', type: :feature do
   before do
     visit 'localhost:8000'
@@ -34,13 +44,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
   end
 
   it 'responds they are outside' do
-    ema.open
-    ema.complete_mood_ratings
-    continue.select_continue
-    ema.complete_other_states_ratings
-    continue.select_continue
-    ema.complete_thinking_ratings
-    continue.select_continue
+    open_and_complete_slider_questions
     ema.select_ok
     ema.choose_outside
     ema.choose_outside_location
@@ -50,13 +54,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
 
   describe 'responds that they are inside' do
     it 'responds they are in a public place' do
-      ema.open
-      ema.complete_mood_ratings
-      continue.select_continue
-      ema.complete_other_states_ratings
-      continue.select_continue
-      ema.complete_thinking_ratings
-      continue.select_continue
+      open_and_complete_slider_questions
       ema.select_ok
       ema.choose_inside
       ema.choose_public
@@ -66,13 +64,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
     end
 
     it 'responds they are in a non-public place alone' do
-      ema.open
-      ema.complete_mood_ratings
-      continue.select_continue
-      ema.complete_other_states_ratings
-      continue.select_continue
-      ema.complete_thinking_ratings
-      continue.select_continue
+      open_and_complete_slider_questions
       ema.select_ok
       ema.choose_inside
       ema.choose_not_public
@@ -83,13 +75,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
 
     describe 'responds they are in a non-public place with others' do
       it 'responds they have consumed a non-intoxicating beverage' do
-        ema.open
-        ema.complete_mood_ratings
-        continue.select_continue
-        ema.complete_other_states_ratings
-        continue.select_continue
-        ema.complete_thinking_ratings
-        continue.select_continue
+        open_and_complete_slider_questions
         ema.select_ok
         ema.choose_inside
         ema.choose_not_public
@@ -110,13 +96,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
       end
 
       it 'responds they have consumed an intoxicating beverage' do
-        ema.open
-        ema.complete_mood_ratings
-        continue.select_continue
-        ema.complete_other_states_ratings
-        continue.select_continue
-        ema.complete_thinking_ratings
-        continue.select_continue
+        open_and_complete_slider_questions
         ema.select_ok
         ema.choose_inside
         ema.choose_not_public

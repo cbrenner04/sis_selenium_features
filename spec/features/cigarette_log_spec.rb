@@ -32,18 +32,18 @@ describe 'Participant opens app', type: :feature do
 
     expect(page).to have_content 'Why are you smoking this cigarette'
 
-    expect(continue).to_not be_present
+    expect(continue).to_not be_visible
   end
 
   it 'completes Cigarette Log' do
     cigarette_log.open
 
-    expect(continue).to_not be_present
+    expect(continue).to_not be_visible
 
     cigarette_log.set_reason
     continue.select_continue
 
-    expect(continue).to_not be_present
+    expect(continue).to_not be_visible
 
     cigarette_log.set_rating
 

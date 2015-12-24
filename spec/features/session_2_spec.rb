@@ -64,11 +64,7 @@ describe 'Participant navigates to session 2', type: :feature do
   describe 'responds to \'session2_smokingstatus\' with response 1' do
     it 'is unable to move past \'got_time\' without responding' do
       session.start
-      session_two.assert_on_session2_smokingstatus
-      answer_question_with(1)
-      session.move_to_next_slide
-      session_two.assert_on_session2_1
-      session.move_to_next_slide
+      move_to_got_time
       session_two.assert_on_got_time
 
       expect(continue).to be_disabled
@@ -76,11 +72,7 @@ describe 'Participant navigates to session 2', type: :feature do
 
     it 'responds to \'got_time\' with response 2' do
       session.start
-      session_two.assert_on_session2_smokingstatus
-      answer_question_with(1)
-      session.move_to_next_slide
-      session_two.assert_on_session2_1
-      session.move_to_next_slide
+      move_to_got_time
       session_two.assert_on_got_time
       answer_question_with(2)
       session.move_to_next_slide
@@ -99,32 +91,16 @@ describe 'Participant navigates to session 2', type: :feature do
     describe 'responds to \'got_time\' with response 1' do
       it 'is unable to move past \'session2_strategies2\' without responding' do
         session.start
-        session_two.assert_on_session2_smokingstatus
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_1
-        session.move_to_next_slide
-        session_two.assert_on_got_time
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_overview
-        session.move_to_next_slide
+        move_to_got_time
+        move_from_got_time_to_session2_strategies2
 
         expect(continue).to be_disabled
       end
 
       it 'responds to \'session2_strategies2\' with response 2' do
         session.start
-        session_two.assert_on_session2_smokingstatus
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_1
-        session.move_to_next_slide
-        session_two.assert_on_got_time
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_overview
-        session.move_to_next_slide
+        move_to_got_time
+        move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
         answer_question_with(2)
 
@@ -142,16 +118,8 @@ describe 'Participant navigates to session 2', type: :feature do
 
       it 'responds to \'session2_strategies2\' with response 3' do
         session.start
-        session_two.assert_on_session2_smokingstatus
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_1
-        session.move_to_next_slide
-        session_two.assert_on_got_time
-        answer_question_with(1)
-        session.move_to_next_slide
-        session_two.assert_on_session2_overview
-        session.move_to_next_slide
+        move_to_got_time
+        move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
         answer_question_with(3)
         session.move_to_next_slide
@@ -162,16 +130,8 @@ describe 'Participant navigates to session 2', type: :feature do
       describe 'responds to \'session2_strategies2\' with response 1' do
         it 'sees social supports listed in \'session2_social_support_1\'' do
           session.start
-          session_two.assert_on_session2_smokingstatus
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_two.assert_on_session2_1
-          session.move_to_next_slide
-          session_two.assert_on_got_time
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_two.assert_on_session2_overview
-          session.move_to_next_slide
+          move_to_got_time
+          move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
           answer_question_with(1)
           session.move_to_next_slide
@@ -184,16 +144,8 @@ describe 'Participant navigates to session 2', type: :feature do
         it 'is unable to move past \'session2_social_support_1\' without ' \
            'responding' do
           session.start
-          session_two.assert_on_session2_smokingstatus
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_two.assert_on_session2_1
-          session.move_to_next_slide
-          session_two.assert_on_got_time
-          answer_question_with(1)
-          session.move_to_next_slide
-          session_two.assert_on_session2_overview
-          session.move_to_next_slide
+          move_to_got_time
+          move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
           answer_question_with(1)
           session.move_to_next_slide
@@ -206,28 +158,9 @@ describe 'Participant navigates to session 2', type: :feature do
         describe 'responds to \'session2_social_support_1\' with response 1' do
           it 'cannot move past \'session2_traps\' without responding' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
 
             expect(continue).to be_disabled
           end
@@ -235,28 +168,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 1' do
             it 'cannot move past \'session2_traps1a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(1)
               session.move_to_next_slide
@@ -266,28 +180,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps1a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(1)
               session.move_to_next_slide
@@ -306,28 +201,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps1a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(1)
               session.move_to_next_slide
@@ -347,28 +223,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 2' do
             it 'cannot move past \'session2_traps2a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(2)
               session.move_to_next_slide
@@ -378,28 +235,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps2a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(2)
               session.move_to_next_slide
@@ -418,28 +256,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps2a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(2)
               session.move_to_next_slide
@@ -459,28 +278,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 3' do
             it 'cannot move past \'session2_traps3a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(3)
               session.move_to_next_slide
@@ -490,28 +290,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps3a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(3)
               session.move_to_next_slide
@@ -531,28 +312,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps3a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(3)
               session.move_to_next_slide
@@ -573,28 +335,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 4' do
             it 'cannot move past \'session2_traps4a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(4)
               session.move_to_next_slide
@@ -604,28 +347,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps4a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(4)
               session.move_to_next_slide
@@ -644,28 +368,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps4a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(4)
               session.move_to_next_slide
@@ -685,28 +390,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 5' do
             it 'cannot move past \'session2_traps5a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(5)
               session.move_to_next_slide
@@ -716,28 +402,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps5a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(5)
               session.move_to_next_slide
@@ -756,28 +423,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps5a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(5)
               session.move_to_next_slide
@@ -797,28 +445,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 6' do
             it 'cannot move past \'session2_traps6a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(6)
               session.move_to_next_slide
@@ -828,28 +457,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps6a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(6)
               session.move_to_next_slide
@@ -869,28 +479,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps6a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(6)
               session.move_to_next_slide
@@ -911,28 +502,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 7' do
             it 'cannot move past \'session2_traps7a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(6)
               session.move_to_next_slide
@@ -942,28 +514,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps7a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(7)
               session.move_to_next_slide
@@ -982,28 +535,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps7a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(7)
               session.move_to_next_slide
@@ -1023,28 +557,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 8' do
             it 'cannot move past \'session2_traps8a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(8)
               session.move_to_next_slide
@@ -1054,28 +569,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps8a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(8)
               session.move_to_next_slide
@@ -1095,28 +591,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps8a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(8)
               session.move_to_next_slide
@@ -1137,28 +614,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 9' do
             it 'cannot move past \'session2_traps9a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(9)
               session.move_to_next_slide
@@ -1168,28 +626,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps9a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(9)
               session.move_to_next_slide
@@ -1209,28 +648,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps9a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(9)
               session.move_to_next_slide
@@ -1251,28 +671,9 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_traps\' with response 10' do
             it 'cannot move past \'session2_traps10a\' without responding' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(10)
               session.move_to_next_slide
@@ -1282,28 +683,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps10a\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(10)
               session.move_to_next_slide
@@ -1323,28 +705,9 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_traps10a\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
               answer_question_with(10)
               session.move_to_next_slide
@@ -1364,72 +727,20 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'cannot move past \'session2_checkingin4\' without responding' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
 
             expect(continue).to be_disabled
           end
 
           it 'responds to \'session2_checkingin4\' with response 2' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
             session_two.assert_on_session2_checkingin4
             answer_question_with(2)
             session.move_to_next_slide
@@ -1439,36 +750,10 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_checkingin4\' with response 3' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
             session_two.assert_on_session2_checkingin4
             answer_question_with(3)
             session.move_to_next_slide
@@ -1478,36 +763,10 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_checkingin4\' with response 4' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
             session_two.assert_on_session2_checkingin4
             answer_question_with(4)
             session.move_to_next_slide
@@ -1517,36 +776,10 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_end\' with response 1' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
             session_two.assert_on_session2_checkingin4
             answer_question_with(1)
             session.move_to_next_slide
@@ -1566,36 +799,10 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_end\' with response 3' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
-            session_two.assert_on_session2_strategies2
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_stratok
-            session.move_to_next_slide
-            session_two.assert_on_session2_social_support_1
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_social3a
-            session.move_to_next_slide
-            session_two.assert_on_session2_think1
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1a
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_traps1b
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
+            move_from_session2_strategies2_to_session2_traps
+            move_from_session2_traps_to_session2_checkingin4
             session_two.assert_on_session2_checkingin4
             answer_question_with(1)
             session.move_to_next_slide
@@ -1613,44 +820,11 @@ describe 'Participant navigates to session 2', type: :feature do
           describe 'responds to \'session2_end\' with response 2' do
             it 'responds to \'session2_benefits\' with response 1' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(1)
               session.move_to_next_slide
@@ -1666,44 +840,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 2' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(2)
               session.move_to_next_slide
@@ -1719,44 +860,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 3' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(3)
               session.move_to_next_slide
@@ -1772,44 +880,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 4' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(4)
               session.move_to_next_slide
@@ -1825,44 +900,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 5' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(5)
               session.move_to_next_slide
@@ -1878,44 +920,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 6' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(6)
               session.move_to_next_slide
@@ -1931,44 +940,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 7' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(7)
               session.move_to_next_slide
@@ -1985,44 +961,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 8' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(8)
               session.move_to_next_slide
@@ -2038,44 +981,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 9' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(9)
               session.move_to_next_slide
@@ -2091,44 +1001,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 10' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(10)
               session.move_to_next_slide
@@ -2144,44 +1021,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 11' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(11)
               session.move_to_next_slide
@@ -2197,44 +1041,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 12' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(12)
               session.move_to_next_slide
@@ -2250,44 +1061,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 13' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(13)
               session.move_to_next_slide
@@ -2303,44 +1081,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             it 'responds to \'session2_benefits\' with response 14' do
               session.start
-              session_two.assert_on_session2_smokingstatus
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_1
-              session.move_to_next_slide
-              session_two.assert_on_got_time
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_overview
-              session.move_to_next_slide
-              session_two.assert_on_session2_strategies2
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_stratok
-              session.move_to_next_slide
-              session_two.assert_on_session2_social_support_1
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_social3a
-              session.move_to_next_slide
-              session_two.assert_on_session2_think1
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1a
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_traps1b
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4
-              answer_question_with(1)
-              session.move_to_next_slide
-              session_two.assert_on_session2_checkingin4a
-              session.move_to_next_slide
-              session_two.assert_on_session2_end
-              answer_question_with(2)
-              session.move_to_next_slide
+              move_to_got_time
+              move_from_got_time_to_session2_strategies2
+              move_from_session2_strategies2_to_session2_traps
+              move_from_session2_traps_to_session2_checkingin4
+              move_from_session2_checkingin4_to_session2_benefits
               session_two.assert_on_session2_benefits
               answer_question_with(14)
               session.move_to_next_slide
@@ -2359,16 +1104,8 @@ describe 'Participant navigates to session 2', type: :feature do
         describe 'responds to \'session2_social_support_1\' with response 2' do
           it 'responds to \'session2_social3b\' with response 1' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2390,16 +1127,8 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_social3b\' with response 2' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2422,16 +1151,8 @@ describe 'Participant navigates to session 2', type: :feature do
         describe 'responds to \'session2_social_support_1\' with response 3' do
           it 'responds to \'session2_social3c\' with response 1' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2452,16 +1173,8 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_social3c\' with response 2' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2483,16 +1196,8 @@ describe 'Participant navigates to session 2', type: :feature do
         describe 'responds to \'session2_social_support_1\' with response 4' do
           it 'responds to \'session2_social3d\' with response 1' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2514,16 +1219,8 @@ describe 'Participant navigates to session 2', type: :feature do
 
           it 'responds to \'session2_social3d\' with response 2' do
             session.start
-            session_two.assert_on_session2_smokingstatus
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_1
-            session.move_to_next_slide
-            session_two.assert_on_got_time
-            answer_question_with(1)
-            session.move_to_next_slide
-            session_two.assert_on_session2_overview
-            session.move_to_next_slide
+            move_to_got_time
+            move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
             answer_question_with(1)
             session.move_to_next_slide
@@ -2686,4 +1383,57 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'It\'s Your Quit day!'
     end
   end
+end
+
+def move_to_got_time
+  session_two.assert_on_session2_smokingstatus
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_1
+  session.move_to_next_slide
+end
+
+def move_from_got_time_to_session2_strategies2
+  session_two.assert_on_got_time
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_overview
+  session.move_to_next_slide
+end
+
+def move_from_session2_strategies2_to_session2_traps
+  session_two.assert_on_session2_strategies2
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_stratok
+  session.move_to_next_slide
+  session_two.assert_on_session2_social_support_1
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_social3a
+  session.move_to_next_slide
+  session_two.assert_on_session2_think1
+  session.move_to_next_slide
+end
+
+def move_from_session2_traps_to_session2_checkingin4
+  session_two.assert_on_session2_traps
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_traps1a
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_traps1b
+  session.move_to_next_slide
+end
+
+def move_from_session2_checkingin4_to_session2_benefits
+  session_two.assert_on_session2_checkingin4
+  answer_question_with(1)
+  session.move_to_next_slide
+  session_two.assert_on_session2_checkingin4a
+  session.move_to_next_slide
+  session_two.assert_on_session2_end
+  answer_question_with(2)
+  session.move_to_next_slide
 end
