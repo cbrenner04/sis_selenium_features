@@ -13,8 +13,8 @@ class SessionOne
     find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
   end
 
-  def assert_on_session1_reasons
-    find('h3', text: 'Your Reasons for Quitting Smoking')
+  def assert_on_session1_2
+    find('h3', text: 'That\'s great!')
   end
 
   def assert_on_session1_3
@@ -24,6 +24,10 @@ class SessionOne
 
   def assert_on_session1_4
     find('h3', text: 'Congratulations!')
+  end
+
+  def assert_on_session1_reasons
+    find('h3', text: 'Your Reasons for Quitting Smoking')
   end
 
   def assert_on_session1_benefits
