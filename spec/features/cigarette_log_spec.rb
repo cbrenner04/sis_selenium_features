@@ -9,8 +9,8 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/cigarette_log'
-require 'page_objects/continue'
+require 'pages/cigarette_log'
+require 'pages/continue'
 
 def cigarette_log
   @cigarette_log ||= CigaretteLog.new

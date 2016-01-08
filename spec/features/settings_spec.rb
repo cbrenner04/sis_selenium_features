@@ -9,13 +9,13 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/settings_page'
-require 'page_objects/cessation'
-require 'page_objects/social'
-require 'page_objects/quit_reason'
-require 'page_objects/risky'
-require 'page_objects/modal'
-require 'page_objects/risky_times_strategies'
+require 'pages/settings_page'
+require 'pages/cessation'
+require 'pages/social'
+require 'pages/quit_reason'
+require 'pages/risky'
+require 'pages/modal'
+require 'pages/risky_times_strategies'
 
 def risky_times_strategies
   @risky_times_strategies ||= RiskyTimesStrategy.new

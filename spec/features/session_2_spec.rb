@@ -9,15 +9,15 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/session'
-require 'page_objects/session_two'
-require 'page_objects/continue'
-require 'page_objects/modal'
-require 'page_objects/risky'
-require 'page_objects/social'
-require 'page_objects/quit_reason'
-require 'page_objects/settings_page'
-require 'page_objects/cessation'
+require 'pages/session'
+require 'pages/session_two'
+require 'pages/continue'
+require 'pages/modal'
+require 'pages/risky'
+require 'pages/social'
+require 'pages/quit_reason'
+require 'pages/settings_page'
+require 'pages/cessation'
 
 describe 'Participant navigates to session 2', type: :feature do
   before do

@@ -9,8 +9,8 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/ema'
-require 'page_objects/continue'
+require 'pages/ema'
+require 'pages/continue'
 
 def ema
   @ema ||= EMA.new

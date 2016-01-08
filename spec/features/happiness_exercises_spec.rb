@@ -9,8 +9,8 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/happiness_exercise'
-require 'page_objects/modal'
+require 'pages/happiness_exercise'
+require 'pages/modal'
 
 def examples
   @examples ||= Example.new

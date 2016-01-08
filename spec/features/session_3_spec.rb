@@ -9,13 +9,13 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/session_three'
-require 'page_objects/session'
-require 'page_objects/continue'
-require 'page_objects/settings_page'
-require 'page_objects/modal'
-require 'page_objects/risky'
-require 'page_objects/cessation'
+require 'pages/session_three'
+require 'pages/session'
+require 'pages/continue'
+require 'pages/settings_page'
+require 'pages/modal'
+require 'pages/risky'
+require 'pages/cessation'
 
 describe 'Participant navigates to session 3', type: :feature do
   before do

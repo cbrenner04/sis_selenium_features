@@ -9,12 +9,12 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/session_one'
-require 'page_objects/session_two'
-require 'page_objects/session_three'
-require 'page_objects/happiness_exercise'
-require 'page_objects/modal'
-require 'page_objects/update_smoking_status'
+require 'pages/session_one'
+require 'pages/session_two'
+require 'pages/session_three'
+require 'pages/happiness_exercise'
+require 'pages/modal'
+require 'pages/update_smoking_status'
 
 def update_smoking_status
   @update_smoking_status ||= UpdateSmokingStatus.new
