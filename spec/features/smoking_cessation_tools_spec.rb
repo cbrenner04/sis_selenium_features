@@ -9,10 +9,10 @@ require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
 # require page objects
-require 'page_objects/smoking_cessation_tool'
-require 'page_objects/session'
-require 'page_objects/session_one'
-require 'page_objects/settings_page'
+require 'pages/smoking_cessation_tool'
+require 'pages/session'
+require 'pages/session_one'
+require 'pages/settings_page'
 
 def smoking_cessation_tool
   @smoking_cessation_tool ||= SmokingCessationTool.new
