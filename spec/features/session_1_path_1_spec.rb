@@ -323,6 +323,21 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Say "no!" to Big Tobacco'
     end
 
+    it 'responds to question \'session1_benefits\' with response 15' do
+      session.start
+      move_from_session1_1_to_reason
+      modal.open
+
+      enter_quit_reason
+
+      session.move_to_next_slide
+      session_one.assert_on_session1_benefits
+      answer_question_with(15)
+      session.move_to_next_slide
+
+      expect(page).to have_content 'Ready to Quit?'
+    end
+
     it 'cannot move past \'session1_5\' without responding' do
       session.start
 

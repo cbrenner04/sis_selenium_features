@@ -158,7 +158,7 @@ class SessionOne
 
   def open_risky_times
     find('.btn.btn-info',
-         text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
+         text: "I'd like to set my riskiest smoking times").click
   end
 
   def assert_on_ending

@@ -2,11 +2,6 @@
 class Risky
   include Capybara::DSL
 
-  def open
-    find('.btn.btn-info',
-         text: "1, I'D LIKE TO SET MY RISKIEST SMOKING TIMES").click
-  end
-
   def create
     select_time
     set_reason
