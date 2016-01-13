@@ -31,7 +31,7 @@ Capybara.configure do |config|
   config.default_wait_time = 2
   config.default_driver = :selenium
   config.register_driver :selenium do |app|
-    if driver == :firefox
+    if browser == :firefox
       Selenium::WebDriver::Firefox::Binary.path =
         '/Applications/firefox33/Firefox.app/Contents/MacOS/firefox-bin'
     end
