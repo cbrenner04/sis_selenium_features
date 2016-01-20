@@ -1,6 +1,6 @@
 # filename: path_2_session_1_spec.rb
 
-# require page objects
+# require page objects, these are instantiated in the feature helper
 require 'pages/session'
 require 'pages/session_one'
 require 'pages/quit_reason'

@@ -12,6 +12,9 @@ require 'local_storage/social_supports'
 require 'pages/cigarette_log'
 require 'pages/continue'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def cigarette_log
   @cigarette_log ||= CigaretteLog.new
 end

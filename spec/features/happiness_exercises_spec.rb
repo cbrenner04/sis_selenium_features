@@ -12,6 +12,9 @@ require 'local_storage/social_supports'
 require 'pages/happiness_exercise'
 require 'pages/modal'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def examples
   @examples ||= Example.new
 end

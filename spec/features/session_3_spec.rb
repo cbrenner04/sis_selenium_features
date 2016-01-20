@@ -8,7 +8,7 @@ require 'local_storage/risky_times'
 require 'local_storage/sessions'
 require 'local_storage/social_supports'
 
-# require page objects
+# require page objects, these are instantiated in the feature_helper
 require 'pages/session_three'
 require 'pages/session'
 require 'pages/continue'

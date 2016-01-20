@@ -14,6 +14,9 @@ require 'pages/session'
 require 'pages/session_one'
 require 'pages/settings_page'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def smoking_cessation_tool
   @smoking_cessation_tool ||= SmokingCessationTool.new
 end

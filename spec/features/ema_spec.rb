@@ -12,6 +12,9 @@ require 'local_storage/social_supports'
 require 'pages/ema'
 require 'pages/continue'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def ema
   @ema ||= EMA.new
 end

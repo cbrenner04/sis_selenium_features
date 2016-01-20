@@ -17,6 +17,9 @@ require 'pages/risky'
 require 'pages/modal'
 require 'pages/risky_times_strategies'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def risky_times_strategies
   @risky_times_strategies ||= RiskyTimesStrategy.new
 end

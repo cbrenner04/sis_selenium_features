@@ -51,6 +51,7 @@ def enter_risky_times
   modal.exit
 end
 
+# instantiate common page objects
 def session
   @session ||= Session.new
 end

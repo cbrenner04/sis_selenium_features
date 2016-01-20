@@ -16,6 +16,9 @@ require 'pages/happiness_exercise'
 require 'pages/modal'
 require 'pages/update_smoking_status'
 
+# instantiate page objects
+# those that are not instantiated here are common
+# therefore instantiated in the feature_helper
 def update_smoking_status
   @update_smoking_status ||= UpdateSmokingStatus.new
 end
