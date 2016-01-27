@@ -16,7 +16,7 @@ class Session
   end
 
   def set_notes
-    find('#notes').set('These are some notes')
+    find('textarea').set('These are some notes')
   end
 
   def open

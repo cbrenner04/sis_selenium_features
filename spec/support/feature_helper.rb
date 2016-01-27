@@ -14,7 +14,7 @@ def insert_all(date, session)
 end
 
 def answer_question_with(num)
-  option = page.all('.col-sm-1.col-xs-1.col-md-1.text-left')
+  option = page.all('.session-option')
   opt = num - 1
   option[opt].click
 end

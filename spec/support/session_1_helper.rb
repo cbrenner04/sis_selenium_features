@@ -12,8 +12,14 @@ require 'pages/continue'
 require 'pages/settings_page'
 
 def move_from_session1_1_to_reason
+  session_one.enter_study_id('123')
+  session.move_to_next_slide
+  session_one.consent_to_use_data
+  session.move_to_next_slide
   session_one.assert_on_session1_1
   answer_question_with(1)
+  session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session_one.assert_on_session1_3
   session.move_to_next_slide
@@ -21,8 +27,14 @@ def move_from_session1_1_to_reason
 end
 
 def move_to_quit_reason
+  session_one.enter_study_id('123')
+  session.move_to_next_slide
+  session_one.consent_to_use_data
+  session.move_to_next_slide
   session_one.assert_on_session1_1
   answer_question_with(3)
+  session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session_one.assert_on_session1_4
   session.move_to_next_slide

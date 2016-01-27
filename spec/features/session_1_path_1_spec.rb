@@ -29,6 +29,10 @@ describe 'Participant loads app for the first time', type: :feature do
 
   it 'is unable to move forward from question 1 without responding' do
     session.start
+    session_one.enter_study_id('123')
+    session.move_to_next_slide
+    session_one.consent_to_use_data
+    session.move_to_next_slide
     session_one.assert_on_session1_1
 
     expect(continue).to be_disabled
@@ -36,8 +40,14 @@ describe 'Participant loads app for the first time', type: :feature do
 
   it 'responds to question 1 with response 2' do
     session.start
+    session_one.enter_study_id('123')
+    session.move_to_next_slide
+    session_one.consent_to_use_data
+    session.move_to_next_slide
     session_one.assert_on_session1_1
     answer_question_with(2)
+    session.move_to_next_slide
+    session_one.enter_number_of_cigs_smoked('10')
     session.move_to_next_slide
 
     expect(page).to have_content 'You have installed this app, because you a' \
@@ -46,14 +56,34 @@ describe 'Participant loads app for the first time', type: :feature do
 
   it 'responds to question 1 with response 4' do
     session.start
+    session_one.enter_study_id('123')
+    session.move_to_next_slide
+    session_one.consent_to_use_data
+    session.move_to_next_slide
     session_one.assert_on_session1_1
     answer_question_with(4)
+    session.move_to_next_slide
+    session_one.enter_number_of_cigs_smoked('10')
     session.move_to_next_slide
 
     expect(page).to have_content 'That\'s great!'
 
     session.move_to_next_slide
     session_one.assert_on_session1_reasons
+  end
+
+  it 'cannot enter non-integer for number of cigs smoked' do
+    session.start
+    session_one.enter_study_id('123')
+    session.move_to_next_slide
+    session_one.consent_to_use_data
+    session.move_to_next_slide
+    session_one.assert_on_session1_1
+    answer_question_with(1)
+    session.move_to_next_slide
+    session_one.enter_number_of_cigs_smoked('asdf')
+
+    expect(session_one).to_not have_num_of_cigs_smoked_visible('asdf')
   end
 
   describe 'responds to question 1 with response 1' do
@@ -661,9 +691,8 @@ describe 'Participant loads app for the first time', type: :feature do
         # Now assert this ends the session
         session.move_to_next_slide
         session.finish
-        settings_page.assert_on_page
 
-        expect(settings_page).to_not have_save_present
+        expect(page).to have_css('#smokingStatus')
       end
 
       it 'cannot move past \'session1_20\' without responding' do
@@ -1080,9 +1109,8 @@ describe 'Participant loads app for the first time', type: :feature do
             # assert this finishes the session
             session.move_to_next_slide
             session.finish
-            settings_page.assert_on_page
 
-            expect(settings_page).to_not have_save_present
+            expect(page).to have_css('#smokingStatus')
           end
 
           describe 'responds to \'session1_schedule\' with response 1' do
@@ -1302,9 +1330,6 @@ describe 'Participant loads app for the first time', type: :feature do
                 session.move_to_next_slide
                 session.finish
 
-                settings_page.assert_on_page
-                settings_page.save
-
                 expect(page).to have_css('#smokingStatus')
               end
             end
@@ -1448,15 +1473,12 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'You have identified people who can h' \
                                        'elp you in your quit attempt'
 
-          # complete session, expect to be taken to settings, can't go to home
           modal.open
           enter_social_supports
           session.move_to_next_slide
           session.finish
 
-          settings_page.assert_on_page
-
-          expect(page).to_not have_css('#save_button')
+          expect(page).to have_css('#smokingStatus')
         end
 
         it 'responds to \'session1_social6\' with 2' do
@@ -1485,13 +1507,10 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'You\'ve decided to do this quit atte' \
                                        'mpt without any help from other people.'
 
-          # complete session, expect to be taken to settings, can't go to home
           session.move_to_next_slide
           session.finish
 
-          settings_page.assert_on_page
-
-          expect(page).to_not have_css('#save_button')
+          expect(page).to have_css('#smokingStatus')
         end
       end
 
@@ -1529,7 +1548,7 @@ describe 'Participant loads app for the first time', type: :feature do
             session.move_to_next_slide
             session.finish
 
-            expect(settings_page).to_not have_save_present
+            expect(page).to have_css('#smokingStatus')
           end
 
           it 'responds to \'session1_social8\' with 2' do
@@ -1564,7 +1583,7 @@ describe 'Participant loads app for the first time', type: :feature do
             session.move_to_next_slide
             session.finish
 
-            expect(settings_page).to_not have_save_present
+            expect(page).to have_css('#smokingStatus')
           end
         end
       end

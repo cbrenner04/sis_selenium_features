@@ -5,12 +5,30 @@ class SessionOne
   def completed?
     session1_row = find('.row', text: 'session 1')
     session1_row.find('.label-success')
-    session1_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
+    session1_row.find('.glyphicon-check')
+  end
+
+  def enter_study_id(id)
+    find('input').set(id)
+  end
+
+  def consent_to_use_data
+    find('.session-option').click
   end
 
   def assert_on_session1_1
-    find('h3', text: 'Welcome to the "Smile Instead of Smoke" (SiS) App!')
+    find('h3', text: 'Welcome to SiS! Smiling Instead of Smoking')
   end
+
+  def enter_number_of_cigs_smoked(num)
+    find('input').set(num)
+  end
+
+  def has_num_of_cigs_smoked_visible?(num)
+    has_css?('input', text: num)
+  end
+
+  def 
 
   def assert_on_session1_2
     find('h3', text: 'That\'s great!')

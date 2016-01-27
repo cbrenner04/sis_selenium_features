@@ -7,11 +7,11 @@ class SessionThree
   end
 
   def available_in_7_days?
-    session3_row.find('.label.label-lg.label-info', text: '7 days')
+    session3_row.find('.label-info', text: '7 days')
   end
 
   def available_in_1_day?
-    session3_row.find('.label.label-lg.label-warning', text: '1 day')
+    session3_row.find('.label-warning', text: '1 day')
   end
 
   def available?
@@ -20,7 +20,7 @@ class SessionThree
 
   def completed?
     session3_row.find('.label-success')
-    session3_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
+    session3_row.find('.glyphicon-check')
   end
 
   def assert_on_session3_smokingstatus
@@ -44,8 +44,7 @@ class SessionThree
   end
 
   def assert_on_session3_notquitcontinue
-    find('.question.well',
-         text: 'Even though you\'re not ready to quit smoking yet')
+    find('.well', text: 'Even though you\'re not ready to quit smoking yet')
   end
 
   def assert_on_session3_gottime
@@ -62,9 +61,8 @@ class SessionThree
   end
 
   def assert_on_session3_strategies2
-    find('.question.well',
-         text: 'Here\'s a list of your strategies that you came up with last' \
-               ' week')
+    find('.well', text: 'Here\'s a list of your strategies that you came up ' \
+                        'with last week')
   end
 
   def assert_on_session3_strategiesupdate
@@ -93,7 +91,7 @@ class SessionThree
   end
 
   def assert_on_session3_social_support1
-    find('.question.well',
+    find('.well',
          text: 'Research has shown that one of the most important things')
   end
 
@@ -110,7 +108,7 @@ class SessionThree
   end
 
   def assert_on_session3_thinkingtraps
-    find('.question.well', text: 'Choose a few thoughts')
+    find('.well', text: 'Choose a few thoughts')
   end
 
   def assert_on_session3_think1a

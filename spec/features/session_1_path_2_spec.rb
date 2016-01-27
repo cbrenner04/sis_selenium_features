@@ -65,7 +65,7 @@ describe 'Participant loads app for the first time', type: :feature do
       session.move_to_next_slide
       session.finish
 
-      expect(settings_page).to_not have_save_present
+      expect(page).to have_css('#smokingStatus')
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
@@ -94,7 +94,7 @@ describe 'Participant loads app for the first time', type: :feature do
       session.move_to_next_slide
       session.finish
 
-      expect(settings_page).to_not have_save_present
+      expect(page).to have_css('#smokingStatus')
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
@@ -322,9 +322,6 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session.finish
 
-          settings_page.assert_on_page
-          settings_page.save
-
           expect(page).to have_css('#smokingStatus')
         end
 
@@ -360,9 +357,7 @@ describe 'Participant loads app for the first time', type: :feature do
           session.move_to_next_slide
           session.finish
 
-          settings_page.assert_on_page
-
-          expect(settings_page).to_not have_save_present
+          expect(page).to have_css('#smokingStatus')
         end
       end
     end
