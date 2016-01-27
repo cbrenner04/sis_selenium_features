@@ -25,7 +25,7 @@ class SettingsPage
   end
 
   def has_cessation_date_selector_present?
-    find('#cessation_date_selector', text: "#{Date.today.strftime('%m/%d/%Y')}")
+    find('#cessation_date_selector', text: Date.today.strftime('%m/%d/%Y'))
   end
 
   def has_save_present?

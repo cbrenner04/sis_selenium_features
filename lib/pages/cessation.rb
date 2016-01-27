@@ -7,7 +7,7 @@ class Cessation
   end
 
   def pick_date
-    find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
+    find('.dw-mon', text: Date.today.strftime('%B')).click
   end
 
   def visible?
@@ -16,6 +16,6 @@ class Cessation
   end
 
   def assert_on_ending2
-    find('.question.well', text: "#{Date.today.strftime('%b. %-d')}")
+    find('.question.well', text: Date.today.strftime('%b. %-d'))
   end
 end

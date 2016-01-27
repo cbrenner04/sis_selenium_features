@@ -11,6 +11,9 @@ require 'pages/risky'
 require 'pages/continue'
 require 'pages/settings_page'
 
+# require session_1_helper, this has the `move_from...to` methods
+require 'support/session_1_helper'
+
 describe 'Participant loads app for the first time', type: :feature do
   before do
     visit 'localhost:8000'
@@ -212,7 +215,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
         enter_quit_reason
 
-        move_from_reasons_to_supports
+        move_from_reasons_to_supports_2
 
         expect(page).to have_content 'You have identified people who can hel' \
                                      'p you stay smoke-free'
@@ -226,7 +229,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
         enter_quit_reason
 
-        move_from_reasons_to_supports
+        move_from_reasons_to_supports_2
         modal.open
 
         enter_social_supports
@@ -248,7 +251,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
           enter_quit_reason
 
-          move_from_reasons_to_supports
+          move_from_reasons_to_supports_2
           modal.open
 
           enter_social_supports
@@ -272,7 +275,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
           enter_quit_reason
 
-          move_from_reasons_to_supports
+          move_from_reasons_to_supports_2
           modal.open
 
           enter_social_supports
@@ -295,7 +298,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
           enter_quit_reason
 
-          move_from_reasons_to_supports
+          move_from_reasons_to_supports_2
           modal.open
 
           enter_social_supports
@@ -332,7 +335,7 @@ describe 'Participant loads app for the first time', type: :feature do
 
           enter_quit_reason
 
-          move_from_reasons_to_supports
+          move_from_reasons_to_supports_2
           modal.open
 
           enter_social_supports
@@ -630,75 +633,4 @@ describe 'Participant loads app for the first time', type: :feature do
                                    'sure that you won\'t relapse.'
     end
   end
-end
-
-def move_to_quit_reason
-  session_one.assert_on_session1_1
-  answer_question_with(3)
-  session.move_to_next_slide
-  session_one.assert_on_session1_4
-  session.move_to_next_slide
-  session_one.assert_on_session1_reasons
-end
-
-def move_from_reason_to_session1_19b
-  session.move_to_next_slide
-  session_one.assert_on_session1_benefits
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_benefits1
-  session.move_to_next_slide
-  session_one.assert_on_session1_5
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_7
-  session.move_to_next_slide
-  session_one.assert_on_session1_10
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_11
-  session.move_to_next_slide
-end
-
-def move_from_session1_19b_to_social_support1
-  session_one.assert_on_session1_19b
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_19c
-  session.move_to_next_slide
-  session_one.assert_on_session1_20
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_21
-  session.move_to_next_slide
-end
-
-def move_from_reasons_to_supports
-  move_from_reason_to_session1_19b
-  move_from_session1_19b_to_social_support1
-  session_one.assert_on_social_support1
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_social6
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_session1_social10a
-end
-
-def move_from_supports_to_quit_date
-  session.move_to_next_slide
-  session_one.assert_on_session1_schedule
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_quitday_ready
-end
-
-def move_from_quit_date_to_risky_times
-  session.move_to_next_slide
-  session_one.assert_on_quitday_scheduled
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.assert_on_quitday_scheduled2
-  session.move_to_next_slide
-  session_one.assert_on_difficult_1
 end

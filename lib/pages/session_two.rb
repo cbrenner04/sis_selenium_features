@@ -3,22 +3,16 @@ class SessionTwo
   include Capybara::DSL
 
   def available_soon?
-    within('.row', text: 'session 2') do
-      find('.label-warning')
-    end
+    session2_row.find('.label-warning')
   end
 
   def available?
-    within('.row', text: 'session 2') do
-      find('.label-success')
-    end
+    session2_row.find('.label-success')
   end
 
   def completed?
-    within('.row', text: 'session 2') do
-      find('.label-success')
-      find('.glyphicon.glyphicon-check.glyphicon-sm')
-    end
+    session2_row.find('.label-success')
+    session2_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
   end
 
   def assert_on_session2_smokingstatus
@@ -109,5 +103,11 @@ class SessionTwo
 
   def assert_on_session2_benefits
     find('h3', text: 'Benefits of Quitting Smoking')
+  end
+
+  private
+
+  def session2_row
+    find('.row', text: 'session 2')
   end
 end

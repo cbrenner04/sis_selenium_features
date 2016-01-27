@@ -3,10 +3,9 @@ class SessionOne
   include Capybara::DSL
 
   def completed?
-    within('.row', text: 'session 1') do
-      find('.label-success')
-      find('.glyphicon.glyphicon-check.glyphicon-sm')
-    end
+    session1_row = find('.row', text: 'session 1')
+    session1_row.find('.label-success')
+    session1_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
   end
 
   def assert_on_session1_1
@@ -40,6 +39,10 @@ class SessionOne
 
   def assert_on_session1_5
     find('h3', text: 'Ready to Quit?')
+  end
+
+  def assert_on_session1_6
+    find('h3', text: 'You want to quit right now?')
   end
 
   def assert_on_session1_7

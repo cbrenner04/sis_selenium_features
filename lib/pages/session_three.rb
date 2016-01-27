@@ -3,40 +3,24 @@ class SessionThree
   include Capybara::DSL
 
   def unavailable?
-    within('.row', text: 'session 3') do
-      find('.label-info')
-    end
+    session3_row.find('.label-info')
   end
 
   def available_in_7_days?
-    within('.row', text: 'session 3') do
-      find('.label.label-lg.label-info', text: '7 days')
-    end
+    session3_row.find('.label.label-lg.label-info', text: '7 days')
   end
 
   def available_in_1_day?
-    within('.row', text: 'session 3') do
-      find('.label.label-lg.label-warning', text: '1 day')
-    end
-  end
-
-  def available_soon?
-    within('.row', text: 'session 2') do
-      find('.label-warning')
-    end
+    session3_row.find('.label.label-lg.label-warning', text: '1 day')
   end
 
   def available?
-    within('.row', text: 'session 3') do
-      find('.label-success')
-    end
+    session3_row.find('.label-success')
   end
 
   def completed?
-    within('.row', text: 'session 3') do
-      find('.label-success')
-      find('.glyphicon.glyphicon-check.glyphicon-sm')
-    end
+    session3_row.find('.label-success')
+    session3_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
   end
 
   def assert_on_session3_smokingstatus
@@ -163,5 +147,11 @@ class SessionThree
 
   def assert_on_session3_ending
     find('h3', text: 'Congrats again: You are one week')
+  end
+
+  private
+
+  def session3_row
+    find('.row', text: 'session 3')
   end
 end
