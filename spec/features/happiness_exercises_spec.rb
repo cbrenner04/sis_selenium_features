@@ -7,47 +7,52 @@ require 'local_storage/cessation_reasons'
 require 'local_storage/risky_times'
 require 'local_storage/sessions'
 require 'local_storage/social_supports'
+require 'local_storage/exercises'
+require 'local_storage/exercise_answers'
 
 # require page objects
 require 'pages/happiness_exercise'
+require 'pages/happiness_exercise/example'
+require 'pages/happiness_exercise/why_do_exercise'
+require 'pages/happiness_exercise/why_does_happiness_help'
 require 'pages/modal'
 
 # instantiate page objects
 # those that are not instantiated here are common
 # therefore instantiated in the feature_helper
 def examples
-  @examples ||= Example.new
+  @examples ||= HappinessExercise::Example.new
 end
 
 def why_does_happiness_help
-  @why_does_happiness_help ||= WhyDoesHappinessHelp.new
+  @why_does_happiness_help ||= HappinessExercise::WhyDoesHappinessHelp.new
 end
 
 def why_do_exercises
-  @why_do_exercises ||= WhyDoExercise.new
+  @why_do_exercises ||= HappinessExercise::WhyDoExercise.new
+end
+
+def load(exercise_name)
+  loop do
+    visit 'localhost:8000'
+    insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
+    page.execute_script('window.location.reload()')
+    break if page.has_css?('.btn', text: exercise_name)
+    page.execute_script('localStorage.clear()')
+  end
 end
 
 describe 'Participant opens app', type: :feature do
-  def load(exercise_name)
-    loop do
-      visit 'localhost:8000'
-      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-      page.execute_script('window.location.reload()')
-      break if page.has_css?('.wide.btn.btn-default', text: exercise_name)
-      page.execute_script('localStorage.clear()')
-    end
-  end
-
   after do
     page.execute_script('localStorage.clear()')
   end
 
   it "completes 'Three Good Things'" do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
-    fill_in 'answer_0', with: 'First good thing'
-    fill_in 'answer_1', with: 'Second good thing'
-    fill_in 'answer_2', with: 'Third good thing'
+    happiness_exercises.open('THREE GOOD THINGS')
+    happiness_exercises.answer_question_with(1, 'First good thing')
+    happiness_exercises.answer_question_with(2, 'Second good thing')
+    happiness_exercises.answer_question_with(3, 'Third good thing')
     modal.save
 
     expect(modal).to have_success_alert_present
@@ -55,9 +60,9 @@ describe 'Participant opens app', type: :feature do
 
   it "completes 'Experiencing Kindness'" do
     load('EXPERIENCING KINDNESS')
-    happiness_exercises.open_experiencing_kindness
-    fill_in 'answer_0', with: 'First kindness experience'
-    fill_in 'answer_1', with: 'Second kindness experience'
+    happiness_exercises.open('EXPERIENCING KINDNESS')
+    happiness_exercises.answer_question_with(1, 'First kindness experience')
+    happiness_exercises.answer_question_with(2, 'Second kindness experience')
     modal.save
 
     expect(modal).to have_success_alert_present
@@ -65,9 +70,9 @@ describe 'Participant opens app', type: :feature do
 
   it "completes 'Savoring'" do
     load('SAVORING')
-    happiness_exercises.open_savoring
-    fill_in 'answer_0', with: 'First savoring'
-    fill_in 'answer_1', with: 'Second savoring'
+    happiness_exercises.open('SAVORING')
+    happiness_exercises.answer_question_with(1, 'First savoring')
+    happiness_exercises.answer_question_with(2, 'Second savoring')
     modal.save
 
     expect(modal).to have_success_alert_present
@@ -75,7 +80,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'uses help menus' do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
+    happiness_exercises.open('THREE GOOD THINGS')
     examples.open
 
     expect(examples).to be_present
@@ -95,9 +100,19 @@ describe 'Participant opens app', type: :feature do
 
   it 'exits happiness exercise without saving' do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
+    happiness_exercises.open('THREE GOOD THINGS')
     modal.exit
 
     expect(page).to have_content '4 days until quit day'
+  end
+
+  it 'sees previous exercise responses' do
+    load('THREE GOOD THINGS')
+    insert(Exercises::KEY, Exercises::ALL)
+    insert(ExerciseAnswers::KEY, ExerciseAnswers::ALL)
+    happiness_exercises.open('THREE GOOD THINGS')
+    happiness_exercises.open_review
+
+    expect(happiness_exercises).to have_previous_responses
   end
 end

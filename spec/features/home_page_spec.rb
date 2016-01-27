@@ -99,15 +99,15 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows available good things exercises' do
     load('THREE GOOD THINGS')
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
 
-    within happiness_exercises.row_3 do
+    within happiness_exercises.row(3) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -115,22 +115,22 @@ describe 'Participant opens app', type: :feature do
   it 'shows one complete, two available good things exercises' do
     load('THREE GOOD THINGS')
     happiness_exercises.open_three_good_things
-    fill_in 'answer_0', with: 'First good thing'
+    happiness_exercises.answer_question_with(1, 'First good thing')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
 
-    within happiness_exercises.row_3 do
+    within happiness_exercises.row(3) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -138,23 +138,23 @@ describe 'Participant opens app', type: :feature do
   it 'shows two complete, one available good things exercises' do
     load('THREE GOOD THINGS')
     happiness_exercises.open_three_good_things
-    fill_in 'answer_0', with: 'First good thing'
-    fill_in 'answer_1', with: 'Second good thing'
+    happiness_exercises.answer_question_with(1, 'First good thing')
+    happiness_exercises.answer_question_with(2, 'Second good thing')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_3 do
+    within happiness_exercises.row(3) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -162,24 +162,24 @@ describe 'Participant opens app', type: :feature do
   it 'shows complete available good things exercises' do
     load('THREE GOOD THINGS')
     happiness_exercises.open_three_good_things
-    fill_in 'answer_0', with: 'First good thing'
-    fill_in 'answer_1', with: 'Second good thing'
-    fill_in 'answer_2', with: 'Third good thing'
+    happiness_exercises.answer_question_with(1, 'First good thing')
+    happiness_exercises.answer_question_with(2, 'Second good thing'
+    happiness_exercises.answer_question_with(3, 'Third good thing'
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_3 do
+    within happiness_exercises.row(3) do
       expect(happiness_exercises).to be_completed
     end
   end
@@ -187,11 +187,11 @@ describe 'Participant opens app', type: :feature do
   it 'shows available experiencing kindness exercises' do
     load('EXPERIENCING KINDNESS')
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -199,18 +199,18 @@ describe 'Participant opens app', type: :feature do
   it 'shows one complete, one available experiencing kindness exercises' do
     load('EXPERIENCING KINDNESS')
     happiness_exercises.open_experiencing_kindness
-    fill_in 'answer_0', with: 'First kindness experience'
+    happiness_exercises.answer_question_with(1, 'First kindness experience')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -218,19 +218,19 @@ describe 'Participant opens app', type: :feature do
   it 'shows complete experiencing kindness exercises' do
     load('EXPERIENCING KINDNESS')
     happiness_exercises.open_experiencing_kindness
-    fill_in 'answer_0', with: 'First kindness experience'
-    fill_in 'answer_1', with: 'Second kindness experience'
+    happiness_exercises.answer_question_with(1, 'First kindness experience')
+    happiness_exercises.answer_question_with(2, 'Second kindness experience')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_completed
     end
   end
@@ -239,11 +239,11 @@ describe 'Participant opens app', type: :feature do
     load('SAVORING')
     page.evaluate_script('window.location.reload()')
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -251,18 +251,18 @@ describe 'Participant opens app', type: :feature do
   it 'shows one available, one complete savoring exercises' do
     load('SAVORING')
     happiness_exercises.open_savoring
-    fill_in 'answer_0', with: 'First savoring'
+    happiness_exercises.answer_question_with(1, 'First savoring')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_pending
     end
   end
@@ -270,19 +270,19 @@ describe 'Participant opens app', type: :feature do
   it 'shows complete savoring exercises' do
     load('SAVORING')
     happiness_exercises.open_savoring
-    fill_in 'answer_0', with: 'First savoring'
-    fill_in 'answer_1', with: 'Second savoring'
+    happiness_exercises.answer_question_with(1, 'First savoring')
+    happiness_exercises.answer_question_with(2, 'Second savoring')
     modal.save
 
     expect(modal).to have_success_alert_present
 
     modal.exit
 
-    within happiness_exercises.row_1 do
+    within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_completed
     end
 
-    within happiness_exercises.row_2 do
+    within happiness_exercises.row(2) do
       expect(happiness_exercises).to be_completed
     end
   end

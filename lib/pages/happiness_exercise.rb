@@ -1,80 +1,55 @@
 # page object for happiness exercises
 class HappinessExercise
+  include RSpec::Matchers
   include Capybara::DSL
 
-  def open_three_good_things
-    find('.wide.btn.btn-default', text: 'THREE GOOD THINGS').click
+  def open(exercise)
+    find('.btn', text: exercise).click
   end
 
-  def open_experiencing_kindness
-    find('.wide.btn.btn-default', text: 'EXPERIENCING KINDNESS').click
+  def row(num)
+    rows = page.all('.row')
+    r = num + 1
+    rows[r]
   end
 
-  def open_savoring
-    find('.wide.btn.btn-default', text: 'SAVORING').click
-  end
-
-  def row_1
-    row = page.all('.row')
-    row[2]
-  end
-
-  def row_2
-    row = page.all('.row')
-    row[3]
-  end
-
-  def row_3
-    row = page.all('.row')
-    row[4]
+  def answer_question_with(question, answer)
+    q = question - 1
+    fill_in "answer_#{q}", with: answer
   end
 
   def pending?
-    find('.label-warning.ng-scope', text: 'pending')
+    find('.label-warning', text: 'pending')
   end
 
   def completed?
-    find('.label-success.ng-scope', text: 'complete')
-  end
-end
-
-# page object for examples on happiness exercises page
-class Example
-  include Capybara::DSL
-
-  def present?
-    find('h3', text: 'Examples')
+    find('.label-success', text: 'complete')
   end
 
-  def open
-    find('.text-transform-default', text: 'Examples').click
-  end
-end
-
-# page object for why happiness helps on happiness exercises page
-class WhyDoesHappinessHelp
-  include Capybara::DSL
-
-  def present?
-    find('h3', text: 'Why Does Happiness Help?')
+  def open_review
+    find('.btn', text: 'Review my previous exercises').click
   end
 
-  def open
-    find('.text-transform-default',
-         text: 'How does happiness help me quit smoking?').click
-  end
-end
+  def has_previous_responses?
+    date = Date.today - 4
+    within('.row',
+           text: "(#{date.strftime('%m/%d/%Y')}) Please describe three" \
+                 ' good things that happened to you today:') do
+      expect(page).to have_content 'test test test'
+    end
 
-# page object for why happiness helps on happiness exercises page
-class WhyDoExercise
-  include Capybara::DSL
+    date = Date.today - 3
+    within('.row',
+           text: "(#{date.strftime('%m/%d/%Y')}) Please describe two " \
+                 'acts of kindness: a kindness you did, and a kindness') do
+      expect(page).to have_content 'test kindness test kindness'
+    end
 
-  def present?
-    find('h3', text: 'Why Do 3 Good Things?')
-  end
-
-  def open
-    find('.text-transform-default',
-         text: 'How does this exercise help me quit smoking?').click
+    date = Date.today - 2
+    within('.row',
+           text: "(#{date.strftime('%m/%d/%Y')}) Please describe " \
+                 'experiences that you savored in the past four hours') do
+      expect(page).to have_content 'test savoring test savoring'
+    end
   end
 end
