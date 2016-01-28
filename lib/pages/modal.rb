@@ -3,7 +3,7 @@ class Modal
   include Capybara::DSL
 
   def open
-    find('.btn.btn-info').click
+    find('.btn-info').click
   end
 
   def save
@@ -15,7 +15,7 @@ class Modal
   end
 
   def close
-    find('.btn.btn-primary', text: 'CLOSE').click
+    find('.btn-primary', text: 'CLOSE').click
   end
 
   def disabled?

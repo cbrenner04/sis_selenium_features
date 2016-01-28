@@ -34,7 +34,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Reasons for Quitting tool' do
-    smoking_cessation_tool.open_reasons_tool
+    smoking_cessation_tool.open_tool('YOUR REASONS FOR QUITTING')
 
     complete_with_response_1
 
@@ -42,7 +42,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Benefits of Quitting tool' do
-    smoking_cessation_tool.open_benefits_tool
+    smoking_cessation_tool.open_tool('BEFITS OF QUITTING')
 
     complete_with_response_2
 
@@ -50,7 +50,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Scheduling Your Quit Day tool' do
-    smoking_cessation_tool.open_scheduling_tool
+    smoking_cessation_tool.open_tool('SHEDULING YOUR QUIT DAY')
 
     complete_with_response_3
 
@@ -58,7 +58,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Concerns About Quitting' do
-    smoking_cessation_tool.open_concerns_tool
+    smoking_cessation_tool.open_tool('CONCERNS ABOUT QUITTING')
 
     complete_with_response_4
 
@@ -66,7 +66,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Manging Challenging Times tool' do
-    smoking_cessation_tool.open_risky_times_tool
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
 
     complete_with_response_1
 
@@ -74,7 +74,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Enlisting Your Social Supports tool' do
-    smoking_cessation_tool.open_social_support_tool
+    smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
 
     complete_with_response_2
 
@@ -87,6 +87,8 @@ def complete_with_response_1
   session_one.assert_on_session1_1
   answer_question_with(1)
   session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
+  session.move_to_next_slide
   session_one.assert_on_session1_3
   session.move_to_next_slide
   session.finish
@@ -97,6 +99,8 @@ def complete_with_response_2
   session.start
   session_one.assert_on_session1_1
   answer_question_with(2)
+  session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session_one.assert_on_session1_3
   session.move_to_next_slide
@@ -109,6 +113,8 @@ def complete_with_response_3
   session_one.assert_on_session1_1
   answer_question_with(3)
   session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
+  session.move_to_next_slide
   session.finish
   settings_page.save
 end
@@ -117,6 +123,8 @@ def complete_with_response_4
   session.start
   session_one.assert_on_session1_1
   answer_question_with(4)
+  session.move_to_next_slide
+  session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session_one.assert_on_session1_2
   session.move_to_next_slide

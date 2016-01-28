@@ -11,9 +11,9 @@ class QuitReason < Struct.new(:reason)
   end
 
   def visible?
-    within('.well.modal-well') do
+    within('.modal-well') do
       find('.cessation-reason-row', text: reason)
-      find '.glyphicon.glyphicon-remove.glyphicon-sm'
+      find '.glyphicon-remove'
     end
   end
 
@@ -24,10 +24,10 @@ class QuitReason < Struct.new(:reason)
   end
 
   def remove
-    first('.glyphicon.glyphicon-remove.glyphicon-sm').click
+    first('.glyphicon-remove').click
   end
 
   def has_two_quit_reasons_present?
-    has_css?('.glyphicon.glyphicon-remove.glyphicon-sm', count: 2)
+    has_css?('.glyphicon-remove', count: 2)
   end
 end

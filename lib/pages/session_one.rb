@@ -28,8 +28,6 @@ class SessionOne
     has_css?('input', text: num)
   end
 
-  def 
-
   def assert_on_session1_2
     find('h3', text: 'That\'s great!')
   end

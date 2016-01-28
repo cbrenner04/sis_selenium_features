@@ -5,7 +5,7 @@ class CigaretteLog
   include Capybara::DSL
 
   def open
-    find('.wide.btn.btn-default', text: 'CIGARETTE LOG').click
+    find('.btn-default', text: 'CIGARETTE LOG').click
   end
 
   def set_reason

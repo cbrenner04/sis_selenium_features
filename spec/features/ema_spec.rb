@@ -73,7 +73,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
       ema.choose_not_public
       ema.choose_alone
 
-      expect(page).to have_content 'Are you currently in the company of a child'
+      expect(page).to have_content 'In the last 15 minutes, have you seen any'
     end
 
     describe 'responds they are in a non-public place with others' do

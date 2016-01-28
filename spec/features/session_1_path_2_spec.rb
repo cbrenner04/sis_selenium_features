@@ -17,6 +17,7 @@ require 'support/session_1_helper'
 describe 'Participant loads app for the first time', type: :feature do
   before do
     visit 'localhost:8000'
+    session.start
   end
 
   after do
@@ -25,7 +26,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds question 1 with 3, responds to \'session1_5\' with 1' do
     it 'responds to \'session1_19b\' with 1' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -41,7 +41,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 1' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -69,7 +68,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -98,7 +96,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -114,7 +111,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 3'do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -130,7 +126,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 4' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -146,7 +141,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 5' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -162,7 +156,6 @@ describe 'Participant loads app for the first time', type: :feature do
     end
 
     it 'responds to \'session1_19b\' with 1, \'social_support\' with 6' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -184,7 +177,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'session1_19b\' with 1, \'social_support\' with 1' do
       it 'responds to \'session1_social6\' with 2' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -209,7 +201,6 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social6\' with 1' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -223,7 +214,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
       it 'responds to \'session1_social6\' with 1, \'session1_schedule\' ' \
          'with 0' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -245,7 +235,6 @@ describe 'Participant loads app for the first time', type: :feature do
       describe 'responds to \'session1_social6\' with 1, ' \
                '\'session1_schedule\' with 1' do
         it 'responds to \'quitday_scheduled\' with 1' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -269,7 +258,6 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'quitday_scheduled\' with 0' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -292,7 +280,6 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'difficult_1b\' with 1' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -326,7 +313,6 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to difficult_1b with 2' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -364,7 +350,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'session1_19b\' with 1, \'social_support\' with 7' do
       it 'sees correct feedback' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -384,7 +369,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 3' do
     it 'goes through the correct path' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -424,7 +408,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 5' do
     it 'sees correct feedback' do
-      session.start
       move_to_quit_reason
       modal.open
 
@@ -445,7 +428,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'social_support1\' with 1' do
       it 'responds to \'session1_social6\' with 1' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -485,7 +467,6 @@ describe 'Participant loads app for the first time', type: :feature do
       end
 
       it 'responds to \'session1_social6\' with 0' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -524,7 +505,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
     describe 'responds to \'social_support1\' with 7' do
       it 'responds to \'session1_social7\' with 1' do
-        session.start
         move_to_quit_reason
         modal.open
 
@@ -553,7 +533,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
       describe 'responds to \'session1_social7\' with 2' do
         it 'responds to \'session1_social8\' with response 1' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -578,7 +557,6 @@ describe 'Participant loads app for the first time', type: :feature do
         end
 
         it 'responds to \'session1_social8\' with response 2' do
-          session.start
           move_to_quit_reason
           modal.open
 
@@ -607,7 +585,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
   describe 'responds to question 1 with 3, responds to \'session1_5\' with 6' do
     it 'goes through the correct path' do
-      session.start
       move_to_quit_reason
       modal.open
 

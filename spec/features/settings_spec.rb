@@ -188,11 +188,23 @@ describe 'Participant opens app', type: :feature do
     it 'removes a risky time' do
       settings_page.open_risky_times
 
-      expect(risky_times).to have_test_risky_time_present
+      expect(risky_times).to have_risky_time_present('Test Risky Time')
 
       risky_times.remove
 
-      expect(risky_times).to_not have_test_risky_time_present
+      expect(risky_times).to_not have_risky_time_present('Test Risky Time')
+    end
+
+    it 'edits a risky time' do
+      settings_page.open_risky_times
+
+      expect(risky_times).to_not have_risky_time_present('do something kind')
+
+      risky_times.open_edit_time
+      risky_times.set_new_strategy
+      risky_times.save_edited_time
+
+      expect(risky_times).to have_risky_time_present('do something kind')
     end
 
     it 'adds a social support' do

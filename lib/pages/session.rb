@@ -3,8 +3,9 @@ class Session
   include Capybara::DSL
 
   def start
+    sleep(1)
     find('p', text: 'Ready to begin?')
-    find('.btn.btn-primary', text: 'START NOW').click
+    find('.btn-primary', text: 'START NOW').click
   end
 
   def move_to_next_slide
@@ -12,7 +13,7 @@ class Session
   end
 
   def finish
-    find('.btn.btn-primary', text: 'GO HOME').click
+    find('.btn-primary', text: 'GO HOME').click
   end
 
   def set_notes
@@ -20,6 +21,6 @@ class Session
   end
 
   def open
-    find('.btn.btn-default', text: 'SMOKING CESSATION SESSIONS').click
+    find('.btn-default', text: 'SMOKING CESSATION SESSIONS').click
   end
 end

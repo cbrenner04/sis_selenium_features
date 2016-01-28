@@ -37,16 +37,28 @@ describe 'Participant navigates to session 2', type: :feature do
   it 'sees start page' do
     expect(page).to have_content 'START NOW'
   end
+end
+
+describe 'Participant navigates to session 2', type: :feature do
+  before do
+    visit 'localhost:8000'
+    insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
+    page.evaluate_script('window.location.reload()')
+    session.open
+    session.start
+  end
+
+  after do
+    page.execute_script('localStorage.clear()')
+  end
 
   it 'is unable to move past \'session2_smokingstatus\' without responding' do
-    session.start
     session_two.assert_on_session2_smokingstatus
 
     expect(continue).to be_disabled
   end
 
   it 'responds to \'session2_smokingstatus\' with response 2' do
-    session.start
     session_two.assert_on_session2_smokingstatus
     answer_question_with(2)
     session.move_to_next_slide
@@ -55,7 +67,6 @@ describe 'Participant navigates to session 2', type: :feature do
   end
 
   it 'responds to \'session2_smokingstatus\' with response 4' do
-    session.start
     session_two.assert_on_session2_smokingstatus
     answer_question_with(4)
     session.move_to_next_slide
@@ -66,7 +77,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
   describe 'responds to \'session2_smokingstatus\' with response 1' do
     it 'is unable to move past \'got_time\' without responding' do
-      session.start
       move_to_got_time
       session_two.assert_on_got_time
 
@@ -74,7 +84,6 @@ describe 'Participant navigates to session 2', type: :feature do
     end
 
     it 'responds to \'got_time\' with response 2' do
-      session.start
       move_to_got_time
       session_two.assert_on_got_time
       answer_question_with(2)
@@ -86,14 +95,12 @@ describe 'Participant navigates to session 2', type: :feature do
 
       # Now assert this finishes the session
       session.finish
-      modal.save
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end
 
     describe 'responds to \'got_time\' with response 1' do
       it 'is unable to move past \'session2_strategies2\' without responding' do
-        session.start
         move_to_got_time
         move_from_got_time_to_session2_strategies2
 
@@ -101,7 +108,6 @@ describe 'Participant navigates to session 2', type: :feature do
       end
 
       it 'responds to \'session2_strategies2\' with response 2' do
-        session.start
         move_to_got_time
         move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
@@ -120,7 +126,6 @@ describe 'Participant navigates to session 2', type: :feature do
       end
 
       it 'responds to \'session2_strategies2\' with response 3' do
-        session.start
         move_to_got_time
         move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
@@ -132,7 +137,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
       describe 'responds to \'session2_strategies2\' with response 1' do
         it 'sees social supports listed in \'session2_social_support_1\'' do
-          session.start
           move_to_got_time
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -146,7 +150,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
         it 'is unable to move past \'session2_social_support_1\' without ' \
            'responding' do
-          session.start
           move_to_got_time
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -160,7 +163,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
         describe 'responds to \'session2_social_support_1\' with response 1' do
           it 'cannot move past \'session2_traps\' without responding' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -170,7 +172,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 1' do
             it 'cannot move past \'session2_traps1a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -182,7 +183,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps1a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -203,7 +203,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps1a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -225,7 +224,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 2' do
             it 'cannot move past \'session2_traps2a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -237,7 +235,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps2a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -258,7 +255,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps2a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -280,7 +276,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 3' do
             it 'cannot move past \'session2_traps3a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -292,7 +287,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps3a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -314,7 +308,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps3a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -337,7 +330,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 4' do
             it 'cannot move past \'session2_traps4a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -349,7 +341,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps4a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -370,7 +361,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps4a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -392,7 +382,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 5' do
             it 'cannot move past \'session2_traps5a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -404,7 +393,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps5a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -425,7 +413,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps5a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -447,7 +434,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 6' do
             it 'cannot move past \'session2_traps6a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -459,7 +445,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps6a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -481,7 +466,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps6a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -504,7 +488,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 7' do
             it 'cannot move past \'session2_traps7a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -516,7 +499,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps7a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -537,7 +519,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps7a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -559,7 +540,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 8' do
             it 'cannot move past \'session2_traps8a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -571,7 +551,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps8a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -593,7 +572,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps8a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -616,7 +594,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 9' do
             it 'cannot move past \'session2_traps9a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -628,7 +605,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps9a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -650,7 +626,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps9a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -673,7 +648,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
           describe 'responds to \'session2_traps\' with response 10' do
             it 'cannot move past \'session2_traps10a\' without responding' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -685,7 +659,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps10a\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -707,7 +680,6 @@ describe 'Participant navigates to session 2', type: :feature do
             end
 
             it 'responds to \'session2_traps10a\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -729,7 +701,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'cannot move past \'session2_checkingin4\' without responding' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -739,7 +710,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_checkingin4\' with response 2' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -752,7 +722,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_checkingin4\' with response 3' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -765,7 +734,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_checkingin4\' with response 4' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -778,7 +746,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_end\' with response 1' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -795,13 +762,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
             session.move_to_next_slide
             session.finish
-            settings_page.save
 
             expect(page).to have_content 'It\'s Your Quit day!'
           end
 
           it 'responds to \'session2_end\' with response 3' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -815,14 +780,12 @@ describe 'Participant navigates to session 2', type: :feature do
             answer_question_with(3)
             session.move_to_next_slide
             session.finish
-            settings_page.save
 
             expect(page).to have_content 'It\'s Your Quit day!'
           end
 
           describe 'responds to \'session2_end\' with response 2' do
             it 'responds to \'session2_benefits\' with response 1' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -836,13 +799,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 2' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -856,13 +817,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 3' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -876,13 +835,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 4' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -896,13 +853,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 5' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -916,13 +871,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 6' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -936,13 +889,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 7' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -957,13 +908,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 8' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -977,13 +926,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 9' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -997,13 +944,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 10' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1017,13 +962,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 11' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1037,13 +980,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 12' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1057,13 +998,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 13' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1077,13 +1016,11 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
             it 'responds to \'session2_benefits\' with response 14' do
-              session.start
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1097,7 +1034,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
               session.move_to_next_slide
               session.finish
-              settings_page.save
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -1106,7 +1042,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
         describe 'responds to \'session2_social_support_1\' with response 2' do
           it 'responds to \'session2_social3b\' with response 1' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1129,7 +1064,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_social3b\' with response 2' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1153,7 +1087,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
         describe 'responds to \'session2_social_support_1\' with response 3' do
           it 'responds to \'session2_social3c\' with response 1' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1175,7 +1108,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_social3c\' with response 2' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1198,7 +1130,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
         describe 'responds to \'session2_social_support_1\' with response 4' do
           it 'responds to \'session2_social3d\' with response 1' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1221,7 +1152,6 @@ describe 'Participant navigates to session 2', type: :feature do
           end
 
           it 'responds to \'session2_social3d\' with response 2' do
-            session.start
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1250,7 +1180,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
   describe 'responds to \'session2_smokingstatus\' with response 3' do
     it 'responds to \'session2_reschedulingday\' with response 2' do
-      session.start
       session_two.assert_on_session2_smokingstatus
       answer_question_with(3)
       session.move_to_next_slide
@@ -1263,7 +1192,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
     describe 'responds to session2_reschedulingday with response 1' do
       it 'responds to \'not_quit\' with response 1' do
-        session.start
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1281,7 +1209,6 @@ describe 'Participant navigates to session 2', type: :feature do
       end
 
       it 'responds to \'not_quit\' with response 2' do
-        session.start
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1299,7 +1226,6 @@ describe 'Participant navigates to session 2', type: :feature do
       end
 
       it 'responds to \'not_quit\' with response 3' do
-        session.start
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1313,7 +1239,6 @@ describe 'Participant navigates to session 2', type: :feature do
         answer_question_with(3)
         session.move_to_next_slide
         session.finish
-        modal.save
 
         expect(page).to have_content 'It\'s Your Quit day!'
       end
@@ -1322,7 +1247,6 @@ describe 'Participant navigates to session 2', type: :feature do
 
   describe 'responds to \'session2_smokingstatus\' with response 5' do
     it 'responds to \'session2_notready2\' with response 1' do
-      session.start
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1336,7 +1260,6 @@ describe 'Participant navigates to session 2', type: :feature do
     end
 
     it 'responds to \'session2_notready2\' with response 2' do
-      session.start
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1350,7 +1273,6 @@ describe 'Participant navigates to session 2', type: :feature do
     end
 
     it 'responds to \'session2_notready2\' with response 3' do
-      session.start
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1365,13 +1287,11 @@ describe 'Participant navigates to session 2', type: :feature do
       session_two.assert_on_retry_later2
       session.move_to_next_slide
       session.finish
-      settings_page.save
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end
 
     it 'responds to \'session2_notready2\' with response 4' do
-      session.start
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1381,7 +1301,6 @@ describe 'Participant navigates to session 2', type: :feature do
       answer_question_with(4)
       session.move_to_next_slide
       session.finish
-      settings_page.save
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end

@@ -47,15 +47,15 @@ class Risky
 
   def visible?
     exp_time_hour = Time.now.strftime('%-l')
-    act_time_hour = find('.well.modal-well').text[0..4].gsub(/:\w+/, '')
+    act_time_hour = find('.modal-well').text[0..4].gsub(/:\w+/, '')
     subt_hour = act_time_hour.to_i - exp_time_hour.to_i
 
     exp_time_min = Time.now.strftime('%M')
-    act_time_min = find('.well.modal-well').text[0..4].gsub(/\w+:/, '')
+    act_time_min = find('.modal-well').text[0..4].gsub(/\w+:/, '')
     subt_min = act_time_min.to_i - exp_time_min.to_i
 
     if subt_hour.between?(0, 1) && subt_min.between?(0, 1)
-      find('.well.modal-well',
+      find('.modal-well',
            text: "#{act_time_hour.delete(' ')}:#{act_time_min.delete(' ')}")
     else
       expect(subt_hour).to be < 2,
@@ -65,25 +65,40 @@ class Risky
     end
 
     if @label.downcase == 'once'
-      find('.well.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
-                                     " My reason Strategy: #{@value}")
+      find('.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
+                                " My reason Strategy: #{@value}")
     else
-      find('.well.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
-                                     " My reason (occurs #{@label.downcase}) " \
-                                     "Strategy: #{@value}")
+      find('.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
+                                " My reason (occurs #{@label.downcase}) " \
+                                "Strategy: #{@value}")
     end
-    find '.glyphicon-remove.glyphicon-sm'
+    find '.glyphicon-remove'
   end
 
   def has_two_risky_times_present?
-    find('.glyphicon-remove.glyphicon-sm', count: 2)
+    has_css?('.glyphicon-remove', count: 2)
   end
 
-  def has_test_risky_time_present?
-    has_css?('.well.modal-well', text: 'Test Risky Time')
+  def has_risky_time_present?(time)
+    has_css?('.risky-time-view', text: time)
+  end
+
+  def open_edit_time
+    find("a[title = 'edit']").click
+  rescue Capybara::Ambiguous
+    page.all("a[title = 'edit']")[1].click
+  end
+
+  def set_new_strategy
+    page.all('select')[1].click
+    page.all("option[value = 'do something kind']")[1].click
+  end
+
+  def save_edited_time
+    page.all('.btn', text: 'OK')[1].click
   end
 
   def remove
-    first('.glyphicon.glyphicon-remove.glyphicon-sm').click
+    first('.glyphicon-remove').click
   end
 end

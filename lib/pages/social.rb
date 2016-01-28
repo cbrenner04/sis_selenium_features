@@ -10,31 +10,31 @@ class SocialSupport < Struct.new(:name)
   end
 
   def open
-    find('.btn.btn-info', text: 'YOUR SOCIAL SUPPORT').click
+    find('.btn-info', text: 'YOUR SOCIAL SUPPORT').click
   end
 
   def visible?
     well.find('.cessation-reason-row', text: "#{name}")
     well.find('.cessation-reason-row',
               text: 'He/she will offer encouragement along the way.')
-    well.find('.glyphicon-remove.glyphicon-sm')
+    well.find('.glyphicon-remove')
   end
 
   def has_two_supports_present?
-    well.has_css?('.glyphicon-remove.glyphicon-sm', count: 2)
+    well.has_css?('.glyphicon-remove', count: 2)
   end
 
   def remove
-    find('.glyphicon-remove.glyphicon-sm').click
+    find('.glyphicon-remove').click
   end
 
   def has_test_social_support_present?
-    has_css?('.well.modal-well', text: 'Test Smith')
+    has_css?('.modal-well', text: 'Test Smith')
   end
 
   private
 
   def well
-    find('.well.modal-well')
+    find('.modal-well')
   end
 end

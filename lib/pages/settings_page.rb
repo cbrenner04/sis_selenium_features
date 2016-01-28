@@ -21,7 +21,7 @@ class SettingsPage
   end
 
   def open_risky_times
-    find('.btn.btn-info', text: 'YOUR RISKY TIMES').click
+    find('.btn-info', text: 'YOUR RISKY TIMES').click
   end
 
   def has_cessation_date_selector_present?

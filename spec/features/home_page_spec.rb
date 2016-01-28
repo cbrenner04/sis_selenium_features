@@ -114,7 +114,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows one complete, two available good things exercises' do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
+    happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     modal.save
 
@@ -137,7 +137,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows two complete, one available good things exercises' do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
+    happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     happiness_exercises.answer_question_with(2, 'Second good thing')
     modal.save
@@ -161,10 +161,10 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows complete available good things exercises' do
     load('THREE GOOD THINGS')
-    happiness_exercises.open_three_good_things
+    happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
-    happiness_exercises.answer_question_with(2, 'Second good thing'
-    happiness_exercises.answer_question_with(3, 'Third good thing'
+    happiness_exercises.answer_question_with(2, 'Second good thing')
+    happiness_exercises.answer_question_with(3, 'Third good thing')
     modal.save
 
     expect(modal).to have_success_alert_present
@@ -198,7 +198,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows one complete, one available experiencing kindness exercises' do
     load('EXPERIENCING KINDNESS')
-    happiness_exercises.open_experiencing_kindness
+    happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
     modal.save
 
@@ -217,7 +217,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows complete experiencing kindness exercises' do
     load('EXPERIENCING KINDNESS')
-    happiness_exercises.open_experiencing_kindness
+    happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
     happiness_exercises.answer_question_with(2, 'Second kindness experience')
     modal.save
@@ -250,7 +250,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows one available, one complete savoring exercises' do
     load('SAVORING')
-    happiness_exercises.open_savoring
+    happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
     modal.save
 
@@ -269,7 +269,7 @@ describe 'Participant opens app', type: :feature do
 
   it 'shows complete savoring exercises' do
     load('SAVORING')
-    happiness_exercises.open_savoring
+    happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
     happiness_exercises.answer_question_with(2, 'Second savoring')
     modal.save

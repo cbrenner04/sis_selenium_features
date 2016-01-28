@@ -3,7 +3,7 @@ class UpdateSmokingStatus
   include Capybara::DSL
 
   def open
-    find('.wide.btn.btn-default.btn-sm', text: 'UPDATE YOUR STATUS').click
+    find('.btn-default', text: 'UPDATE YOUR STATUS').click
   end
 
   def select_preparing_for_quit
@@ -25,6 +25,6 @@ class UpdateSmokingStatus
   private
 
   def button
-    page.all('.btn.btn-lg.btn-primary.ng-binding')
+    page.all('.btn-primary')
   end
 end

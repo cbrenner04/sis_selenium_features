@@ -3,7 +3,7 @@ class RiskyTimesStrategy
   include Capybara::DSL
 
   def open
-    find('.btn.btn-primary', text: 'help me choose a strategy').click
+    find('.btn-primary', text: 'help me choose a strategy').click
   end
 
   def exit
@@ -15,7 +15,7 @@ class RiskyTimesStrategy
   end
 
   def open_negative_emotions_strategy
-    find('.btn.btn-primary', text: 'NEGATIVE EMOTIONS').click
+    find('.btn-primary', text: 'NEGATIVE EMOTIONS').click
   end
 
   def has_negative_strategy_present?
@@ -47,7 +47,7 @@ class RiskyTimesStrategy
   end
 
   def open_positive_emotions_strategy
-    find('.btn.btn-primary', text: 'POSITIVE EMOTIONS').click
+    find('.btn-primary', text: 'POSITIVE EMOTIONS').click
   end
 
   def has_positive_strategy_present?
@@ -70,7 +70,7 @@ class RiskyTimesStrategy
   end
 
   def open_social_situations_strategy
-    find('.btn.btn-primary', text: 'SOCIAL SITUATIONS').click
+    find('.btn-primary', text: 'SOCIAL SITUATIONS').click
   end
 
   def has_social_strategy_present?
@@ -105,7 +105,7 @@ class RiskyTimesStrategy
   end
 
   def open_drinking_alcohol_strategy
-    find('.btn.btn-primary', text: 'DRINKING ALCOHOL').click
+    find('.btn-primary', text: 'DRINKING ALCOHOL').click
   end
 
   def has_alcohol_strategy_present?
@@ -133,7 +133,7 @@ class RiskyTimesStrategy
   end
 
   def open_habitual_smoking_strategy
-    find('.btn.btn-primary', text: 'HABITUAL SMOKING').click
+    find('.btn-primary', text: 'HABITUAL SMOKING').click
   end
 
   def has_habitual_smoking_strategy_present?
@@ -154,7 +154,7 @@ class RiskyTimesStrategy
   end
 
   def open_hands_strategy
-    find('.btn.btn-primary',
+    find('.btn-primary',
          text: 'WANTING SOMETHING TO DO WITH YOUR HANDS').click
   end
 
