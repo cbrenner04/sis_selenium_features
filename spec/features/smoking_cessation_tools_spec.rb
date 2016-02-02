@@ -42,7 +42,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Benefits of Quitting tool' do
-    smoking_cessation_tool.open_tool('BEFITS OF QUITTING')
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
 
     complete_with_response_2
 
@@ -50,7 +50,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
   end
 
   it 'completes Scheduling Your Quit Day tool' do
-    smoking_cessation_tool.open_tool('SHEDULING YOUR QUIT DAY')
+    smoking_cessation_tool.open_tool('SCHEDULING YOUR QUIT DAY')
 
     complete_with_response_3
 
@@ -92,7 +92,6 @@ def complete_with_response_1
   session_one.assert_on_session1_3
   session.move_to_next_slide
   session.finish
-  settings_page.save
 end
 
 def complete_with_response_2
@@ -105,7 +104,6 @@ def complete_with_response_2
   session_one.assert_on_session1_3
   session.move_to_next_slide
   session.finish
-  settings_page.save
 end
 
 def complete_with_response_3
@@ -116,7 +114,6 @@ def complete_with_response_3
   session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session.finish
-  settings_page.save
 end
 
 def complete_with_response_4
@@ -129,5 +126,4 @@ def complete_with_response_4
   session_one.assert_on_session1_2
   session.move_to_next_slide
   session.finish
-  settings_page.save
 end
