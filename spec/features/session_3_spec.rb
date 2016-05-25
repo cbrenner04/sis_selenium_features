@@ -32,24 +32,6 @@ describe 'Participant navigates to session 3', type: :feature do
     page.execute_script('localStorage.clear()')
   end
 
-  it 'sees start page' do
-    expect(page).to have_content 'START NOW'
-  end
-end
-
-describe 'Participant navigates to session 3', type: :feature do
-  before do
-    visit 'localhost:8000'
-    insert_all(CessationDate::DATE_3, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
-    session.open
-    session.start
-  end
-
-  after do
-    page.execute_script('localStorage.clear()')
-  end
-
   it 'is unable to move past \'session3_smokingstatus\' without responding' do
     session_three.assert_on_session3_smokingstatus
 
@@ -996,7 +978,6 @@ describe 'Participant navigates to session 3', type: :feature do
                                        'o being a non-smoker!'
 
                     session.move_to_next_slide
-                    session.finish
 
                     expect(page).to have_content '7 days since you quit!'
                   end
@@ -1191,7 +1172,6 @@ describe 'Participant navigates to session 3', type: :feature do
               session.move_to_next_slide
               session_three.assert_on_session3_ending
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -1237,7 +1217,6 @@ describe 'Participant navigates to session 3', type: :feature do
       session.move_to_next_slide
       session_three.assert_on_session3_ending
       session.move_to_next_slide
-      session.finish
 
       expect(page).to have_content '7 days since you quit!'
     end

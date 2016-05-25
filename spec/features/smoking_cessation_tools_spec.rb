@@ -83,7 +83,6 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
 end
 
 def complete_with_response_1
-  session.start
   session_one.assert_on_session1_1
   answer_question_with(1)
   session.move_to_next_slide
@@ -95,7 +94,6 @@ def complete_with_response_1
 end
 
 def complete_with_response_2
-  session.start
   session_one.assert_on_session1_1
   answer_question_with(2)
   session.move_to_next_slide
@@ -107,7 +105,6 @@ def complete_with_response_2
 end
 
 def complete_with_response_3
-  session.start
   session_one.assert_on_session1_1
   answer_question_with(3)
   session.move_to_next_slide
@@ -117,7 +114,6 @@ def complete_with_response_3
 end
 
 def complete_with_response_4
-  session.start
   session_one.assert_on_session1_1
   answer_question_with(4)
   session.move_to_next_slide

@@ -3,7 +3,7 @@ class SmokingCessationTool
   include Capybara::DSL
 
   def open
-    find('.btn-default', text: 'SMOKING CESSATION TOOLS').click
+    find('.btn', text: 'SMOKING CESSATION TOOLS').click
   end
 
   def open_tool(tool)

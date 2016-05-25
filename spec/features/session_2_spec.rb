@@ -34,24 +34,6 @@ describe 'Participant navigates to session 2', type: :feature do
     page.execute_script('localStorage.clear()')
   end
 
-  it 'sees start page' do
-    expect(page).to have_content 'START NOW'
-  end
-end
-
-describe 'Participant navigates to session 2', type: :feature do
-  before do
-    visit 'localhost:8000'
-    insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
-    session.open
-    session.start
-  end
-
-  after do
-    page.execute_script('localStorage.clear()')
-  end
-
   it 'is unable to move past \'session2_smokingstatus\' without responding' do
     session_two.assert_on_session2_smokingstatus
 
@@ -92,9 +74,6 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'No problem.'
 
       session.move_to_next_slide
-
-      # Now assert this finishes the session
-      session.finish
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end
@@ -761,7 +740,6 @@ describe 'Participant navigates to session 2', type: :feature do
             enter_quit_reason
 
             session.move_to_next_slide
-            session.finish
 
             expect(page).to have_content 'It\'s Your Quit day!'
           end
@@ -779,7 +757,6 @@ describe 'Participant navigates to session 2', type: :feature do
             session_two.assert_on_session2_end
             answer_question_with(3)
             session.move_to_next_slide
-            session.finish
 
             expect(page).to have_content 'It\'s Your Quit day!'
           end
@@ -798,7 +775,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Healthy Changes Over Time'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -816,7 +792,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Feel Better'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -834,7 +809,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Look Better'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -852,7 +826,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Smell Better'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -870,7 +843,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Reduce Your Risk of Heart Disease'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -888,7 +860,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Reduce Your Risk of Cancer'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -907,7 +878,6 @@ describe 'Participant navigates to session 2', type: :feature do
                 .to have_content 'Protect Your Family - including your pets!'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -925,7 +895,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Starting a Family'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -943,7 +912,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Save Money'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -961,7 +929,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Be Hassle-Free'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -979,7 +946,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Be More in Control'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -997,7 +963,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Be Guilt-free'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -1015,7 +980,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Protect the Environment'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -1033,7 +997,6 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'Say "no!" to Big Tobacco'
 
               session.move_to_next_slide
-              session.finish
 
               expect(page).to have_content 'It\'s Your Quit day!'
             end
@@ -1238,7 +1201,6 @@ describe 'Participant navigates to session 2', type: :feature do
         session_two.assert_on_not_quit
         answer_question_with(3)
         session.move_to_next_slide
-        session.finish
 
         expect(page).to have_content 'It\'s Your Quit day!'
       end
@@ -1286,7 +1248,6 @@ describe 'Participant navigates to session 2', type: :feature do
       session.move_to_next_slide
       session_two.assert_on_retry_later2
       session.move_to_next_slide
-      session.finish
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end
@@ -1300,7 +1261,6 @@ describe 'Participant navigates to session 2', type: :feature do
       session_two.assert_on_session2_notready2
       answer_question_with(4)
       session.move_to_next_slide
-      session.finish
 
       expect(page).to have_content 'It\'s Your Quit day!'
     end

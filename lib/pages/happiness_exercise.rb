@@ -19,7 +19,7 @@ class HappinessExercise
   end
 
   def pending?
-    find('.label-warning', text: 'pending')
+    find('.label-warning', text: 'still due today')
   end
 
   def completed?

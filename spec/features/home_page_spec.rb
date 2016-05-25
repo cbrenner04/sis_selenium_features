@@ -29,7 +29,7 @@ describe 'Participant opens app', type: :feature do
       visit 'localhost:8000'
       insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
       execute_script('window.location.reload()')
-      break if has_css?('.wide.btn.btn-default', text: exercise)
+      break if has_css?('.btn', text: exercise)
       execute_script('localStorage.clear()')
     end
   end
@@ -98,7 +98,7 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows available good things exercises' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
     within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
     end
@@ -113,7 +113,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows one complete, two available good things exercises' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     modal.save
@@ -136,7 +137,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows two complete, one available good things exercises' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     happiness_exercises.answer_question_with(2, 'Second good thing')
@@ -160,7 +162,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows complete available good things exercises' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     happiness_exercises.answer_question_with(2, 'Second good thing')
@@ -185,7 +188,7 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows available experiencing kindness exercises' do
-    load('EXPERIENCING KINDNESS')
+    load('Experiencing Kindness')
 
     within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
@@ -197,7 +200,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows one complete, one available experiencing kindness exercises' do
-    load('EXPERIENCING KINDNESS')
+    load('Experiencing Kindness')
+    happiness_exercises.open('Experiencing Kindness')
     happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
     modal.save
@@ -216,7 +220,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows complete experiencing kindness exercises' do
-    load('EXPERIENCING KINDNESS')
+    load('Experiencing Kindness')
+    happiness_exercises.open('Experiencing Kindness')
     happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
     happiness_exercises.answer_question_with(2, 'Second kindness experience')
@@ -236,7 +241,7 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows available savoring exercises' do
-    load('SAVORING')
+    load('Savoring')
     page.evaluate_script('window.location.reload()')
 
     within happiness_exercises.row(1) do
@@ -249,7 +254,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows one available, one complete savoring exercises' do
-    load('SAVORING')
+    load('Savoring')
+    happiness_exercises.open('Savoring')
     happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
     modal.save
@@ -268,7 +274,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'shows complete savoring exercises' do
-    load('SAVORING')
+    load('Savoring')
+    happiness_exercises.open('Savoring')
     happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
     happiness_exercises.answer_question_with(2, 'Second savoring')

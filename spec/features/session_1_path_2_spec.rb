@@ -17,7 +17,6 @@ require 'support/session_1_helper'
 describe 'Participant loads app for the first time', type: :feature do
   before do
     visit 'localhost:8000'
-    session.start
   end
 
   after do
@@ -62,7 +61,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
       # assert this ends session
       session.move_to_next_slide
-      session.finish
 
       expect(page).to have_css('#smokingStatus')
     end
@@ -90,7 +88,6 @@ describe 'Participant loads app for the first time', type: :feature do
 
       # assert this ends session
       session.move_to_next_slide
-      session.finish
 
       expect(page).to have_css('#smokingStatus')
     end
@@ -307,7 +304,6 @@ describe 'Participant loads app for the first time', type: :feature do
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
           session.move_to_next_slide
-          session.finish
 
           expect(page).to have_css('#smokingStatus')
         end
@@ -341,7 +337,6 @@ describe 'Participant loads app for the first time', type: :feature do
           session_one.assert_on_session1_social6
           cessation_date.assert_on_ending2
           session.move_to_next_slide
-          session.finish
 
           expect(page).to have_css('#smokingStatus')
         end
