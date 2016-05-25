@@ -49,7 +49,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it "completes 'Three Good Things'" do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
     happiness_exercises.answer_question_with(2, 'Second good thing')
@@ -60,7 +61,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it "completes 'Experiencing Kindness'" do
-    load('EXPERIENCING KINDNESS')
+    load('Experiencing Kindness')
+    happiness_exercises.open('Experiencing Kindness')
     happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
     happiness_exercises.answer_question_with(2, 'Second kindness experience')
@@ -70,7 +72,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it "completes 'Savoring'" do
-    load('SAVORING')
+    load('Savoring')
+    happiness_exercises.open('Savoring')
     happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
     happiness_exercises.answer_question_with(2, 'Second savoring')
@@ -80,7 +83,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'uses help menus' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     examples.open
 
@@ -100,7 +104,8 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'exits happiness exercise without saving' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     modal.exit
 
@@ -108,10 +113,10 @@ describe 'Participant opens app', type: :feature do
   end
 
   it 'sees previous exercise responses' do
-    load('THREE GOOD THINGS')
+    load('Three Good Things')
     insert(Exercises::KEY, Exercises::ALL)
     insert(ExerciseAnswers::KEY, ExerciseAnswers::ALL)
-    happiness_exercises.open('THREE GOOD THINGS')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open_review
 
     expect(happiness_exercises).to have_previous_responses

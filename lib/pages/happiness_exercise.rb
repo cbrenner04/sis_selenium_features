@@ -27,7 +27,7 @@ class HappinessExercise
   end
 
   def open_review
-    find('.btn', text: 'Review my previous exercises').click
+    find('.btn', text: 'YOUR PAST ENTRIES').click
   end
 
   def has_previous_responses?

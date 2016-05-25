@@ -28,9 +28,9 @@ describe 'Participant opens app', type: :feature do
     loop do
       visit 'localhost:8000'
       insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-      page.execute_script('window.location.reload()')
-      break if page.has_css?('.wide.btn.btn-default', text: exercise)
-      page.execute_script('localStorage.clear()')
+      execute_script('window.location.reload()')
+      break if has_css?('.wide.btn.btn-default', text: exercise)
+      execute_script('localStorage.clear()')
     end
   end
 
