@@ -24,9 +24,9 @@ def risky_times_strategies
   @risky_times_strategies ||= RiskyTimesStrategy.new
 end
 
-describe 'Participant opens app', type: :feature do
+feature 'Participant opens app', do
   context 'due to incomplete configuration' do
-    before do
+    background do
       visit 'localhost:8000'
       insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
       page.execute_script('window.location.reload()')
@@ -38,13 +38,13 @@ describe 'Participant opens app', type: :feature do
       page.execute_script('localStorage.clear()')
     end
 
-    it 'redirects to settings menu' do
+    scenario 'redirects to settings menu' do
       settings_page.assert_on_page
 
       expect(settings_page).to_not have_save_present
     end
 
-    it 'redirects to settings menu, updates cessation date' do
+    scenario 'redirects to settings menu, updates cessation date' do
       enter_cessation_date
 
       expect(settings_page).to have_cessation_date_selector_present
@@ -52,7 +52,7 @@ describe 'Participant opens app', type: :feature do
       expect(settings_page).to_not have_save_present
     end
 
-    it 'redirects to settings menu, adds reasons for stopping smoking' do
+    scenario 'redirects to settings menu, adds reasons for stopping smoking' do
       quit_reason.open
       enter_quit_reason
       settings_page.assert_on_page
@@ -60,7 +60,7 @@ describe 'Participant opens app', type: :feature do
       expect(settings_page).to_not have_save_present
     end
 
-    it 'redirects to settings menu, adds risky times' do
+    scenario 'redirects to settings menu, adds risky times' do
       settings_page.open_risky_times
       enter_risky_times
       settings_page.assert_on_page
@@ -68,7 +68,7 @@ describe 'Participant opens app', type: :feature do
       expect(settings_page).to have_save_present
     end
 
-    it 'redirects to settings menu, adds social supports' do
+    scenario 'redirects to settings menu, adds social supports' do
       social_supports.open
       enter_social_supports
       settings_page.assert_on_page
@@ -76,7 +76,7 @@ describe 'Participant opens app', type: :feature do
       expect(settings_page).to_not have_save_present
     end
 
-    it 'redirects to settings menu, completes configuration' do
+    scenario 'redirects to settings menu, completes configuration' do
       expect(settings_page).to_not have_save_present
 
       enter_cessation_date
@@ -111,20 +111,20 @@ describe 'Participant opens app', type: :feature do
       page.execute_script('localStorage.clear()')
     end
 
-    it 'returns home' do
+    scenario 'returns home' do
       settings_page.assert_on_page
       settings_page.save
 
       expect(page).to have_content '4 days until quit day'
     end
 
-    it 'updates cessation date' do
+    scenario 'updates cessation date' do
       enter_cessation_date
 
       expect(settings_page).to have_cessation_date_selector_present
     end
 
-    it 'adds a reason for stopping smoking' do
+    scenario 'adds a reason for stopping smoking' do
       quit_reason.open
       quit_reason.create
       settings_page.save_modal
@@ -132,7 +132,7 @@ describe 'Participant opens app', type: :feature do
       expect(quit_reason).to have_two_quit_reasons_present
     end
 
-    it 'removes a reason for stopping smoking' do
+    scenario 'removes a reason for stopping smoking' do
       quit_reason.open
 
       expect(quit_reason).to have_test_reason_present
@@ -142,7 +142,7 @@ describe 'Participant opens app', type: :feature do
       expect(quit_reason).to_not have_test_reason_present
     end
 
-    it 'sees content specific instructions in risky times modal' do
+    scenario 'sees content specific instructions in risky times modal' do
       settings_page.open_risky_times
       risky_times_strategies.open
       risky_times_strategies.open_negative_emotions_strategy
@@ -178,14 +178,14 @@ describe 'Participant opens app', type: :feature do
       risky_times_strategies.exit
     end
 
-    it 'adds a risky time' do
+    scenario 'adds a risky time' do
       settings_page.open_risky_times
       risky_times.create
 
       expect(risky_times).to have_two_risky_times_present
     end
 
-    it 'removes a risky time' do
+    scenario 'removes a risky time' do
       settings_page.open_risky_times
 
       expect(risky_times).to have_risky_time_present('Test Risky Time')
@@ -195,7 +195,7 @@ describe 'Participant opens app', type: :feature do
       expect(risky_times).to_not have_risky_time_present('Test Risky Time')
     end
 
-    it 'edits a risky time' do
+    scenario 'edits a risky time' do
       settings_page.open_risky_times
 
       expect(risky_times).to_not have_risky_time_present('do something kind')
@@ -207,7 +207,7 @@ describe 'Participant opens app', type: :feature do
       expect(risky_times).to have_risky_time_present('do something kind')
     end
 
-    it 'adds a social support' do
+    scenario 'adds a social support' do
       social_supports.open
       social_supports.create
       settings_page.save_modal
@@ -215,7 +215,7 @@ describe 'Participant opens app', type: :feature do
       expect(social_supports).to have_two_supports_present
     end
 
-    it 'removes a social support' do
+    scenario 'removes a social support' do
       social_supports.open
 
       expect(social_supports).to have_test_social_support_present

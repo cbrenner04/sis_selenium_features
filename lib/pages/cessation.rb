@@ -10,6 +10,18 @@ class Cessation
     find('.dw-mon', text: Date.today.strftime('%B')).click
   end
 
+  def pick_tomorrow
+    find('.dw-mon', text: Date.today.strftime('%B')).click
+  end
+
+  def click_set
+    find('.dwb-a', text: 'Set').click
+  end
+
+  def click_cancel
+    find('.dwb-a', text: 'Cancel').click
+  end
+
   def visible?
     find('strong', text: 'Cessation date scheduled for: ' \
                          "#{Date.today.strftime('%m/%d/%Y')}")

@@ -13,6 +13,7 @@ require 'pages/smoking_cessation_tool'
 require 'pages/session'
 require 'pages/session_one'
 require 'pages/settings_page'
+require 'pages/cessation'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -21,8 +22,12 @@ def smoking_cessation_tool
   @smoking_cessation_tool ||= SmokingCessationTool.new
 end
 
-describe 'Participant navigates to Smoking Cessation tools', type: :feature do
-  before do
+def cessation_date
+  @cessation_date ||= Cessation.new
+end
+
+feature 'Participant navigates to Smoking Cessation tools', do
+  background do
     visit 'localhost:8000'
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
     page.execute_script('window.location.reload()')
@@ -33,7 +38,29 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     page.execute_script('localStorage.clear()')
   end
 
-  it 'completes Reasons for Quitting tool' do
+  scenario 'and resets quit date' do
+    smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
+
+    expect(settings_page).to have_cessation_date_selector_present
+
+    cessation_date.pick_date
+    cessation_date.click_set
+
+    expect(page).to have_content '4 day until quit day!'
+  end
+
+  scenario 'and cancels reset quit date' do
+    smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
+
+    expect(settings_page).to have_cessation_date_selector_present
+
+    cessation_date.pick_date
+    cessation_date.click_cancel
+
+    expect(page).to have_content '4 days until quit day!'
+  end
+
+  scenario 'completes Reasons for Quitting tool' do
     smoking_cessation_tool.open_tool('YOUR REASONS FOR QUITTING')
 
     complete_with_response_1
@@ -41,7 +68,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  it 'completes Benefits of Quitting tool' do
+  scenario 'completes Benefits of Quitting tool' do
     smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
 
     complete_with_response_2
@@ -49,7 +76,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  it 'completes Scheduling Your Quit Day tool' do
+  scenario 'completes Scheduling Your Quit Day tool' do
     smoking_cessation_tool.open_tool('SCHEDULING YOUR QUIT DAY')
 
     complete_with_response_3
@@ -57,7 +84,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  it 'completes Concerns About Quitting' do
+  scenario 'completes Concerns About Quitting' do
     smoking_cessation_tool.open_tool('CONCERNS ABOUT QUITTING')
 
     complete_with_response_4
@@ -65,7 +92,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  it 'completes Manging Challenging Times tool' do
+  scenario 'completes Manging Challenging Times tool' do
     smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
 
     complete_with_response_1
@@ -73,7 +100,7 @@ describe 'Participant navigates to Smoking Cessation tools', type: :feature do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  it 'completes Enlisting Your Social Supports tool' do
+  scenario 'completes Enlisting Your Social Supports tool' do
     smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
 
     complete_with_response_2
