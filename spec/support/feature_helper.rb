@@ -25,6 +25,12 @@ def enter_quit_reason
   modal.exit
 end
 
+def remove_quit_reason
+  quit_reason.remove
+  modal.save
+  modal.exit
+end
+
 def enter_social_supports
   social_supports.create
   modal.save

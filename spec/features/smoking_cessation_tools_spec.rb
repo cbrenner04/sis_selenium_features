@@ -14,6 +14,7 @@ require 'pages/session'
 require 'pages/session_one'
 require 'pages/settings_page'
 require 'pages/cessation'
+require 'pages/quit_reason'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -60,17 +61,21 @@ feature 'Participant navigates to Smoking Cessation tools', do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  def method_name
-    
-  end
-
   scenario 'completes Reasons for Quitting tool' do
     smoking_cessation_tool.open_tool('YOUR REASONS FOR QUITTING')
-
-    complete_with_response_1
+    enter_quit_reason
 
     expect(page).to have_content '4 days until quit day!'
   end
+
+  scenario 'deletes an entry in Reasons for Quitting tool' do
+    smoking_cessation_tool.open_tool('YOUR REASONS FOR QUITTING')
+    remove_quit_reason
+
+    expect(page).to have_content '4 days until quit day!'
+  end
+
+  
 
   scenario 'completes Benefits of Quitting tool' do
     smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
