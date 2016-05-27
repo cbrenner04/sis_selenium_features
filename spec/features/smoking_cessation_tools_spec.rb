@@ -60,6 +60,10 @@ feature 'Participant navigates to Smoking Cessation tools', do
     expect(page).to have_content '4 days until quit day!'
   end
 
+  def method_name
+    
+  end
+
   scenario 'completes Reasons for Quitting tool' do
     smoking_cessation_tool.open_tool('YOUR REASONS FOR QUITTING')
 
