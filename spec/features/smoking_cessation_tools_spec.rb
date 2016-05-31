@@ -18,6 +18,8 @@ require 'pages/quit_reason'
 require 'pages/risky'
 require 'pages/modal'
 require 'pages/risky_times_strategies'
+require 'pages/continue'
+require 'pages/social'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -191,12 +193,178 @@ feature 'Participant navigates to Smoking Cessation tools' do
     smoking_cessation_tool.click_done
   end
 
-  scenario 'completes Benefits of Quitting tool' do
+  scenario 'is unable to move past \'session1_benefits\' without responding' do
     smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
 
-    complete_with_response_2
+    expect(continue).to be_disabled
 
-    expect(page).to have_content '4 days until quit day!'
+    continue.select_continue
+  end
+
+  scenario 'responds to \'session1_benefits\' with response 1' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(1)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Healthy Changes Over Time'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 2' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(2)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Feel Better'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 3' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(3)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Look Better'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 4' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(4)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Smell Better'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 5' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(5)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Reduce Your Risk of Heart Disease'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 6' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(6)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Reduce Your Risk of Cancer'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 7' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(7)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Protect Your Family - including your pets!'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 8' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(8)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Starting a Family'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 9' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(9)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Save Money'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 10' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(10)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Be Hassle-Free'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 11' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(11)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'More in Control'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 12' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(12)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Be Guilt-free'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 13' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(13)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Protect the Environment'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 14' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(14)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Say "no!" to Big Tobacco'
+
+    continue.select_continue
+  end
+
+  scenario 'responds to question \'session1_benefits\' with response 15' do
+    smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
+    session_one.assert_on_session1_benefits
+    answer_question_with(15)
+    session.move_to_next_slide
+
+    expect(page).to have_content 'Ready to Quit?'
+
+    continue.select_continue
   end
 
   scenario 'completes Scheduling Your Quit Day tool' do
@@ -214,46 +382,4 @@ feature 'Participant navigates to Smoking Cessation tools' do
 
     expect(page).to have_content '4 days until quit day!'
   end
-end
-
-def complete_with_response_1
-  session_one.assert_on_session1_1
-  answer_question_with(1)
-  session.move_to_next_slide
-  session_one.enter_number_of_cigs_smoked('10')
-  session.move_to_next_slide
-  session_one.assert_on_session1_3
-  session.move_to_next_slide
-  session.finish
-end
-
-def complete_with_response_2
-  session_one.assert_on_session1_1
-  answer_question_with(2)
-  session.move_to_next_slide
-  session_one.enter_number_of_cigs_smoked('10')
-  session.move_to_next_slide
-  session_one.assert_on_session1_3
-  session.move_to_next_slide
-  session.finish
-end
-
-def complete_with_response_3
-  session_one.assert_on_session1_1
-  answer_question_with(3)
-  session.move_to_next_slide
-  session_one.enter_number_of_cigs_smoked('10')
-  session.move_to_next_slide
-  session.finish
-end
-
-def complete_with_response_4
-  session_one.assert_on_session1_1
-  answer_question_with(4)
-  session.move_to_next_slide
-  session_one.enter_number_of_cigs_smoked('10')
-  session.move_to_next_slide
-  session_one.assert_on_session1_2
-  session.move_to_next_slide
-  session.finish
 end
