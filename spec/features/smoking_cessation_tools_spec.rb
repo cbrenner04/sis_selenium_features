@@ -15,6 +15,9 @@ require 'pages/session_one'
 require 'pages/settings_page'
 require 'pages/cessation'
 require 'pages/quit_reason'
+require 'pages/risky'
+require 'pages/modal'
+require 'pages/risky_times_strategies'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -27,7 +30,7 @@ def cessation_date
   @cessation_date ||= Cessation.new
 end
 
-feature 'Participant navigates to Smoking Cessation tools', do
+feature 'Participant navigates to Smoking Cessation tools' do
   background do
     visit 'localhost:8000'
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
@@ -75,7 +78,118 @@ feature 'Participant navigates to Smoking Cessation tools', do
     expect(page).to have_content '4 days until quit day!'
   end
 
-  
+  scenario 'completes Manging Challenging Times tool' do
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
+    enter_risky_times
+    settings_page.assert_on_page
+
+    expect(settings_page).to have_save_present
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'sees content specific instructions in Challenging Times modal' do
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
+    risky_times_strategies.open
+    risky_times_strategies.open_negative_emotions_strategy
+
+    expect(risky_times_strategies).to have_negative_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.open_positive_emotions_strategy
+
+    expect(risky_times_strategies).to have_positive_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.open_social_situations_strategy
+
+    expect(risky_times_strategies).to have_social_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.open_drinking_alcohol_strategy
+
+    expect(risky_times_strategies).to have_alcohol_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.open_habitual_smoking_strategy
+
+    expect(risky_times_strategies).to have_habitual_smoking_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.open_hands_strategy
+
+    expect(risky_times_strategies).to have_hands_strategy_present
+
+    risky_times_strategies.close_strategy_help
+    risky_times_strategies.exit
+  end
+
+  scenario 'adds a Challenging Time' do
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
+    risky_times.create
+
+    expect(risky_times).to have_two_risky_times_present
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'removes a Challenging Time' do
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
+
+    expect(risky_times).to have_risky_time_present('Test Risky Time')
+
+    risky_times.remove
+
+    expect(risky_times).to_not have_risky_time_present('Test Risky Time')
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'edits a Challenging Time' do
+    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
+
+    expect(risky_times).to_not have_risky_time_present('do something kind')
+
+    risky_times.open_edit_time
+    risky_times.set_new_strategy
+    risky_times.save_edited_time
+
+    expect(risky_times).to have_risky_time_present('do something kind')
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'completes Enlisting Your Social Supports tool' do
+    smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
+    enter_social_supports
+    settings_page.assert_on_page
+
+    expect(settings_page).to_not have_save_present
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'adds a social support' do
+    smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
+    social_supports.create
+    settings_page.save_modal
+
+    expect(social_supports).to have_two_supports_present
+
+    smoking_cessation_tool.click_done
+  end
+
+  scenario 'removes a social support' do
+    smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
+
+    expect(social_supports).to have_test_social_support_present
+
+    social_supports.remove
+
+    expect(social_supports).to_not have_test_social_support_present
+
+    smoking_cessation_tool.click_done
+  end
 
   scenario 'completes Benefits of Quitting tool' do
     smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
@@ -97,22 +211,6 @@ feature 'Participant navigates to Smoking Cessation tools', do
     smoking_cessation_tool.open_tool('CONCERNS ABOUT QUITTING')
 
     complete_with_response_4
-
-    expect(page).to have_content '4 days until quit day!'
-  end
-
-  scenario 'completes Manging Challenging Times tool' do
-    smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
-
-    complete_with_response_1
-
-    expect(page).to have_content '4 days until quit day!'
-  end
-
-  scenario 'completes Enlisting Your Social Supports tool' do
-    smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
-
-    complete_with_response_2
 
     expect(page).to have_content '4 days until quit day!'
   end

@@ -24,7 +24,7 @@ def risky_times_strategies
   @risky_times_strategies ||= RiskyTimesStrategy.new
 end
 
-feature 'Participant opens app', do
+feature 'Participant opens app' do
   context 'due to incomplete configuration' do
     background do
       visit 'localhost:8000'

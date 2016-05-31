@@ -9,4 +9,8 @@ class SmokingCessationTool
   def open_tool(tool)
     find('.btn', text: tool).click
   end
+
+  def click_done
+    find('#exit_button', text: 'Done').click
+  end
 end
