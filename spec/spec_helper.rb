@@ -23,6 +23,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = [:should, :expect]
   end
+  config.example_status_persistence_file_path = 'spec/examples.txt'
+  config.run_all_when_everything_filtered = true
   config.profile_examples = 10
 end
 
