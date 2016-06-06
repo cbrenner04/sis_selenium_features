@@ -21,18 +21,21 @@ end
 
 def enter_quit_reason
   quit_reason.create
+  scroll_down
   modal.save
   modal.exit
 end
 
 def remove_quit_reason
   quit_reason.remove
+  scroll_down
   modal.save
   modal.exit
 end
 
 def enter_social_supports
   social_supports.create
+  scroll_down
   modal.save
   modal.exit
 end
@@ -53,8 +56,13 @@ end
 
 def enter_risky_times
   risky_times.create
+  scroll_down
   modal.save
   modal.exit
+end
+
+def scroll_down
+  execute_script('window.scrollBy(0,1500)')
 end
 
 # instantiate common page objects

@@ -22,8 +22,8 @@ require 'pages/cessation'
 # require session_2_helper, this has the `move_from...to` methods
 require 'support/session_2_helper'
 
-describe 'Participant navigates to session 2', type: :feature do
-  before do
+feature 'Participant navigates to session 2' do
+  background do
     visit 'localhost:8000'
     insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
     page.evaluate_script('window.location.reload()')
@@ -34,13 +34,13 @@ describe 'Participant navigates to session 2', type: :feature do
     page.execute_script('localStorage.clear()')
   end
 
-  it 'is unable to move past \'session2_smokingstatus\' without responding' do
+  scenario 'is unable to move past \'session2_smokingstatus\' without responding' do
     session_two.assert_on_session2_smokingstatus
 
     expect(continue).to be_disabled
   end
 
-  it 'responds to \'session2_smokingstatus\' with response 2' do
+  scenario 'responds to \'session2_smokingstatus\' with response 2' do
     session_two.assert_on_session2_smokingstatus
     answer_question_with(2)
     session.move_to_next_slide
@@ -48,7 +48,7 @@ describe 'Participant navigates to session 2', type: :feature do
     expect(page).to have_content 'Slips can be discouraging...'
   end
 
-  it 'responds to \'session2_smokingstatus\' with response 4' do
+  scenario 'responds to \'session2_smokingstatus\' with response 4' do
     session_two.assert_on_session2_smokingstatus
     answer_question_with(4)
     session.move_to_next_slide
@@ -57,15 +57,15 @@ describe 'Participant navigates to session 2', type: :feature do
                                  'to try again...'
   end
 
-  describe 'responds to \'session2_smokingstatus\' with response 1' do
-    it 'is unable to move past \'got_time\' without responding' do
+  feature 'responds to \'session2_smokingstatus\' with response 1' do
+    scenario 'is unable to move past \'got_time\' without responding' do
       move_to_got_time
       session_two.assert_on_got_time
 
       expect(continue).to be_disabled
     end
 
-    it 'responds to \'got_time\' with response 2' do
+    scenario 'responds to \'got_time\' with response 2' do
       move_to_got_time
       session_two.assert_on_got_time
       answer_question_with(2)
@@ -78,15 +78,15 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'It\'s Your Quit day!'
     end
 
-    describe 'responds to \'got_time\' with response 1' do
-      it 'is unable to move past \'session2_strategies2\' without responding' do
+    feature 'responds to \'got_time\' with response 1' do
+      scenario 'is unable to move past \'session2_strategies2\' without responding' do
         move_to_got_time
         move_from_got_time_to_session2_strategies2
 
         expect(continue).to be_disabled
       end
 
-      it 'responds to \'session2_strategies2\' with response 2' do
+      scenario 'responds to \'session2_strategies2\' with response 2' do
         move_to_got_time
         move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
@@ -104,7 +104,7 @@ describe 'Participant navigates to session 2', type: :feature do
         expect(page).to have_content 'Checking in About Your Social Support'
       end
 
-      it 'responds to \'session2_strategies2\' with response 3' do
+      scenario 'responds to \'session2_strategies2\' with response 3' do
         move_to_got_time
         move_from_got_time_to_session2_strategies2
         session_two.assert_on_session2_strategies2
@@ -114,8 +114,8 @@ describe 'Participant navigates to session 2', type: :feature do
         expect(page).to have_content 'Update Your Strategies'
       end
 
-      describe 'responds to \'session2_strategies2\' with response 1' do
-        it 'sees social supports listed in \'session2_social_support_1\'' do
+      feature 'responds to \'session2_strategies2\' with response 1' do
+        scenario 'sees social supports listed in \'session2_social_support_1\'' do
           move_to_got_time
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -127,7 +127,7 @@ describe 'Participant navigates to session 2', type: :feature do
           expect(page).to have_content 'Test Smith'
         end
 
-        it 'is unable to move past \'session2_social_support_1\' without ' \
+        scenario 'is unable to move past \'session2_social_support_1\' without ' \
            'responding' do
           move_to_got_time
           move_from_got_time_to_session2_strategies2
@@ -140,8 +140,8 @@ describe 'Participant navigates to session 2', type: :feature do
           expect(continue).to be_disabled
         end
 
-        describe 'responds to \'session2_social_support_1\' with response 1' do
-          it 'cannot move past \'session2_traps\' without responding' do
+        feature 'responds to \'session2_social_support_1\' with response 1' do
+          scenario 'cannot move past \'session2_traps\' without responding' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -149,8 +149,8 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(continue).to be_disabled
           end
 
-          describe 'responds to \'session2_traps\' with response 1' do
-            it 'cannot move past \'session2_traps1a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 1' do
+            scenario 'cannot move past \'session2_traps1a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -161,7 +161,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps1a\' with response 1' do
+            scenario 'responds to \'session2_traps1a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -181,7 +181,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps1a\' with response 2' do
+            scenario 'responds to \'session2_traps1a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -201,8 +201,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 2' do
-            it 'cannot move past \'session2_traps2a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 2' do
+            scenario 'cannot move past \'session2_traps2a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -213,7 +213,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps2a\' with response 1' do
+            scenario 'responds to \'session2_traps2a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -233,7 +233,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps2a\' with response 2' do
+            scenario 'responds to \'session2_traps2a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -253,8 +253,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 3' do
-            it 'cannot move past \'session2_traps3a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 3' do
+            scenario 'cannot move past \'session2_traps3a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -265,7 +265,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps3a\' with response 1' do
+            scenario 'responds to \'session2_traps3a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -286,7 +286,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps3a\' with response 2' do
+            scenario 'responds to \'session2_traps3a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -307,8 +307,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 4' do
-            it 'cannot move past \'session2_traps4a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 4' do
+            scenario 'cannot move past \'session2_traps4a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -319,7 +319,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps4a\' with response 1' do
+            scenario 'responds to \'session2_traps4a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -339,7 +339,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps4a\' with response 2' do
+            scenario 'responds to \'session2_traps4a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -359,8 +359,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 5' do
-            it 'cannot move past \'session2_traps5a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 5' do
+            scenario 'cannot move past \'session2_traps5a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -371,7 +371,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps5a\' with response 1' do
+            scenario 'responds to \'session2_traps5a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -391,7 +391,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps5a\' with response 2' do
+            scenario 'responds to \'session2_traps5a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -411,8 +411,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 6' do
-            it 'cannot move past \'session2_traps6a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 6' do
+            scenario 'cannot move past \'session2_traps6a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -423,7 +423,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps6a\' with response 1' do
+            scenario 'responds to \'session2_traps6a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -444,7 +444,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps6a\' with response 2' do
+            scenario 'responds to \'session2_traps6a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -465,8 +465,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 7' do
-            it 'cannot move past \'session2_traps7a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 7' do
+            scenario 'cannot move past \'session2_traps7a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -477,7 +477,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps7a\' with response 1' do
+            scenario 'responds to \'session2_traps7a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -497,7 +497,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps7a\' with response 2' do
+            scenario 'responds to \'session2_traps7a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -517,8 +517,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 8' do
-            it 'cannot move past \'session2_traps8a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 8' do
+            scenario 'cannot move past \'session2_traps8a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -529,7 +529,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps8a\' with response 1' do
+            scenario 'responds to \'session2_traps8a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -550,7 +550,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps8a\' with response 2' do
+            scenario 'responds to \'session2_traps8a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -571,8 +571,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 9' do
-            it 'cannot move past \'session2_traps9a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 9' do
+            scenario 'cannot move past \'session2_traps9a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -583,7 +583,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps9a\' with response 1' do
+            scenario 'responds to \'session2_traps9a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -604,7 +604,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps9a\' with response 2' do
+            scenario 'responds to \'session2_traps9a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -625,8 +625,8 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          describe 'responds to \'session2_traps\' with response 10' do
-            it 'cannot move past \'session2_traps10a\' without responding' do
+          feature 'responds to \'session2_traps\' with response 10' do
+            scenario 'cannot move past \'session2_traps10a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -637,7 +637,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(continue).to be_disabled
             end
 
-            it 'responds to \'session2_traps10a\' with response 1' do
+            scenario 'responds to \'session2_traps10a\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -658,7 +658,7 @@ describe 'Participant navigates to session 2', type: :feature do
               session.set_notes
             end
 
-            it 'responds to \'session2_traps10a\' with response 2' do
+            scenario 'responds to \'session2_traps10a\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -679,7 +679,7 @@ describe 'Participant navigates to session 2', type: :feature do
             end
           end
 
-          it 'cannot move past \'session2_checkingin4\' without responding' do
+          scenario 'cannot move past \'session2_checkingin4\' without responding' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -688,7 +688,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(continue).to be_disabled
           end
 
-          it 'responds to \'session2_checkingin4\' with response 2' do
+          scenario 'responds to \'session2_checkingin4\' with response 2' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -700,7 +700,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Hang in there'
           end
 
-          it 'responds to \'session2_checkingin4\' with response 3' do
+          scenario 'responds to \'session2_checkingin4\' with response 3' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -712,7 +712,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Yes, you can!'
           end
 
-          it 'responds to \'session2_checkingin4\' with response 4' do
+          scenario 'responds to \'session2_checkingin4\' with response 4' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -724,7 +724,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Wonderful to hear that'
           end
 
-          it 'responds to \'session2_end\' with response 1' do
+          scenario 'responds to \'session2_end\' with response 1' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -744,7 +744,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'It\'s Your Quit day!'
           end
 
-          it 'responds to \'session2_end\' with response 3' do
+          scenario 'responds to \'session2_end\' with response 3' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
@@ -761,8 +761,8 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'It\'s Your Quit day!'
           end
 
-          describe 'responds to \'session2_end\' with response 2' do
-            it 'responds to \'session2_benefits\' with response 1' do
+          feature 'responds to \'session2_end\' with response 2' do
+            scenario 'responds to \'session2_benefits\' with response 1' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -779,7 +779,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 2' do
+            scenario 'responds to \'session2_benefits\' with response 2' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -796,7 +796,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 3' do
+            scenario 'responds to \'session2_benefits\' with response 3' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -813,7 +813,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 4' do
+            scenario 'responds to \'session2_benefits\' with response 4' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -830,7 +830,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 5' do
+            scenario 'responds to \'session2_benefits\' with response 5' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -847,7 +847,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 6' do
+            scenario 'responds to \'session2_benefits\' with response 6' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -864,7 +864,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 7' do
+            scenario 'responds to \'session2_benefits\' with response 7' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -882,7 +882,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 8' do
+            scenario 'responds to \'session2_benefits\' with response 8' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -899,7 +899,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 9' do
+            scenario 'responds to \'session2_benefits\' with response 9' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -916,7 +916,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 10' do
+            scenario 'responds to \'session2_benefits\' with response 10' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -933,7 +933,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 11' do
+            scenario 'responds to \'session2_benefits\' with response 11' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -950,7 +950,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 12' do
+            scenario 'responds to \'session2_benefits\' with response 12' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -967,7 +967,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 13' do
+            scenario 'responds to \'session2_benefits\' with response 13' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -984,7 +984,7 @@ describe 'Participant navigates to session 2', type: :feature do
               expect(page).to have_content 'It\'s Your Quit day!'
             end
 
-            it 'responds to \'session2_benefits\' with response 14' do
+            scenario 'responds to \'session2_benefits\' with response 14' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -1003,8 +1003,8 @@ describe 'Participant navigates to session 2', type: :feature do
           end
         end
 
-        describe 'responds to \'session2_social_support_1\' with response 2' do
-          it 'responds to \'session2_social3b\' with response 1' do
+        feature 'responds to \'session2_social_support_1\' with response 2' do
+          scenario 'responds to \'session2_social3b\' with response 1' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1026,7 +1026,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Sabotaging Thoughts'
           end
 
-          it 'responds to \'session2_social3b\' with response 2' do
+          scenario 'responds to \'session2_social3b\' with response 2' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1048,8 +1048,8 @@ describe 'Participant navigates to session 2', type: :feature do
           end
         end
 
-        describe 'responds to \'session2_social_support_1\' with response 3' do
-          it 'responds to \'session2_social3c\' with response 1' do
+        feature 'responds to \'session2_social_support_1\' with response 3' do
+          scenario 'responds to \'session2_social3c\' with response 1' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1070,7 +1070,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Sabotaging Thoughts'
           end
 
-          it 'responds to \'session2_social3c\' with response 2' do
+          scenario 'responds to \'session2_social3c\' with response 2' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1091,8 +1091,8 @@ describe 'Participant navigates to session 2', type: :feature do
           end
         end
 
-        describe 'responds to \'session2_social_support_1\' with response 4' do
-          it 'responds to \'session2_social3d\' with response 1' do
+        feature 'responds to \'session2_social_support_1\' with response 4' do
+          scenario 'responds to \'session2_social3d\' with response 1' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1114,7 +1114,7 @@ describe 'Participant navigates to session 2', type: :feature do
             expect(page).to have_content 'Sabotaging Thoughts'
           end
 
-          it 'responds to \'session2_social3d\' with response 2' do
+          scenario 'responds to \'session2_social3d\' with response 2' do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             session_two.assert_on_session2_strategies2
@@ -1141,8 +1141,8 @@ describe 'Participant navigates to session 2', type: :feature do
     end
   end
 
-  describe 'responds to \'session2_smokingstatus\' with response 3' do
-    it 'responds to \'session2_reschedulingday\' with response 2' do
+  feature 'responds to \'session2_smokingstatus\' with response 3' do
+    scenario 'responds to \'session2_reschedulingday\' with response 2' do
       session_two.assert_on_session2_smokingstatus
       answer_question_with(3)
       session.move_to_next_slide
@@ -1153,8 +1153,8 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'What do you want to do now?'
     end
 
-    describe 'responds to session2_reschedulingday with response 1' do
-      it 'responds to \'not_quit\' with response 1' do
+    feature 'responds to session2_reschedulingday with response 1' do
+      scenario 'responds to \'not_quit\' with response 1' do
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1171,7 +1171,7 @@ describe 'Participant navigates to session 2', type: :feature do
         expect(page).to have_content 'START NOW'
       end
 
-      it 'responds to \'not_quit\' with response 2' do
+      scenario 'responds to \'not_quit\' with response 2' do
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1188,7 +1188,7 @@ describe 'Participant navigates to session 2', type: :feature do
         expect(page).to have_content 'Got a few minutes?'
       end
 
-      it 'responds to \'not_quit\' with response 3' do
+      scenario 'responds to \'not_quit\' with response 3' do
         session_two.assert_on_session2_smokingstatus
         answer_question_with(3)
         session.move_to_next_slide
@@ -1207,8 +1207,8 @@ describe 'Participant navigates to session 2', type: :feature do
     end
   end
 
-  describe 'responds to \'session2_smokingstatus\' with response 5' do
-    it 'responds to \'session2_notready2\' with response 1' do
+  feature 'responds to \'session2_smokingstatus\' with response 5' do
+    scenario 'responds to \'session2_notready2\' with response 1' do
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1221,7 +1221,7 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'START NOW'
     end
 
-    it 'responds to \'session2_notready2\' with response 2' do
+    scenario 'responds to \'session2_notready2\' with response 2' do
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1234,7 +1234,7 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'Got a few minutes?'
     end
 
-    it 'responds to \'session2_notready2\' with response 3' do
+    scenario 'responds to \'session2_notready2\' with response 3' do
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide
@@ -1252,7 +1252,7 @@ describe 'Participant navigates to session 2', type: :feature do
       expect(page).to have_content 'It\'s Your Quit day!'
     end
 
-    it 'responds to \'session2_notready2\' with response 4' do
+    scenario 'responds to \'session2_notready2\' with response 4' do
       session_two.assert_on_session2_smokingstatus
       answer_question_with(5)
       session.move_to_next_slide

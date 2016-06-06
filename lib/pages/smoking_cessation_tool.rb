@@ -11,8 +11,11 @@ class SmokingCessationTool
   end
 
   def click_done
-    find('#exit_button', text: 'Done').click
+    sleep(2)
+    find('.btn-danger', text: 'Done').click
   end
 
-  
+  def visible?
+    has_content? 'Smoking Cessation Tools'
+  end
 end
