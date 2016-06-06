@@ -1,42 +1,17 @@
+# frozen_string_literal: true
 # filename: settings_spec.rb
 
-# require local storage data
-require 'local_storage/auth_token'
-require 'local_storage/cessation_date'
-require 'local_storage/cessation_reasons'
-require 'local_storage/risky_times'
-require 'local_storage/sessions'
-require 'local_storage/social_supports'
-
-# require page objects
-require 'pages/settings_page'
-require 'pages/cessation'
-require 'pages/social'
-require 'pages/quit_reason'
-require 'pages/risky'
-require 'pages/modal'
-require 'pages/risky_times_strategies'
-
-# instantiate page objects
-# those that are not instantiated here are common
-# therefore instantiated in the feature_helper
-def risky_times_strategies
-  @risky_times_strategies ||= RiskyTimesStrategy.new
-end
-
-feature 'Participant opens app', do
+feature 'Participant opens app' do
   context 'due to incomplete configuration' do
     background do
-      visit 'localhost:8000'
+      visit ENV['Base_URL']
       insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-      page.execute_script('window.location.reload()')
+      navigation.reload
       page.execute_script("localStorage.removeItem('riskyTimes')")
-      page.execute_script('window.location.reload()')
+      navigation.reload
     end
 
-    after do
-      page.execute_script('localStorage.clear()')
-    end
+    after { navigation.clear_data }
 
     scenario 'redirects to settings menu' do
       settings_page.assert_on_page
@@ -101,15 +76,13 @@ feature 'Participant opens app', do
 
   context 'after configuration is complete, visits configuration page' do
     before do
-      visit 'localhost:8000'
+      visit ENV['Base_URL']
       insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-      page.execute_script('window.location.reload()')
+      navigation.reload
       settings_page.open
     end
 
-    after do
-      page.execute_script('localStorage.clear()')
-    end
+    after { navigation.clear_data }
 
     scenario 'returns home' do
       settings_page.assert_on_page

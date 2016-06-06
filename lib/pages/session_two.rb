@@ -1,18 +1,19 @@
+# frozen_string_literal: true
 # page object for session two
 class SessionTwo
   include Capybara::DSL
 
   def available_soon?
-    session2_row.find('.label-warning')
+    session2_row.has_css?('.label-warning')
   end
 
   def available?
-    session2_row.find('.label-success')
+    session2_row.has_css?('.label-success')
   end
 
   def completed?
-    session2_row.find('.label-success')
-    session2_row.find('.glyphicon.glyphicon-check.glyphicon-sm')
+    session2_row.has_css?('.label-success') &&
+      session2_row.has_css?('.glyphicon.glyphicon-check.glyphicon-sm')
   end
 
   def assert_on_session2_smokingstatus

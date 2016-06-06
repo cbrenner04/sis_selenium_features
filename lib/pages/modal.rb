@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page objects for modals
 class Modal
   include Capybara::DSL
@@ -19,10 +20,10 @@ class Modal
   end
 
   def disabled?
-    find('#save_button[disabled = disabled]')
+    has_css?('#save_button[disabled = disabled]')
   end
 
   def has_success_alert_present?
-    find('#success-alert')
+    has_css?('#success-alert')
   end
 end

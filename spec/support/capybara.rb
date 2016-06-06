@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # module for drag_by
 module CapybaraExtension
   def drag_by(right_by, down_by)

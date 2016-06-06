@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page object for home page
 class UpdateSmokingStatus
   include Capybara::DSL
@@ -25,6 +26,6 @@ class UpdateSmokingStatus
   private
 
   def button
-    page.all('.btn-primary')
+    all('.btn-primary')
   end
 end

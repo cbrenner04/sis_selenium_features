@@ -1,10 +1,11 @@
-class HappinessExercise
-# page object for examples on happiness exercises page
+# frozen_string_literal: true
+module HappinessExercises
+  # page object for examples on happiness exercises page
   class Example
     include Capybara::DSL
 
     def present?
-      find('h3', text: 'Examples')
+      has_css?('h3', text: 'Examples')
     end
 
     def open

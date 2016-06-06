@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page object for settings page
 class SettingsPage
   include Capybara::DSL
@@ -16,8 +17,7 @@ class SettingsPage
 
   # needed when all settings complete due to ambiguous match using modal.save
   def save_modal
-    button = all('#save_button')
-    button[1].click
+    all('#save_button')[1].click
   end
 
   def open_risky_times
@@ -25,8 +25,7 @@ class SettingsPage
   end
 
   def has_cessation_date_selector_present?
-    # find('#cessation_date_selector', text: Date.today.strftime('%m/%d/%Y'))
-    find('.dw_ltr', text: Date.today.strftime('%m/%d/%Y'))
+    has_css?('.dw_ltr', text: Date.today.strftime('%m/%d/%Y'))
   end
 
   def has_save_present?

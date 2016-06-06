@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rspec/expectations'
 
 # page object for setting risky times in session 1
@@ -15,7 +16,7 @@ class Risky
   def select_time
     find('#risky_time_time').click
     sleep(2)
-    find('.dw-mon', text: "#{Date.today.strftime('%B')}").click
+    find('.dw-mon', text: Date.today.strftime('%B')).click
   end
 
   def select_recurrence
@@ -36,7 +37,7 @@ class Risky
               'be elsewhere', 'keep your hands busy',
               'realize you are helping others',
               'plan smoke-free outings', 'avoid drinking',
-              'trash the smoking supplies', "enlist friends' help",
+              'trash the smoking supplies', 'enlist friends\' help',
               'arrange for activities', 'change your routine',
               'change what you do right after', 'use mints',
               'chew on something', 'bring something else',
@@ -46,33 +47,11 @@ class Risky
   end
 
   def visible?
-    exp_time_hour = Time.now.strftime('%-l')
-    act_time_hour = find('.modal-well').text[0..4].gsub(/:\w+/, '')
-    subt_hour = act_time_hour.to_i - exp_time_hour.to_i
-
-    exp_time_min = Time.now.strftime('%M')
-    act_time_min = find('.modal-well').text[0..4].gsub(/\w+:/, '')
-    subt_min = act_time_min.to_i - exp_time_min.to_i
-
-    if subt_hour.between?(0, 1) && subt_min.between?(0, 1)
-      find('.modal-well',
-           text: "#{act_time_hour.delete(' ')}:#{act_time_min.delete(' ')}")
-    else
-      expect(subt_hour).to be < 2,
-                           'Expected and actual time are not within 1 hour'
-      expect(subt_min).to be < 2,
-                          'Expected and actual time are not within 1 minute'
-    end
-
-    if @label.downcase == 'once'
-      find('.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
-                                " My reason Strategy: #{@value}")
-    else
-      find('.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')}" \
-                                " My reason (occurs #{@label.downcase}) " \
-                                "Strategy: #{@value}")
-    end
-    find '.glyphicon-remove'
+    reason = @label.casecmp == 'once' ? '' : " (occurs #{@label.downcase})"
+    has_correct_time? &&
+      has_css?('.modal-well', text: "#{Date.today.strftime('%A (%m/%d/%Y)')} " \
+                                    "My reason#{reason} Strategy: #{@value}") &&
+      has_css?('.glyphicon-remove')
   end
 
   def has_two_risky_times_present?
@@ -100,5 +79,27 @@ class Risky
 
   def remove
     first('.glyphicon-remove').click
+  end
+
+  private
+
+  def has_correct_time?
+    exp_time_hour = Time.now.strftime('%-l')
+    act_time_hour = find('.modal-well').text[0..4].gsub(/:\w+/, '')
+    subt_hour = act_time_hour.to_i - exp_time_hour.to_i
+
+    exp_time_min = Time.now.strftime('%M')
+    act_time_min = find('.modal-well').text[0..4].gsub(/\w+:/, '')
+    subt_min = act_time_min.to_i - exp_time_min.to_i
+
+    if subt_hour.between?(0, 1) && subt_min.between?(0, 1)
+      has_css?('.modal-well', text: "#{act_time_hour.delete(' ')}:" \
+                                    "#{act_time_min.delete(' ')}")
+    else
+      expect(subt_hour).to be < 2,
+                           'Expected and actual time are not within 1 hour'
+      expect(subt_min).to be < 2,
+                          'Expected and actual time are not within 1 minute'
+    end
   end
 end

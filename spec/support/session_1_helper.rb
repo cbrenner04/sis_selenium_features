@@ -1,15 +1,5 @@
+# frozen_string_literal: true
 # filename: ./spec/support/session_1_helper.rb
-
-# require page objects, these are instantiated in the feature_helper
-require 'pages/session'
-require 'pages/session_one'
-require 'pages/quit_reason'
-require 'pages/modal'
-require 'pages/social'
-require 'pages/cessation'
-require 'pages/risky'
-require 'pages/continue'
-require 'pages/settings_page'
 
 def move_from_session1_1_to_reason
   session_one.enter_study_id('123')

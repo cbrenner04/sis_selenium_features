@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 # page object for navigation
 class Continue
   include Capybara::DSL
 
   def disabled?
-    find('button[disabled = disabled]', text: 'CONTINUE')
+    has_css?('button[disabled = disabled]', text: 'CONTINUE')
   end
 
   def visible?

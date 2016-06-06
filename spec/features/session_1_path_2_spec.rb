@@ -1,30 +1,16 @@
+# frozen_string_literal: true
 # filename: path_2_session_1_spec.rb
-
-# require page objects, these are instantiated in the feature helper
-require 'pages/session'
-require 'pages/session_one'
-require 'pages/quit_reason'
-require 'pages/modal'
-require 'pages/social'
-require 'pages/cessation'
-require 'pages/risky'
-require 'pages/continue'
-require 'pages/settings_page'
 
 # require session_1_helper, this has the `move_from...to` methods
 require 'support/session_1_helper'
 
-describe 'Participant loads app for the first time', type: :feature do
-  before do
-    visit 'localhost:8000'
-  end
+feature 'Participant loads app for the first time' do
+  before { visit ENV['Base_URL'] }
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
+  after { navigation.clear_data }
 
-  describe 'responds question 1 with 3, responds to \'session1_5\' with 1' do
-    it 'responds to \'session1_19b\' with 1' do
+  feature 'responds question 1 with 3, responds to \'session1_5\' with 1' do
+    scenario 'responds to \'session1_19b\' with 1' do
       move_to_quit_reason
       modal.open
 
@@ -39,7 +25,7 @@ describe 'Participant loads app for the first time', type: :feature do
         .to have_content 'You\'ve decided to go ahead with a quit attempt'
     end
 
-    it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 1' do
+    scenario 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 1' do
       move_to_quit_reason
       modal.open
 
@@ -65,7 +51,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_css('#smokingStatus')
     end
 
-    it 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
+    scenario 'responds to \'session1_19b\' with 2, \'difficult_1b\' with 2' do
       move_to_quit_reason
       modal.open
 
@@ -92,7 +78,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_css('#smokingStatus')
     end
 
-    it 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
+    scenario 'responds to \'session1_19b\' with 1, \'social_support\' with 2' do
       move_to_quit_reason
       modal.open
 
@@ -107,7 +93,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Excellent!'
     end
 
-    it 'responds to \'session1_19b\' with 1, \'social_support\' with 3'do
+    scenario 'responds to \'session1_19b\' with 1, \'social_support\' with 3' do
       move_to_quit_reason
       modal.open
 
@@ -122,7 +108,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Excellent!'
     end
 
-    it 'responds to \'session1_19b\' with 1, \'social_support\' with 4' do
+    scenario 'responds to \'session1_19b\' with 1, \'social_support\' with 4' do
       move_to_quit_reason
       modal.open
 
@@ -137,7 +123,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Excellent!'
     end
 
-    it 'responds to \'session1_19b\' with 1, \'social_support\' with 5' do
+    scenario 'responds to \'session1_19b\' with 1, \'social_support\' with 5' do
       move_to_quit_reason
       modal.open
 
@@ -152,7 +138,7 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Excellent!'
     end
 
-    it 'responds to \'session1_19b\' with 1, \'social_support\' with 6' do
+    scenario 'responds to \'session1_19b\' with 1, \'social_support\' with 6' do
       move_to_quit_reason
       modal.open
 
@@ -172,8 +158,8 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'Excellent!'
     end
 
-    describe 'responds to \'session1_19b\' with 1, \'social_support\' with 1' do
-      it 'responds to \'session1_social6\' with 2' do
+    feature 'responds to \'session1_19b\' with 1, \'social_support\' with 1' do
+      scenario 'responds to \'session1_social6\' with 2' do
         move_to_quit_reason
         modal.open
 
@@ -197,7 +183,7 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'Schedule Your Quit Day'
       end
 
-      it 'responds to \'session1_social6\' with 1' do
+      scenario 'responds to \'session1_social6\' with 1' do
         move_to_quit_reason
         modal.open
 
@@ -209,8 +195,7 @@ describe 'Participant loads app for the first time', type: :feature do
                                      'p you stay smoke-free'
       end
 
-      it 'responds to \'session1_social6\' with 1, \'session1_schedule\' ' \
-         'with 0' do
+      scenario "responds to 'session1_social6' w 1, 'session1_schedule' w 0" do
         move_to_quit_reason
         modal.open
 
@@ -229,9 +214,8 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'That\'s ok'
       end
 
-      describe 'responds to \'session1_social6\' with 1, ' \
-               '\'session1_schedule\' with 1' do
-        it 'responds to \'quitday_scheduled\' with 1' do
+      feature "responds to 'session1_social6' w 1, 'session1_schedule' w 1" do
+        scenario 'responds to \'quitday_scheduled\' with 1' do
           move_to_quit_reason
           modal.open
 
@@ -254,7 +238,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'It should!'
         end
 
-        it 'responds to \'quitday_scheduled\' with 0' do
+        scenario 'responds to \'quitday_scheduled\' with 0' do
           move_to_quit_reason
           modal.open
 
@@ -276,7 +260,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'Good for you!'
         end
 
-        it 'responds to \'difficult_1b\' with 1' do
+        scenario 'responds to \'difficult_1b\' with 1' do
           move_to_quit_reason
           modal.open
 
@@ -308,7 +292,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_css('#smokingStatus')
         end
 
-        it 'responds to difficult_1b with 2' do
+        scenario 'responds to difficult_1b with 2' do
           move_to_quit_reason
           modal.open
 
@@ -343,8 +327,8 @@ describe 'Participant loads app for the first time', type: :feature do
       end
     end
 
-    describe 'responds to \'session1_19b\' with 1, \'social_support\' with 7' do
-      it 'sees correct feedback' do
+    feature 'responds to \'session1_19b\' with 1, \'social_support\' with 7' do
+      scenario 'sees correct feedback' do
         move_to_quit_reason
         modal.open
 
@@ -362,8 +346,8 @@ describe 'Participant loads app for the first time', type: :feature do
     end
   end
 
-  describe 'responds to question 1 with 3, responds to \'session1_5\' with 3' do
-    it 'goes through the correct path' do
+  feature 'responds to question 1 with 3, responds to \'session1_5\' with 3' do
+    scenario 'goes through the correct path' do
       move_to_quit_reason
       modal.open
 
@@ -401,8 +385,8 @@ describe 'Participant loads app for the first time', type: :feature do
     end
   end
 
-  describe 'responds to question 1 with 3, responds to \'session1_5\' with 5' do
-    it 'sees correct feedback' do
+  feature 'responds to question 1 with 3, responds to \'session1_5\' with 5' do
+    scenario 'sees correct feedback' do
       move_to_quit_reason
       modal.open
 
@@ -421,8 +405,8 @@ describe 'Participant loads app for the first time', type: :feature do
       expect(page).to have_content 'You have already quit smoking,'
     end
 
-    describe 'responds to \'social_support1\' with 1' do
-      it 'responds to \'session1_social6\' with 1' do
+    feature 'responds to \'social_support1\' with 1' do
+      scenario 'responds to \'session1_social6\' with 1' do
         move_to_quit_reason
         modal.open
 
@@ -461,7 +445,7 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'To help you stay smoke-free'
       end
 
-      it 'responds to \'session1_social6\' with 0' do
+      scenario 'responds to \'session1_social6\' with 0' do
         move_to_quit_reason
         modal.open
 
@@ -498,8 +482,8 @@ describe 'Participant loads app for the first time', type: :feature do
       end
     end
 
-    describe 'responds to \'social_support1\' with 7' do
-      it 'responds to \'session1_social7\' with 1' do
+    feature 'responds to \'social_support1\' with 7' do
+      scenario 'responds to \'session1_social7\' with 1' do
         move_to_quit_reason
         modal.open
 
@@ -526,8 +510,8 @@ describe 'Participant loads app for the first time', type: :feature do
         expect(page).to have_content 'Schedule Your Quit Day'
       end
 
-      describe 'responds to \'session1_social7\' with 2' do
-        it 'responds to \'session1_social8\' with response 1' do
+      feature 'responds to \'session1_social7\' with 2' do
+        scenario 'responds to \'session1_social8\' with response 1' do
           move_to_quit_reason
           modal.open
 
@@ -551,7 +535,7 @@ describe 'Participant loads app for the first time', type: :feature do
           expect(page).to have_content 'Schedule Your Quit Day'
         end
 
-        it 'responds to \'session1_social8\' with response 2' do
+        scenario 'responds to \'session1_social8\' with response 2' do
           move_to_quit_reason
           modal.open
 
@@ -578,8 +562,8 @@ describe 'Participant loads app for the first time', type: :feature do
     end
   end
 
-  describe 'responds to question 1 with 3, responds to \'session1_5\' with 6' do
-    it 'goes through the correct path' do
+  feature 'responds to question 1 with 3, responds to \'session1_5\' with 6' do
+    scenario 'goes through the correct path' do
       move_to_quit_reason
       modal.open
 

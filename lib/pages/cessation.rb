@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page object for entering cessation date in session 1
 class Cessation
   include Capybara::DSL
@@ -23,8 +24,8 @@ class Cessation
   end
 
   def visible?
-    find('strong', text: 'Cessation date scheduled for: ' \
-                         "#{Date.today.strftime('%m/%d/%Y')}")
+    has_css?('strong', text: 'Cessation date scheduled for: ' \
+                             "#{Date.today.strftime('%m/%d/%Y')}")
   end
 
   def assert_on_ending2

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Gemfile
 source 'https://rubygems.org'
 
@@ -8,5 +9,3 @@ gem 'sauce', '3.5.3'
 gem 'rspec', '3.4.0'
 gem 'rubocop'
 gem 'capybara-screenshot', '1.0.11'
-gem 'uuid'
-gem 'fileutils'

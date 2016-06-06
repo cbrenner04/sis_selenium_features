@@ -1,27 +1,13 @@
+# frozen_string_literal: true
 # filename: path_1_session_1_spec.rb
-
-# require page objects, these are instantiated in the feature_helper
-require 'pages/session'
-require 'pages/session_one'
-require 'pages/quit_reason'
-require 'pages/modal'
-require 'pages/social'
-require 'pages/cessation'
-require 'pages/risky'
-require 'pages/continue'
-require 'pages/settings_page'
 
 # require session_1_helper, this has the `move_from...to` methods
 require 'support/session_1_helper'
 
-feature 'Participant loads app for the first time', do
-  background do
-    visit 'localhost:8000'
-  end
+feature 'Participant loads app for the first time' do
+  background { visit ENV['Base_URL'] }
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
+  after { navigation.clear_data }
 
   scenario 'is unable to move forward from question 1 without responding' do
     session_one.enter_study_id('123')
@@ -104,7 +90,7 @@ feature 'Participant loads app for the first time', do
       session_one.assert_on_session1_reasons
     end
 
-    scenario 'is unable to move past \'session1_benefits\' without responding' do
+    scenario 'is unable to move past \'session1_benefits\' with no response' do
       move_from_session1_1_to_reason
       modal.open
 
@@ -951,7 +937,7 @@ feature 'Participant loads app for the first time', do
             session_one.assert_on_session1_social10a
           end
 
-          scenario 'cannot move past \'session1_schedule\' without responding' do
+          scenario 'cannot move past \'session1_schedule\' with no response' do
             move_from_session1_1_to_reason
             modal.open
 
@@ -1032,7 +1018,7 @@ feature 'Participant loads app for the first time', do
               expect(cessation_date).to be_visible
             end
 
-            scenario 'cannot move past \'quitday_scheduled\' without responding' do
+            scenario "cannot move past 'quitday_scheduled' with no response" do
               move_from_session1_1_to_reason
               modal.open
 

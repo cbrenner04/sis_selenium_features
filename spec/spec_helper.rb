@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # filename: spec_helper.rb
 
 require 'rspec'
@@ -30,13 +31,10 @@ end
 
 # Capybara configuration options
 Capybara.configure do |config|
-  config.default_wait_time = 2
+  config.default_max_wait_time = 2
   config.default_driver = :selenium
   config.register_driver :selenium do |app|
-    if browser == :firefox
-      Selenium::WebDriver::Firefox::Binary.path =
-        '/Applications/firefox33/Firefox.app/Contents/MacOS/firefox-bin'
-    end
+    Selenium::WebDriver::Firefox::Binary.path = ENV['Firefox_Path']
     Capybara::Selenium::Driver.new(app, browser: browser)
   end
   config.page.driver.browser.manage.window.resize_to(360, 591)

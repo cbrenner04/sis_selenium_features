@@ -1,58 +1,19 @@
+# frozen_string_literal: true
 # filename: smoking_cessation_tools_spec.rb
-
-# require local storage data
-require 'local_storage/auth_token'
-require 'local_storage/cessation_date'
-require 'local_storage/cessation_reasons'
-require 'local_storage/risky_times'
-require 'local_storage/sessions'
-require 'local_storage/social_supports'
-
-# require page objects
-require 'pages/smoking_cessation_tool'
-require 'pages/session'
-require 'pages/session_one'
-require 'pages/session_two'
-require 'pages/settings_page'
-require 'pages/cessation'
-require 'pages/quit_reason'
-require 'pages/risky'
-require 'pages/modal'
-require 'pages/risky_times_strategies'
-require 'pages/continue'
-require 'pages/social'
 
 # require helpers
 require './spec/support/session_1_helper'
 require './spec/support/smoking_cessation_tools_helper'
-require './spec/support/feature_helper'
-
-# instantiate page objects
-# those that are not instantiated here are common
-# therefore instantiated in the feature_helper
-def smoking_cessation_tool
-  @smoking_cessation_tool ||= SmokingCessationTool.new
-end
-
-def cessation_date
-  @cessation_date ||= Cessation.new
-end
-
-def scroll_down
-  execute_script('window.scrollBy(0,1500)')
-end
 
 feature 'Participant navigates to Smoking Cessation tools' do
   background do
-    visit 'localhost:8000'
+    visit ENV['Base_URL']
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.execute_script('window.location.reload()')
+    navigation.reload
     smoking_cessation_tool.open
   end
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
+  after { navigation.clear_data }
 
   scenario 'and resets quit date' do
     smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
@@ -212,7 +173,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
     smoking_cessation_tool.click_done
   end
 
-  scenario 'is unable to move past \'session1_benefits\' without responding' do
+  scenario 'cannot move past \'session1_benefits\' without responding' do
     smoking_cessation_tool.open_tool('BENEFITS OF QUITTING')
     session_one.assert_on_session1_benefits
 
@@ -501,7 +462,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
       smoking_cessation_tool.open_tool('COMBATING SABOTAGING THOUGHTS')
     end
 
-    scenario 'is unable to move past \'got_time\' without responding' do
+    scenario 'cannot move past \'got_time\' without responding' do
       session_two.assert_on_got_time
 
       expect(continue).to be_disabled
@@ -520,7 +481,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
     end
 
     feature 'responds to \'got_time\' with response 1' do
-      scenario 'is unable to move past \'session2_strategies2\' without responding' do
+      scenario 'cannot move past \'session2_strategies2\' without responding' do
         move_from_got_time_to_session2_strategies2
 
         expect(continue).to be_disabled
@@ -553,7 +514,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
       end
 
       feature 'responds to \'session2_strategies2\' with response 1' do
-        scenario 'sees social supports listed in \'session2_social_support_1\'' do
+        scenario "sees social supports listed in 'session2_social_support_1'" do
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
           answer_question_with(1)
@@ -564,7 +525,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           expect(page).to have_content 'Test Smith'
         end
 
-        scenario 'is unable to move past \'session2_social_support_1\' without ' \
+        scenario 'cannot move past \'session2_social_support_1\' without ' \
            'responding' do
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -585,7 +546,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 1' do
-            scenario 'cannot move past \'session2_traps1a\' without responding' do
+            scenario 'cannot move past \'session2_traps1a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -634,7 +595,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 2' do
-            scenario 'cannot move past \'session2_traps2a\' without responding' do
+            scenario 'cannot move past \'session2_traps2a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -683,7 +644,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 3' do
-            scenario 'cannot move past \'session2_traps3a\' without responding' do
+            scenario 'cannot move past \'session2_traps3a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -734,7 +695,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 4' do
-            scenario 'cannot move past \'session2_traps4a\' without responding' do
+            scenario 'cannot move past \'session2_traps4a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -783,7 +744,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 5' do
-            scenario 'cannot move past \'session2_traps5a\' without responding' do
+            scenario 'cannot move past \'session2_traps5a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -832,7 +793,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 6' do
-            scenario 'cannot move past \'session2_traps6a\' without responding' do
+            scenario 'cannot move past \'session2_traps6a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -883,7 +844,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 7' do
-            scenario 'cannot move past \'session2_traps7a\' without responding' do
+            scenario 'cannot move past \'session2_traps7a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -932,7 +893,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 8' do
-            scenario 'cannot move past \'session2_traps8a\' without responding' do
+            scenario 'cannot move past \'session2_traps8a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -983,7 +944,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 9' do
-            scenario 'cannot move past \'session2_traps9a\' without responding' do
+            scenario 'cannot move past \'session2_traps9a\' with no response' do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -1034,7 +995,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
           end
 
           feature 'responds to \'session2_traps\' with response 10' do
-            scenario 'cannot move past \'session2_traps10a\' without responding' do
+            scenario "cannot move past 'session2_traps10a' with no response" do
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
               session_two.assert_on_session2_traps
@@ -1084,7 +1045,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
             end
           end
 
-          scenario 'cannot move past \'session2_checkingin4\' without responding' do
+          scenario "cannot move past 'session2_checkingin4' with no response" do
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps
             move_from_session2_traps_to_session2_checkingin4

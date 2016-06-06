@@ -1,40 +1,20 @@
+# frozen_string_literal: true
 # filename: session_2_spec.rb
-
-# require local storage data
-require 'local_storage/auth_token'
-require 'local_storage/cessation_date'
-require 'local_storage/cessation_reasons'
-require 'local_storage/risky_times'
-require 'local_storage/sessions'
-require 'local_storage/social_supports'
-
-# require page objects, these are instantiated in the feature_helper
-require 'pages/session'
-require 'pages/session_two'
-require 'pages/continue'
-require 'pages/modal'
-require 'pages/risky'
-require 'pages/social'
-require 'pages/quit_reason'
-require 'pages/settings_page'
-require 'pages/cessation'
 
 # require session_2_helper, this has the `move_from...to` methods
 require 'support/session_2_helper'
 
 feature 'Participant navigates to session 2' do
   background do
-    visit 'localhost:8000'
+    visit ENV['Base_URL']
     insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
     session.open
   end
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
+  after { navigation.clear_data }
 
-  scenario 'is unable to move past \'session2_smokingstatus\' without responding' do
+  scenario "is unable to move past 'session2_smokingstatus' with no response" do
     session_two.assert_on_session2_smokingstatus
 
     expect(continue).to be_disabled
@@ -79,7 +59,7 @@ feature 'Participant navigates to session 2' do
     end
 
     feature 'responds to \'got_time\' with response 1' do
-      scenario 'is unable to move past \'session2_strategies2\' without responding' do
+      scenario 'cannot move past \'session2_strategies2\' with no response' do
         move_to_got_time
         move_from_got_time_to_session2_strategies2
 
@@ -115,7 +95,7 @@ feature 'Participant navigates to session 2' do
       end
 
       feature 'responds to \'session2_strategies2\' with response 1' do
-        scenario 'sees social supports listed in \'session2_social_support_1\'' do
+        scenario "sees social supports listed in 'session2_social_support_1'" do
           move_to_got_time
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -127,8 +107,7 @@ feature 'Participant navigates to session 2' do
           expect(page).to have_content 'Test Smith'
         end
 
-        scenario 'is unable to move past \'session2_social_support_1\' without ' \
-           'responding' do
+        scenario "not move past 'session2_social_support_1' with no response" do
           move_to_got_time
           move_from_got_time_to_session2_strategies2
           session_two.assert_on_session2_strategies2
@@ -150,7 +129,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 1' do
-            scenario 'cannot move past \'session2_traps1a\' without responding' do
+            scenario "not move past 'session2_traps1a' without no response" do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -202,7 +181,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 2' do
-            scenario 'cannot move past \'session2_traps2a\' without responding' do
+            scenario 'not move past \'session2_traps2a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -254,7 +233,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 3' do
-            scenario 'cannot move past \'session2_traps3a\' without responding' do
+            scenario 'not move past \'session2_traps3a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -308,7 +287,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 4' do
-            scenario 'cannot move past \'session2_traps4a\' without responding' do
+            scenario 'not move past \'session2_traps4a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -360,7 +339,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 5' do
-            scenario 'cannot move past \'session2_traps5a\' without responding' do
+            scenario 'not move past \'session2_traps5a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -412,7 +391,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 6' do
-            scenario 'cannot move past \'session2_traps6a\' without responding' do
+            scenario 'not move past \'session2_traps6a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -466,7 +445,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 7' do
-            scenario 'cannot move past \'session2_traps7a\' without responding' do
+            scenario 'not move past \'session2_traps7a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -518,7 +497,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 8' do
-            scenario 'cannot move past \'session2_traps8a\' without responding' do
+            scenario 'not move past \'session2_traps8a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -572,7 +551,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 9' do
-            scenario 'cannot move past \'session2_traps9a\' without responding' do
+            scenario 'not move past \'session2_traps9a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -626,7 +605,7 @@ feature 'Participant navigates to session 2' do
           end
 
           feature 'responds to \'session2_traps\' with response 10' do
-            scenario 'cannot move past \'session2_traps10a\' without responding' do
+            scenario 'not move past \'session2_traps10a\' without responding' do
               move_to_got_time
               move_from_got_time_to_session2_strategies2
               move_from_session2_strategies2_to_session2_traps
@@ -679,7 +658,7 @@ feature 'Participant navigates to session 2' do
             end
           end
 
-          scenario 'cannot move past \'session2_checkingin4\' without responding' do
+          scenario "not move past 'session2_checkingin4' without responding" do
             move_to_got_time
             move_from_got_time_to_session2_strategies2
             move_from_session2_strategies2_to_session2_traps

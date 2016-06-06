@@ -1,13 +1,5 @@
+# frozen_string_literal: true
 # filename: ./spec/support/session_3_helper.rb
-
-# require page objects, these are instantiated in the feature_helper
-require 'pages/session_three'
-require 'pages/session'
-require 'pages/continue'
-require 'pages/settings_page'
-require 'pages/modal'
-require 'pages/risky'
-require 'pages/cessation'
 
 def move_to_session3_gottime
   session_three.assert_on_session3_smokingstatus

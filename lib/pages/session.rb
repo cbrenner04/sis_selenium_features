@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page object for sessions
 class Session
   include Capybara::DSL

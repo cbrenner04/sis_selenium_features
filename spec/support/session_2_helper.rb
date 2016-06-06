@@ -1,15 +1,5 @@
+# frozen_string_literal: true
 # filename: ./spec/support/session_2_helper.rb
-
-# require page objects, these are instantiated in the feature_helper
-require 'pages/session'
-require 'pages/session_two'
-require 'pages/continue'
-require 'pages/modal'
-require 'pages/risky'
-require 'pages/social'
-require 'pages/quit_reason'
-require 'pages/settings_page'
-require 'pages/cessation'
 
 def move_to_got_time
   # session_two.assert_on_session2_smokingstatus

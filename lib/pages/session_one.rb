@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 # page object for the first page of Session 1
 class SessionOne
   include Capybara::DSL
 
   def completed?
-    session1_row = find('.row', text: 'session 1')
-    session1_row.find('.label-success')
-    session1_row.find('.glyphicon-check')
+    within('.row', text: 'session 1') do
+      has_css?('.label-success') && has_css?('.glyphicon-check')
+    end
   end
 
   def enter_study_id(id)

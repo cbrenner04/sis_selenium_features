@@ -1,10 +1,11 @@
-class HappinessExercise
-# page object for why happiness helps on happiness exercises page
+# frozen_string_literal: true
+module HappinessExercises
+  # page object for why happiness helps on happiness exercises page
   class WhyDoesHappinessHelp
     include Capybara::DSL
 
     def present?
-      find('h3', text: 'Why Does Happiness Help?')
+      has_css?('h3', text: 'Why Does Happiness Help?')
     end
 
     def open

@@ -1,26 +1,27 @@
+# frozen_string_literal: true
 # page object for session three
 class SessionThree
   include Capybara::DSL
 
   def unavailable?
-    session3_row.find('.label-info')
+    session3_row.has_css?('.label-info')
   end
 
   def available_in_7_days?
-    session3_row.find('.label-info', text: '7 days')
+    session3_row.has_css?('.label-info', text: '7 days')
   end
 
   def available_in_1_day?
-    session3_row.find('.label-warning', text: '1 day')
+    session3_row.has_css?('.label-warning', text: '1 day')
   end
 
   def available?
-    session3_row.find('.label-success')
+    session3_row.has_css?('.label-success')
   end
 
   def completed?
-    session3_row.find('.label-success')
-    session3_row.find('.glyphicon-check')
+    session3_row.has_css?('.label-success') &&
+      session3_row.has_css?('.glyphicon-check')
   end
 
   def assert_on_session3_smokingstatus

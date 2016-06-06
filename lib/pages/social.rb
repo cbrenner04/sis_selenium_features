@@ -1,9 +1,14 @@
+# frozen_string_literal: true
 # page object for social supports in session 1
-class SocialSupport < Struct.new(:name)
+class SocialSupport
   include Capybara::DSL
 
+  def initialize(name)
+    @name = name
+  end
+
   def create
-    fill_in 'name', with: name
+    fill_in 'name', with: @name
     find('#reason').click
     find("option[value = 'He/she will offer encouragement along the way.'")
       .click
@@ -14,10 +19,12 @@ class SocialSupport < Struct.new(:name)
   end
 
   def visible?
-    well.find('.cessation-reason-row', text: "#{name}")
-    well.find('.cessation-reason-row',
-              text: 'He/she will offer encouragement along the way.')
-    well.find('.glyphicon-remove')
+    within well do
+      has_css?('.cessation-reason-row', text: @name) &&
+        has_css?('.cessation-reason-row',
+                 text: 'He/she will offer encouragement along the way.') &&
+        has_css?('.glyphicon-remove')
+    end
   end
 
   def has_two_supports_present?

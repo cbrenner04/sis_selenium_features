@@ -1,7 +1,32 @@
+# frozen_string_literal: true
 # filename: feature_helper.rb
 
+# require local storage data
+require './lib/local_storage/auth_token'
+require './lib/local_storage/cessation_date'
+require './lib/local_storage/cessation_reasons'
+require './lib/local_storage/risky_times'
+require './lib/local_storage/sessions'
+require './lib/local_storage/social_supports'
+
+# require page objects
+require './lib/pages/cessation'
+require './lib/pages/continue'
+require './lib/pages/happiness_exercise'
+require './lib/pages/modal'
+require './lib/pages/navigation'
+require './lib/pages/quit_reason'
+require './lib/pages/risky'
+require './lib/pages/risky_times_strategies'
+require './lib/pages/session'
+require './lib/pages/session_one'
+require './lib/pages/session_two'
+require './lib/pages/session_three'
+require './lib/pages/settings_page'
+require './lib/pages/social'
+
 def insert(key, value)
-  page.execute_script("localStorage.setItem(\'#{key}\', \'#{value}\')")
+  execute_script("localStorage.setItem(\'#{key}\', \'#{value}\')")
 end
 
 def insert_all(date, session)
@@ -14,9 +39,7 @@ def insert_all(date, session)
 end
 
 def answer_question_with(num)
-  option = page.all('.session-option')
-  opt = num - 1
-  option[opt].click
+  all('.session-option')[num - 1].click
 end
 
 def enter_quit_reason
@@ -41,7 +64,7 @@ def enter_social_supports
 end
 
 def element_count(num, elem, text)
-  element = page.all(elem, text: text)
+  element = all(elem, text: text)
   if element.count > 1
     element[num].click
   else
@@ -66,40 +89,44 @@ def scroll_down
 end
 
 # instantiate common page objects
-def session
-  @session ||= Session.new
-end
-
-def session_one
-  @session_one ||= SessionOne.new
+def cessation_date
+  @cessation_date ||= Cessation.new
 end
 
 def continue
   @continue ||= Continue.new
 end
 
-def quit_reason
-  @quit_reason ||= QuitReason.new('My reason')
+def happiness_exercises
+  @happiness_exercises ||= HappinessExercise.new
 end
 
 def modal
   @modal ||= Modal.new
 end
 
-def social_supports
-  @social_supports ||= SocialSupport.new('Jane Doe')
+def navigation
+  @navigation ||= Navigation.new
 end
 
-def cessation_date
-  @cessation_date ||= Cessation.new
+def quit_reason
+  @quit_reason ||= QuitReason.new('My reason')
 end
 
 def risky_times
   @risky_times ||= Risky.new
 end
 
-def settings_page
-  @settings_page ||= SettingsPage.new
+def risky_times_strategies
+  @risky_times_strategies ||= RiskyTimesStrategy.new
+end
+
+def session
+  @session ||= Session.new
+end
+
+def session_one
+  @session_one ||= SessionOne.new
 end
 
 def session_two
@@ -110,13 +137,10 @@ def session_three
   @session_three ||= SessionThree.new
 end
 
-def happiness_exercises
-  @happiness_exercises ||= HappinessExercise.new
+def settings_page
+  @settings_page ||= SettingsPage.new
 end
 
-# def go_to_next_question
-#   loop do
-#     click_on 'Continue'
-#     break unless page.has_no_css?('.col-sm-1.col-xs-1.col-md-1.text-left')
-#   end
-# end
+def social_supports
+  @social_supports ||= SocialSupport.new('Jane Doe')
+end

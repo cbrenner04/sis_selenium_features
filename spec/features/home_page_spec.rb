@@ -1,19 +1,7 @@
+# frozen_string_literal: true
 # filename: home_page_spec.rb
 
-# require local storage data
-require 'local_storage/auth_token'
-require 'local_storage/cessation_date'
-require 'local_storage/cessation_reasons'
-require 'local_storage/risky_times'
-require 'local_storage/sessions'
-require 'local_storage/social_supports'
-
 # require page objects
-require 'pages/session_one'
-require 'pages/session_two'
-require 'pages/session_three'
-require 'pages/happiness_exercise'
-require 'pages/modal'
 require 'pages/update_smoking_status'
 
 # instantiate page objects
@@ -23,82 +11,65 @@ def update_smoking_status
   @update_smoking_status ||= UpdateSmokingStatus.new
 end
 
-describe 'Participant opens app', type: :feature do
-  def load(exercise)
-    loop do
-      visit 'localhost:8000'
-      insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-      execute_script('window.location.reload()')
-      break if has_css?('.btn', text: exercise)
-      execute_script('localStorage.clear()')
-    end
-  end
+feature 'Participant opens app' do
+  background { visit ENV['Base_URL'] }
 
-  before do
-    visit 'localhost:8000'
-  end
+  after { navigation.clear_data }
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
-
-  it 'shows cessation date in the future' do
+  scenario 'shows cessation date in the future' do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(page).to have_content '4 days until quit day'
   end
 
-  it 'shows cessation date is today' do
+  scenario 'shows cessation date is today' do
     insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(page).to have_content "It's Your Quit day"
   end
 
-  it 'shows cessation date is in the past' do
+  scenario 'shows cessation date is in the past' do
     insert_all(CessationDate::DATE_3, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(page).to have_content '7 days since you quit'
   end
 
-  it 'shows only first session is available' do
+  scenario 'shows only first session is available' do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(session_one).to be_completed
-
     expect(session_two).to be_available_soon
-
     expect(session_three).to be_unavailable
   end
 
-  it 'shows second session is available but 7 days from third' do
+  scenario 'shows second session is available but 7 days from third' do
     insert_all(CessationDate::DATE_2, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(session_two).to be_available
-
     expect(session_three).to be_available_in_7_days
   end
 
-  it 'one day from third session' do
+  scenario 'one day from third session' do
     insert_all(CessationDate::DATE_4, Sessions::SESSION_2)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(session_three).to be_available_in_1_day
   end
 
-  it 'shows third session is available' do
+  scenario 'shows third session is available' do
     insert_all(CessationDate::DATE_3, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
 
     expect(session_three).to be_available
   end
 
-  it 'shows available good things exercises' do
-    load('Three Good Things')
+  scenario 'shows available good things exercises' do
+    happiness_exercises.load('Three Good Things')
     within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
     end
@@ -112,8 +83,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows one complete, two available good things exercises' do
-    load('Three Good Things')
+  scenario 'shows one complete, two available good things exercises' do
+    happiness_exercises.load('Three Good Things')
     happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
@@ -136,8 +107,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows two complete, one available good things exercises' do
-    load('Three Good Things')
+  scenario 'shows two complete, one available good things exercises' do
+    happiness_exercises.load('Three Good Things')
     happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
@@ -161,8 +132,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows complete available good things exercises' do
-    load('Three Good Things')
+  scenario 'shows complete available good things exercises' do
+    happiness_exercises.load('Three Good Things')
     happiness_exercises.open('Three Good Things')
     happiness_exercises.open('THREE GOOD THINGS')
     happiness_exercises.answer_question_with(1, 'First good thing')
@@ -187,8 +158,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows available experiencing kindness exercises' do
-    load('Experiencing Kindness')
+  scenario 'shows available experiencing kindness exercises' do
+    happiness_exercises.load('Experiencing Kindness')
 
     within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
@@ -199,8 +170,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows one complete, one available experiencing kindness exercises' do
-    load('Experiencing Kindness')
+  scenario 'shows one complete, one available kindness exercises' do
+    happiness_exercises.load('Experiencing Kindness')
     happiness_exercises.open('Experiencing Kindness')
     happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
@@ -219,8 +190,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows complete experiencing kindness exercises' do
-    load('Experiencing Kindness')
+  scenario 'shows complete experiencing kindness exercises' do
+    happiness_exercises.load('Experiencing Kindness')
     happiness_exercises.open('Experiencing Kindness')
     happiness_exercises.open('EXPERIENCING KINDNESS')
     happiness_exercises.answer_question_with(1, 'First kindness experience')
@@ -240,9 +211,9 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows available savoring exercises' do
-    load('Savoring')
-    page.evaluate_script('window.location.reload()')
+  scenario 'shows available savoring exercises' do
+    happiness_exercises.load('Savoring')
+    navigation.reload
 
     within happiness_exercises.row(1) do
       expect(happiness_exercises).to be_pending
@@ -253,8 +224,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows one available, one complete savoring exercises' do
-    load('Savoring')
+  scenario 'shows one available, one complete savoring exercises' do
+    happiness_exercises.load('Savoring')
     happiness_exercises.open('Savoring')
     happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
@@ -273,8 +244,8 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'shows complete savoring exercises' do
-    load('Savoring')
+  scenario 'shows complete savoring exercises' do
+    happiness_exercises.load('Savoring')
     happiness_exercises.open('Savoring')
     happiness_exercises.open('SAVORING')
     happiness_exercises.answer_question_with(1, 'First savoring')
@@ -294,9 +265,9 @@ describe 'Participant opens app', type: :feature do
     end
   end
 
-  it 'updates smoking status' do
+  scenario 'updates smoking status' do
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.evaluate_script('window.location.reload()')
+    navigation.reload
     update_smoking_status.open
     update_smoking_status.select_preparing_for_quit
 

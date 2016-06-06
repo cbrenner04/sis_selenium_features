@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # page object for smoking cessation tool
 class SmokingCessationTool
   include Capybara::DSL

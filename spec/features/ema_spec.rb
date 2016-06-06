@@ -1,16 +1,8 @@
+# frozen_string_literal: true
 # filename: ema_spec.rb
 
-# require local storage data
-require 'local_storage/auth_token'
-require 'local_storage/cessation_date'
-require 'local_storage/cessation_reasons'
-require 'local_storage/risky_times'
-require 'local_storage/sessions'
-require 'local_storage/social_supports'
-
 # require page objects
-require 'pages/ema'
-require 'pages/continue'
+require './lib/pages/ema'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -21,32 +13,41 @@ end
 
 def open_and_complete_slider_questions
   ema.open
-  ema.complete_mood_ratings
+  ema.set_first_value
+  ema.set_second_value
+  ema.set_third_value
+  ema.set_fourth_value
+  ema.set_fifth_value
+  ema.set_sixth_value
   continue.select_continue
-  ema.complete_other_states_ratings
+  ema.set_first_value
+  ema.set_second_value
+  ema.set_third_value
+  ema.set_fourth_value
   continue.select_continue
-  ema.complete_thinking_ratings
+  ema.set_first_value
+  ema.set_second_value
+  ema.set_third_value
+  ema.set_fourth_value
   continue.select_continue
 end
 
-describe 'Participant opens app to complete EMA', type: :feature do
-  before do
-    visit 'localhost:8000'
+feature 'Participant opens app to complete EMA' do
+  background do
+    visit ENV['Base_URL']
     insert_all(CessationDate::DATE_1, Sessions::SESSION_1)
-    page.execute_script('window.location.reload()')
+    navigation.reload
   end
 
-  after do
-    page.execute_script('localStorage.clear()')
-  end
+  after { navigation.clear_data }
 
-  it 'navigates to the EMA' do
+  scenario 'navigates to the EMA' do
     ema.open
 
     expect(page).to have_content 'MOOD: Please tell us how you felt'
   end
 
-  it 'responds they are outside' do
+  scenario 'responds they are outside' do
     open_and_complete_slider_questions
     ema.select_ok
     ema.choose_outside
@@ -55,8 +56,8 @@ describe 'Participant opens app to complete EMA', type: :feature do
     expect(page).to have_content 'Are you currently:'
   end
 
-  describe 'responds that they are inside' do
-    it 'responds they are in a public place' do
+  feature 'responds that they are inside' do
+    scenario 'responds they are in a public place' do
       open_and_complete_slider_questions
       ema.select_ok
       ema.choose_inside
@@ -66,7 +67,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
       expect(page).to have_content 'Are you currently:'
     end
 
-    it 'responds they are in a non-public place alone' do
+    scenario 'responds they are in a non-public place alone' do
       open_and_complete_slider_questions
       ema.select_ok
       ema.choose_inside
@@ -76,8 +77,8 @@ describe 'Participant opens app to complete EMA', type: :feature do
       expect(page).to have_content 'In the last 15 minutes, have you seen any'
     end
 
-    describe 'responds they are in a non-public place with others' do
-      it 'responds they have consumed a non-intoxicating beverage' do
+    feature 'responds they are in a non-public place with others' do
+      scenario 'responds they have consumed a non-intoxicating beverage' do
         open_and_complete_slider_questions
         ema.select_ok
         ema.choose_inside
@@ -98,7 +99,7 @@ describe 'Participant opens app to complete EMA', type: :feature do
         expect(page).to have_content '4 days until quit day!'
       end
 
-      it 'responds they have consumed an intoxicating beverage' do
+      scenario 'responds they have consumed an intoxicating beverage' do
         open_and_complete_slider_questions
         ema.select_ok
         ema.choose_inside
