@@ -57,16 +57,11 @@ feature 'Participant navigates to Smoking Cessation tools' do
   scenario 'and resets quit date' do
     smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
 
-    sleep(2)
-
     # expect(settings_page).to have_cessation_date_selector_present
 
-    sleep(2)
-
     cessation_date.pick_date
-    sleep(2)
-    cessation_date.click_set
-    sleep(2)
+    # sleep(2)
+    # cessation_date.click_set
 
     expect(smoking_cessation_tool).to be_visible
   end
@@ -106,8 +101,10 @@ feature 'Participant navigates to Smoking Cessation tools' do
 
   scenario 'sees content specific instructions in Challenging Times modal' do
     smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
-    scroll_down
     sleep(2)
+    
+    scroll_down
+    
     risky_times_strategies.open
     risky_times_strategies.open_negative_emotions_strategy
 
@@ -384,9 +381,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
     answer_question_with(15)
     session.move_to_next_slide
 
-    expect(page).to have_content 'Ready to Quit?'
-
-    continue.select_continue
+    expect(smoking_cessation_tool).to be_visible
   end
 
   scenario 'cannot move past \'session1_10\' without responding' do
@@ -494,14 +489,6 @@ feature 'Participant navigates to Smoking Cessation tools' do
     continue.select_continue
   end
 
-  scenario 'completes Concerns About Quitting' do
-    smoking_cessation_tool.open_tool('CONCERNS ABOUT QUITTING')
-
-    complete_with_response_4
-
-    expect(page).to have_content '4 days until quit day!'
-  end
-
   # SABOTAGING THOUGHTS
 
   # scenario 'completes Combating Sabotaging Thoughts' do
@@ -529,7 +516,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
 
       session.move_to_next_slide
 
-      expect(page).to have_content 'It\'s Your Quit day!'
+      expect(smoking_cessation_tool).to be_visible
     end
 
     feature 'responds to \'got_time\' with response 1' do
@@ -1102,7 +1089,7 @@ feature 'Participant navigates to Smoking Cessation tools' do
             move_from_session2_strategies2_to_session2_traps
             move_from_session2_traps_to_session2_checkingin4
 
-            expect(continue).to be_disabled
+            expect(smoking_cessation_tool).to be_visible
           end
         end
 

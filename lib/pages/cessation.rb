@@ -15,7 +15,7 @@ class Cessation
   end
 
   def click_set
-    find('.dwb-a', text: 'Set').click
+    find('.dwb-s', text: 'SET').click
   end
 
   def click_cancel
