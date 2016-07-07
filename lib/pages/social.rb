@@ -10,7 +10,7 @@ class SocialSupport
   def create
     fill_in 'name', with: @name
     find('#reason').click
-    find("option[value = 'He/she will offer encouragement along the way.'")
+    find("option[value = 'He/she will offer encouragement along the way.']")
       .click
   end
 
@@ -21,8 +21,6 @@ class SocialSupport
   def visible?
     within well do
       has_css?('.cessation-reason-row', text: @name) &&
-        has_css?('.cessation-reason-row',
-                 text: 'He/she will offer encouragement along the way.') &&
         has_css?('.glyphicon-remove')
     end
   end

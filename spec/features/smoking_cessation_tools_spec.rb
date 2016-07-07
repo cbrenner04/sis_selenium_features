@@ -17,22 +17,13 @@ feature 'Participant navigates to Smoking Cessation tools' do
 
   scenario 'and resets quit date' do
     smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
-
-    # expect(settings_page).to have_cessation_date_selector_present
-
     cessation_date.pick_date
-    # sleep(2)
-    # cessation_date.click_set
 
     expect(smoking_cessation_tool).to be_visible
   end
 
   scenario 'and cancels reset quit date' do
     smoking_cessation_tool.open_tool('SCHEDULE YOUR QUIT DAY')
-
-    expect(settings_page).to have_cessation_date_selector_present
-
-    cessation_date.pick_date
     cessation_date.click_cancel
 
     expect(smoking_cessation_tool).to be_visible
@@ -63,9 +54,11 @@ feature 'Participant navigates to Smoking Cessation tools' do
   scenario 'sees content specific instructions in Challenging Times modal' do
     smoking_cessation_tool.open_tool('MANAGING YOUR CHALLENGING TIMES')
     sleep(2)
-    
+
+    expect(smoking_cessation_tool).to have_risky_times_visible
+
     scroll_down
-    
+
     risky_times_strategies.open
     risky_times_strategies.open_negative_emotions_strategy
 
@@ -105,9 +98,6 @@ feature 'Participant navigates to Smoking Cessation tools' do
     risky_times.create
 
     expect(risky_times).to have_two_risky_times_present
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'removes a Challenging Time' do
@@ -118,9 +108,6 @@ feature 'Participant navigates to Smoking Cessation tools' do
     risky_times.remove
 
     expect(risky_times).to_not have_risky_time_present('Test Risky Time')
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'edits a Challenging Time' do
@@ -129,13 +116,12 @@ feature 'Participant navigates to Smoking Cessation tools' do
     expect(risky_times).to_not have_risky_time_present('do something kind')
 
     risky_times.open_edit_time
+    sleep(2)
     risky_times.set_new_strategy
+    sleep(2)
     risky_times.save_edited_time
 
     expect(risky_times).to have_risky_time_present('do something kind')
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'completes Enlisting Your Social Supports tool' do
@@ -144,20 +130,14 @@ feature 'Participant navigates to Smoking Cessation tools' do
     # settings_page.assert_on_page
 
     expect(settings_page).to_not have_save_present
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'adds a social support' do
     smoking_cessation_tool.open_tool('ENLISTING YOUR SOCIAL SUPPORT')
     social_supports.create
-    settings_page.save_modal
+    settings_page.save
 
     expect(social_supports).to have_two_supports_present
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'removes a social support' do
@@ -168,9 +148,6 @@ feature 'Participant navigates to Smoking Cessation tools' do
     social_supports.remove
 
     expect(social_supports).to_not have_test_social_support_present
-
-    scroll_down
-    smoking_cessation_tool.click_done
   end
 
   scenario 'cannot move past \'session1_benefits\' without responding' do
@@ -449,13 +426,6 @@ feature 'Participant navigates to Smoking Cessation tools' do
 
     continue.select_continue
   end
-
-  # SABOTAGING THOUGHTS
-
-  # scenario 'completes Combating Sabotaging Thoughts' do
-  #   smoking_cessation_tool.open_tool('COMBATING SABOTAGING THOUGHTS')
-
-  # end
 
   feature 'responds to \'session2_smokingstatus\' with response 1' do
     background do

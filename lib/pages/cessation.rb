@@ -20,7 +20,7 @@ class Cessation
   end
 
   def click_cancel
-    find('.dwb-a', text: 'Cancel').click
+    find('.dwb-c', text: 'CANCEL').click
   end
 
   def visible?

@@ -38,16 +38,11 @@ class HappinessExercise
   end
 
   def has_previous_responses?
-    find('.row', text: "(#{(Date.today - 4).strftime('%m/%d/%Y')}) Please " \
-                       'describe three good things that happened to you today:')
+    find('.row', text: (Date.today - 4).strftime('%m/%d/%Y'))
       .has_text?('test test test') &&
-      find('.row', text: "(#{(Date.today - 3).strftime('%m/%d/%Y')}) Please " \
-                         'describe two acts of kindness: a kindness you did,' \
-                         ' and a kindness')
+      find('.row', text: (Date.today - 3).strftime('%m/%d/%Y'))
         .has_text?('test kindness test kindness') &&
-      find('.row', text: "(#{(Date.today - 2).strftime('%m/%d/%Y')}) Please " \
-                         'describe experiences that you savored in the past ' \
-                         'four hours')
+      find('.row', text: (Date.today - 2).strftime('%m/%d/%Y'))
         .has_text?('test savoring test savoring')
   end
 end

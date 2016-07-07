@@ -9,6 +9,18 @@ class CigaretteLog
     find('.btn', text: 'CIGARETTE LOG').click
   end
 
+  def click_1_cig
+    find('.btn', text: '1 CIGARETTE').click
+  end
+
+  def click_2_cig
+    find('.btn', text: '2+ CIGARETTES').click
+  end
+
+  def set_num_cigs
+    find('input').set(rand(2..10).to_s)
+  end
+
   def set_reason
     find('select').click
     reason = ['Reduce craving', 'Cope with negative emotion',

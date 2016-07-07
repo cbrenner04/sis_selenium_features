@@ -56,6 +56,19 @@ feature 'Participant opens app to complete EMA' do
     expect(page).to have_content 'Are you currently:'
   end
 
+  scenario 'does not move sliders and continues' do
+    ema.open
+    continue.select_continue
+
+    expect(page).to have_content "You haven't updated any of your answers..."
+
+    ema.click_go_back_btn
+    continue.select_continue
+
+    expect(page).to have_content 'OTHER STATES: Please tell us how you ' \
+                                  'felt RIGHT BEFORE completing this report.'
+  end
+
   feature 'responds that they are inside' do
     scenario 'responds they are in a public place' do
       open_and_complete_slider_questions

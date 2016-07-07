@@ -6,6 +6,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
+require 'json'
 
 # set driver browser
 def browser
@@ -38,7 +39,8 @@ Capybara.configure do |config|
     Capybara::Selenium::Driver.new(app, browser: browser)
   end
   config.page.driver.browser.manage.window.resize_to(360, 591)
-  config.save_and_open_page_path = 'screenshots/'
+  config
+    .save_path = "#{ENV['Path']}/sis_selenium_features/spec/screenshots/"
 end
 
 # capybara-screenshot configuration options

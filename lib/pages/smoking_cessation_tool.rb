@@ -19,4 +19,8 @@ class SmokingCessationTool
   def visible?
     has_content? 'Smoking Cessation Tools'
   end
+
+  def has_risky_times_visible?
+    has_text? 'Your Risky Times'
+  end
 end

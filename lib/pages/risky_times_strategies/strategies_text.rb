@@ -25,14 +25,6 @@ module RiskyTimesStrategies
     POSITIVE_STRATEGIES = [
       'Treat yourself – try a non-lethal replacement treat - tea, hot ' \
       'chocolate, ice-cream, nachos',
-      'Savor - just savor the moment for its own merit. For example, you ' \
-      'don\'t need a cigarette to celebrate the weekend, it\'s fun on its own',
-      'Share your happiness – reach out to the people in your life and share' \
-      ' your happiness - call, email, text, chat online, and/or meet your ' \
-      'family and friends to share the moment',
-      'Realize there is plenty more - Think of how much longer you\'ll be ' \
-      'able to enjoy these joyful moments by not smoking - you\'ll have a ' \
-      'longer, healthier life!'
     ].freeze
 
     SOCIAL_STRATEGIES = [
@@ -58,19 +50,8 @@ module RiskyTimesStrategies
     ].freeze
 
     ALCOHOL_STRATEGIES = [
-      'Avoid drinking– if drinking is an important part of your social life,' \
-      ' that\'s tough to do, but best: your cravings will be less strong if ' \
-      'you are simply not drinking. Remember, it’s not forever, just while ' \
-      'you are getting used to being smoke-free (2-3 weeks)',
       'Trash the smoking supplies - make sure you have no cigarettes or ' \
       'lighters on you, get rid of ashtrays and cigarette cases',
-      'Enlist friends’ help - Ask your friends ahead of time not to give you' \
-      ' any cigarettes, even if you ask',
-      'Stay inside - when others go outside to smoke, stay inside; ask a ' \
-      'friend to stay inside with you for the night',
-      'Arrange for activities - if you are going out, try somewhere that has' \
-      ' activities (darts, pool, video games, dancing), so you won\'t feel ' \
-      'awkward or bored staying inside'
     ].freeze
 
     HABITUAL_SMOKING_STRATEGIES = [

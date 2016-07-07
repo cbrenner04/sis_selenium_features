@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Values for authenticationToken inserted into localStorage for various examples
 module AuthToken
   KEY = 'authenticationToken'

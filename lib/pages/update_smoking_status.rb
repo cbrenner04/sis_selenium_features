@@ -4,7 +4,7 @@ class UpdateSmokingStatus
   include Capybara::DSL
 
   def open
-    find('.btn-default', text: 'UPDATE YOUR STATUS').click
+    find('.btn-sm', text: 'CLICK HERE TO UPDATE YOUR STATUS').click
   end
 
   def select_preparing_for_quit

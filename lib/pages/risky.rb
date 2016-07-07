@@ -74,7 +74,7 @@ class Risky
   end
 
   def save_edited_time
-    page.all('.btn', text: 'OK')[1].click
+    click_on 'OK'
   end
 
   def remove

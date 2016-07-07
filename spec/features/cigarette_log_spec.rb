@@ -20,19 +20,57 @@ feature 'Participant opens app' do
 
   after { navigation.clear_data }
 
-  scenario 'navigates to Cigarette Log' do
+  scenario 'navigates to Cigarette Log for 1 cigarette' do
     cigarette_log.open
+    cigarette_log.click_1_cig
 
-    expect(page).to have_content 'Why are you smoking this cigarette'
+    expect(page).to have_content 'Why did you smoke?'
+
+    expect(page).to_not have_content 'How many cigarettes ' \
+                                     'have you smoked since your last log?'
 
     expect(continue).to_not be_visible
   end
 
-  scenario 'completes Cigarette Log' do
+  scenario 'completes Cigarette Log for 1 cigarette' do
     cigarette_log.open
+    cigarette_log.click_1_cig
 
     expect(continue).to_not be_visible
 
+    cigarette_log.set_reason
+    continue.select_continue
+
+    expect(continue).to_not be_visible
+
+    cigarette_log.set_rating
+
+    expect(page).to have_content '6'
+
+    continue.select_continue
+
+    expect(page).to have_content 'MOOD: Please tell us how you felt'
+  end
+
+  scenario 'navigates to Cigarette Log for 2+ cigarettes' do
+    cigarette_log.open
+    cigarette_log.click_2_cig
+
+    expect(page).to have_content 'Why did you smoke?'
+
+    expect(page).to have_content 'How many cigarettes ' \
+                                 'have you smoked since your last log?'
+
+    expect(continue).to_not be_visible
+  end
+
+  scenario 'completes Cigarette Log for 2+ cigarettes' do
+    cigarette_log.open
+    cigarette_log.click_2_cig
+
+    expect(continue).to_not be_visible
+
+    cigarette_log.set_num_cigs
     cigarette_log.set_reason
     continue.select_continue
 

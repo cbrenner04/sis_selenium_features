@@ -1147,7 +1147,7 @@ feature 'Participant navigates to session 2' do
         answer_question_with(1)
         session.move_to_next_slide
 
-        expect(page).to have_content 'START NOW'
+        expect(page).to have_content 'It\'s Your Quit day!'
       end
 
       scenario 'responds to \'not_quit\' with response 2' do
@@ -1197,7 +1197,7 @@ feature 'Participant navigates to session 2' do
       answer_question_with(1)
       session.move_to_next_slide
 
-      expect(page).to have_content 'START NOW'
+      expect(page).to have_content 'It\'s Your Quit day!'
     end
 
     scenario 'responds to \'session2_notready2\' with response 2' do

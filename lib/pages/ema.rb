@@ -121,6 +121,10 @@ class EMA
     all('.form-control')[5].drag_by(-120, 00)
   end
 
+  def click_go_back_btn
+    find('#exit_button').click
+  end
+
   private
 
   def pick_yes_or_no

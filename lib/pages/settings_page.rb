@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 # page object for settings page
+# settings page has been repurposed for the smoking cessation spec
 class SettingsPage
   include Capybara::DSL
 

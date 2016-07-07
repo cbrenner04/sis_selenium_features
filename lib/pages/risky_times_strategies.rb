@@ -32,7 +32,7 @@ class RiskyTimesStrategy
   end
 
   def has_positive_strategy_present?
-    has_strategies_present?(POSTIVE_STRATEGIES)
+    has_strategies_present?(POSITIVE_STRATEGIES)
   end
 
   def open_social_situations_strategy
