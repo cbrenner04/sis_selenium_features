@@ -45,4 +45,8 @@ class HappinessExercise
       find('.row', text: (Date.today - 2).strftime('%m/%d/%Y'))
         .has_text?('test savoring test savoring')
   end
+
+  def open_view_graph
+    find('.btn', text: 'VIEW GRAPH').click
+  end
 end

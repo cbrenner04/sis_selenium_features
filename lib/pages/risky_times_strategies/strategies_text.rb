@@ -24,7 +24,7 @@ module RiskyTimesStrategies
 
     POSITIVE_STRATEGIES = [
       'Treat yourself – try a non-lethal replacement treat - tea, hot ' \
-      'chocolate, ice-cream, nachos',
+      'chocolate, ice-cream, nachos'
     ].freeze
 
     SOCIAL_STRATEGIES = [
@@ -51,7 +51,7 @@ module RiskyTimesStrategies
 
     ALCOHOL_STRATEGIES = [
       'Trash the smoking supplies - make sure you have no cigarettes or ' \
-      'lighters on you, get rid of ashtrays and cigarette cases',
+      'lighters on you, get rid of ashtrays and cigarette cases'
     ].freeze
 
     HABITUAL_SMOKING_STRATEGIES = [

@@ -84,4 +84,11 @@ feature 'Participant opens app' do
 
     expect(page).to have_content 'MOOD: Please tell us how you felt'
   end
+
+  scenario 'view cigarette log graph' do
+    cigarette_log.open
+    cigarette_log.open_view_graph
+
+    expect(page).to have_content 'Your Reported Cigarettes per Day'
+  end
 end

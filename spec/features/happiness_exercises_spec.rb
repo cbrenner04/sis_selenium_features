@@ -104,9 +104,11 @@ feature 'Participant opens app' do
     expect(happiness_exercises).to have_previous_responses
   end
 
-  # Skipping below scenario until feature is ready.
-  skip 'view happiness graph' do
+  scenario 'view happiness graph' do
     happiness_exercises.load('Three Good Things')
+    happiness_exercises.open('Three Good Things')
     happiness_exercises.open_view_graph
+
+    expect(page).to have_content 'Your Happiness Ratings Over Time'
   end
 end

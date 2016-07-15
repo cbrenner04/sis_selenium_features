@@ -33,4 +33,8 @@ class CigaretteLog
   def set_rating
     find(:xpath, '//input').drag_by(40, 0)
   end
+
+  def open_view_graph
+    find('.btn', text: 'VIEW GRAPH').click
+  end
 end
