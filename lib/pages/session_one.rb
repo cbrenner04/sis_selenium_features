@@ -17,6 +17,30 @@ class SessionOne
     find('.session-option').click
   end
 
+  def select_three_good_things
+    find('.btn', text: 'Three Good Things').click
+  end
+
+  def select_savoring
+    find('.btn', text: 'Savoring').click
+  end
+
+  def select_experiencing_kindness
+    find('.btn', text: 'Experiencing Kindness').click
+  end
+
+  def assert_on_three_good_things
+    find('h3', text: 'Three Good Things')
+  end
+
+  def assert_on_savoring
+    find('h3', text: 'Savoring')
+  end
+
+  def assert_on_experiencing_kindness
+    find('h3', text: 'Experiencing Kindness')
+  end
+
   def assert_on_session1_1
     find('h3', text: 'Welcome to SiS! Smiling Instead of Smoking')
   end
@@ -40,6 +64,14 @@ class SessionOne
 
   def assert_on_session1_4
     find('h3', text: 'Congratulations!')
+  end
+
+  def assert_on_session1_promoting_happiness
+    find('h3', text: 'Promoting Happiness to be Smoke-free')
+  end
+
+  def assert_on_session1_track_your_progress
+    find('h3', text: 'Track your progress')
   end
 
   def assert_on_session1_reasons

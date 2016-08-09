@@ -19,6 +19,7 @@ desc 'Set up and start SiS dashboard for testing locally'
 task :load_app_dash_local do
   Dir.chdir("#{ENV['Path']}/sis_dashboard/") do
     system('rake db:drop db:create db:migrate')
+    system('rake seed:with_fixtures')
     system('rails s')
   end
 end

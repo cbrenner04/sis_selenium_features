@@ -1,30 +1,47 @@
 # frozen_string_literal: true
 # filename: ./spec/support/session_1_helper.rb
 
-def move_from_session1_1_to_reason
+def move_to_session1_1
   session_one.enter_study_id('123')
   session.move_to_next_slide
   session_one.consent_to_use_data
   session.move_to_next_slide
   session_one.assert_on_session1_1
-  answer_question_with(1)
+end
+
+def move_from_session1_1_to_promoting_happiness
   session.move_to_next_slide
   session_one.enter_number_of_cigs_smoked('10')
   session.move_to_next_slide
   session_one.assert_on_session1_3
   session.move_to_next_slide
+  session_one.assert_on_session1_promoting_happiness
+end
+
+def move_from_session1_1_to_reason
+  move_to_session1_1
+  answer_question_with(1)
+  move_from_session1_1_to_promoting_happiness
+  session_one.select_three_good_things
+  session.move_to_next_slide
+  session_one.assert_on_three_good_things
+  session.move_to_next_slide
+  session_one.assert_on_session1_track_your_progress
+  session.move_to_next_slide
   session_one.assert_on_session1_reasons
 end
 
 def move_to_quit_reason
-  session_one.enter_study_id('123')
-  session.move_to_next_slide
-  session_one.consent_to_use_data
-  session.move_to_next_slide
-  session_one.assert_on_session1_1
+  move_to_session1_1
   answer_question_with(3)
   session.move_to_next_slide
   session_one.enter_number_of_cigs_smoked('10')
+  session.move_to_next_slide
+  session_one.select_three_good_things
+  session.move_to_next_slide
+  session_one.assert_on_three_good_things
+  session.move_to_next_slide
+  session_one.assert_on_session1_track_your_progress
   session.move_to_next_slide
   session_one.assert_on_session1_4
   session.move_to_next_slide

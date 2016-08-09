@@ -3,6 +3,7 @@
 
 # require page objects
 require 'pages/cigarette_log'
+require 'local_storage/local_session'
 
 # instantiate page objects
 # those that are not instantiated here are common
@@ -50,6 +51,42 @@ feature 'Participant opens app' do
     continue.select_continue
 
     expect(page).to have_content 'MOOD: Please tell us how you felt'
+  end
+
+  scenario 'and cannot complete ema after registering 1 cigarette' do
+    insert(LocalSession::KEY, LocalSession::CIG_1)
+    cigarette_log.open
+    cigarette_log.click_1_cig
+    cigarette_log.set_reason
+    continue.select_continue
+    cigarette_log.set_rating
+    continue.select_continue
+
+    expect(page).to have_content 'MOOD: Please tell us how you felt'
+
+    visit ENV['Base_URL']
+    cigarette_log.open
+    cigarette_log.click_1_cig
+    cigarette_log.set_reason
+    continue.select_continue
+    cigarette_log.set_rating
+    continue.select_continue
+
+    expect(page).to have_content 'Thank you!'
+  end
+
+  # The following test has a 1 in 1000000 chance of failing, assuming there
+  # are no errors in the test. Run test again.
+  scenario 'and cannot complete ema after registering 1 million cigarette' do
+    insert(LocalSession::KEY, LocalSession::CIG_MIL)
+    cigarette_log.open
+    cigarette_log.click_1_cig
+    cigarette_log.set_reason
+    continue.select_continue
+    cigarette_log.set_rating
+    continue.select_continue
+
+    expect(page).to have_content 'Thank you!'
   end
 
   scenario 'navigates to Cigarette Log for 2+ cigarettes' do

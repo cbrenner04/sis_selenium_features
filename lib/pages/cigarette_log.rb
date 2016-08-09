@@ -21,6 +21,10 @@ class CigaretteLog
     find('input').set(rand(2..10).to_s)
   end
 
+  def set_1000000_cigs
+    find('input').set(1_000_000)
+  end
+
   def set_reason
     find('select').click
     reason = ['Reduce craving', 'Cope with negative emotion',
